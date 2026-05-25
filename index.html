@@ -8,57 +8,95 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Noto Sans", sans-serif;
       background: #f7f8fa;
       color: #1a1a2e;
       min-height: 100vh;
     }
 
+    /* ── Header ── */
     header {
+      position: relative;
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
       color: #fff;
-      padding: 40px 20px 32px;
+      padding: 48px 20px 36px;
       text-align: center;
     }
 
     header h1 { font-size: 1.6rem; font-weight: 700; line-height: 1.4; }
-    header p { margin-top: 8px; font-size: 0.9rem; opacity: 0.75; }
+    header p  { margin-top: 8px; font-size: 0.9rem; opacity: 0.75; }
 
-    .lang-toggle {
+    /* ── Language dropdown ── */
+    .lang-wrap {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+    }
+
+    .lang-trigger {
       display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin: 24px auto;
-      max-width: 360px;
-    }
-
-    .lang-btn {
-      flex: 1;
-      padding: 10px 0;
-      border: 2px solid #0f3460;
-      border-radius: 8px;
-      background: #fff;
-      color: #0f3460;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .lang-btn.active {
-      background: #0f3460;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
       color: #fff;
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
     }
+    .lang-trigger:hover { background: rgba(255,255,255,0.25); }
+    .lang-trigger .globe { font-size: 1rem; }
+    .lang-trigger .chevron {
+      font-size: 0.65rem;
+      opacity: 0.8;
+      transition: transform 0.2s;
+    }
+    .lang-wrap.open .lang-trigger .chevron { transform: rotate(180deg); }
 
+    .lang-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+      overflow: hidden;
+      min-width: 172px;
+      z-index: 200;
+    }
+    .lang-wrap.open .lang-menu { display: block; }
+
+    .lang-option {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      color: #1a1a2e;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.12s;
+    }
+    .lang-option:hover { background: #f0f4ff; }
+    .lang-option.active { color: #0f3460; font-weight: 700; }
+    .lang-option .check { width: 14px; font-size: 0.75rem; color: #0f3460; }
+
+    /* ── Body layout ── */
     .container {
       max-width: 700px;
       margin: 0 auto;
       padding: 0 16px 60px;
     }
 
-    .section {
-      margin-top: 32px;
-    }
+    .section { margin-top: 32px; }
 
     .section-title {
       display: flex;
@@ -82,11 +120,11 @@
       font-size: 1.1rem;
       flex-shrink: 0;
     }
-
     .icon-nhi  { background: #dbeafe; }
     .icon-acc  { background: #dcfce7; }
     .icon-visa { background: #fef9c3; }
 
+    /* ── FAQ items ── */
     .faq-item {
       background: #fff;
       border-radius: 12px;
@@ -111,27 +149,23 @@
       gap: 8px;
       line-height: 1.4;
     }
-
     .faq-q .arrow {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       flex-shrink: 0;
       color: #0f3460;
       transition: transform 0.2s;
     }
-
     .faq-q.open .arrow { transform: rotate(180deg); }
 
     .faq-a {
       display: none;
       padding: 0 18px 16px;
       font-size: 0.9rem;
-      line-height: 1.75;
+      line-height: 1.8;
       color: #444;
       border-top: 1px solid #f0f0f0;
     }
-
     .faq-a.show { display: block; }
-
     .faq-a ul { padding-left: 18px; margin-top: 6px; }
     .faq-a li { margin-bottom: 4px; }
     .faq-a .tag {
@@ -145,6 +179,7 @@
       margin-right: 4px;
     }
 
+    /* ── Contact bar ── */
     .contact-bar {
       margin-top: 40px;
       background: linear-gradient(135deg, #0f3460, #1a1a2e);
@@ -153,7 +188,6 @@
       padding: 24px 20px;
       text-align: center;
     }
-
     .contact-bar p { font-size: 0.9rem; opacity: 0.85; margin-bottom: 14px; }
     .contact-bar a {
       display: inline-block;
@@ -166,43 +200,81 @@
       font-size: 0.95rem;
     }
 
-    [data-lang="en"] { display: none; }
-    body.en [data-lang="zh"] { display: none; }
-    body.en [data-lang="en"] { display: block; }
-    .section-title span[data-lang] { display: inline; }
-    body.en .section-title span[data-lang="zh"] { display: none; }
-    body.en .section-title span[data-lang="en"] { display: inline; }
-    .section-title span[data-lang="en"] { display: none; }
-    .contact-bar [data-lang="en"] { display: none; }
-    body.en .contact-bar [data-lang="zh"] { display: none; }
-    body.en .contact-bar [data-lang="en"] { display: block; }
+    /* ── Language visibility ── */
+    /* Default: show zh only */
+    [data-lang="en"],
+    [data-lang="vi"],
+    [data-lang="id"] { display: none; }
+
+    /* Show selected language (block for divs) */
+    body.en  .faq-a    [data-lang="en"],
+    body.vi  .faq-a    [data-lang="vi"],
+    body.id  .faq-a    [data-lang="id"],
+    body.en  .contact-bar [data-lang="en"],
+    body.vi  .contact-bar [data-lang="vi"],
+    body.id  .contact-bar [data-lang="id"] { display: block; }
+
+    /* Show selected language (inline for spans) */
+    body.en  span[data-lang="en"],
+    body.vi  span[data-lang="vi"],
+    body.id  span[data-lang="id"] { display: inline; }
+
+    /* Hide zh when another lang is active */
+    body.en  [data-lang="zh"],
+    body.vi  [data-lang="zh"],
+    body.id  [data-lang="zh"] { display: none; }
   </style>
 </head>
 <body>
 
 <header>
+  <!-- Language selector -->
+  <div class="lang-wrap" id="langWrap">
+    <button class="lang-trigger" onclick="toggleMenu(event)">
+      <span class="globe">🌐</span>
+      <span id="langLabel">中文</span>
+      <span class="chevron">▼</span>
+    </button>
+    <div class="lang-menu" id="langMenu">
+      <button class="lang-option active" id="opt-zh" onclick="setLang('zh')">
+        <span class="check">✓</span> 中文
+      </button>
+      <button class="lang-option" id="opt-en" onclick="setLang('en')">
+        <span class="check"></span> English
+      </button>
+      <button class="lang-option" id="opt-vi" onclick="setLang('vi')">
+        <span class="check"></span> Tiếng Việt
+      </button>
+      <button class="lang-option" id="opt-id" onclick="setLang('id')">
+        <span class="check"></span> Bahasa Indonesia
+      </button>
+    </div>
+  </div>
+
   <h1>
     <span data-lang="zh">外籍人士在台保險 FAQ</span>
     <span data-lang="en">Insurance FAQ for Foreigners in Taiwan</span>
+    <span data-lang="vi">Câu Hỏi Thường Gặp về Bảo Hiểm tại Đài Loan</span>
+    <span data-lang="id">FAQ Asuransi untuk Orang Asing di Taiwan</span>
   </h1>
   <p>
     <span data-lang="zh">常見問題解答 — 外配 / 外籍工作者適用</span>
-    <span data-lang="en">For foreign spouses & foreign workers</span>
+    <span data-lang="en">For foreign spouses &amp; foreign workers</span>
+    <span data-lang="vi">Dành cho vợ/chồng nước ngoài &amp; người lao động nước ngoài</span>
+    <span data-lang="id">Untuk pasangan asing &amp; pekerja asing</span>
   </p>
 </header>
 
 <div class="container">
-  <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('zh')">中文</button>
-    <button class="lang-btn" onclick="setLang('en')">English</button>
-  </div>
 
-  <!-- ===== 健保 ===== -->
+  <!-- ===== 健保 / NHI ===== -->
   <div class="section">
     <div class="section-title">
       <div class="section-icon icon-nhi">🏥</div>
       <span data-lang="zh">全民健保（NHI）相關問題</span>
       <span data-lang="en">National Health Insurance (NHI)</span>
+      <span data-lang="vi">Bảo Hiểm Y Tế Toàn Dân (NHI)</span>
+      <span data-lang="id">Asuransi Kesehatan Nasional (NHI)</span>
     </div>
 
     <!-- Q1 -->
@@ -210,6 +282,8 @@
       <button class="faq-q" onclick="toggle(this)">
         <span data-lang="zh">外籍配偶可以加入健保嗎？</span>
         <span data-lang="en">Can a foreign spouse join Taiwan's NHI?</span>
+        <span data-lang="vi">Vợ/chồng nước ngoài có thể tham gia NHI không?</span>
+        <span data-lang="id">Apakah pasangan asing bisa bergabung dengan NHI Taiwan?</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -225,6 +299,18 @@
             <li>Required documents: ARC, marriage certificate, spouse's NHI card (if enrolling as dependant)</li>
           </ul>
         </div>
+        <div data-lang="vi">
+          Có. Sau khi vợ/chồng nước ngoài có được <strong>Thẻ cư trú (ARC)</strong> và hoàn tất đăng ký hộ khẩu, họ có thể tham gia NHI với tư cách người phụ thuộc của vợ/chồng Đài Loan, hoặc đăng ký độc lập. Người nước ngoài cư trú hợp pháp tại Đài Loan liên tục từ 6 tháng trở lên cũng có thể đăng ký độc lập.
+          <ul>
+            <li>Giấy tờ cần thiết: ARC, giấy chứng nhận kết hôn, thẻ NHI của vợ/chồng (nếu đăng ký là người phụ thuộc)</li>
+          </ul>
+        </div>
+        <div data-lang="id">
+          Bisa. Setelah pasangan asing mendapatkan <strong>ARC (Kartu Izin Tinggal)</strong> dan menyelesaikan pendaftaran kependudukan, mereka bisa bergabung dengan NHI sebagai tanggungan pasangan Taiwan, atau mendaftar secara mandiri. Orang asing yang telah tinggal secara legal di Taiwan selama 6 bulan berturut-turut atau lebih juga dapat mendaftar secara mandiri.
+          <ul>
+            <li>Dokumen yang diperlukan: ARC, akta nikah, kartu NHI pasangan (jika mendaftar sebagai tanggungan)</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -233,6 +319,8 @@
       <button class="faq-q" onclick="toggle(this)">
         <span data-lang="zh">工作簽證的外籍員工怎麼加入健保？</span>
         <span data-lang="en">How do foreign workers on a work permit join NHI?</span>
+        <span data-lang="vi">Người lao động nước ngoài có giấy phép lao động tham gia NHI như thế nào?</span>
+        <span data-lang="id">Bagaimana pekerja asing dengan izin kerja mendaftar NHI?</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -246,8 +334,22 @@
         <div data-lang="en">
           Employers in Taiwan are <strong>legally required to enroll foreign employees in NHI</strong> within 2 months of arrival.
           <ul>
-            <li>Blue-collar migrant workers: employer handles enrollment; costs split between employer & employee</li>
+            <li>Blue-collar migrant workers: employer handles enrollment; costs split between employer &amp; employee</li>
             <li>White-collar foreign professionals: same as local employees — employer 60%, employee 30%, government 10%</li>
+          </ul>
+        </div>
+        <div data-lang="vi">
+          Người sử dụng lao động tại Đài Loan <strong>có nghĩa vụ pháp lý phải đăng ký NHI cho nhân viên nước ngoài</strong> trong vòng 2 tháng sau khi đến nơi.
+          <ul>
+            <li>Lao động phổ thông (lao động di cư): chủ lao động xử lý đăng ký; chi phí chia sẻ giữa hai bên</li>
+            <li>Chuyên gia nước ngoài (cổ trắng): tương tự nhân viên địa phương — chủ lao động 60%, nhân viên 30%, chính phủ 10%</li>
+          </ul>
+        </div>
+        <div data-lang="id">
+          Pemberi kerja di Taiwan <strong>diwajibkan secara hukum untuk mendaftarkan karyawan asing ke NHI</strong> dalam 2 bulan setelah kedatangan.
+          <ul>
+            <li>Pekerja kasar (pekerja migran): pemberi kerja mengurus pendaftaran; biaya ditanggung bersama</li>
+            <li>Profesional asing (kerah putih): sama seperti karyawan lokal — pemberi kerja 60%, karyawan 30%, pemerintah 10%</li>
           </ul>
         </div>
       </div>
@@ -258,6 +360,8 @@
       <button class="faq-q" onclick="toggle(this)">
         <span data-lang="zh">健保涵蓋範圍有哪些？哪些不包含？</span>
         <span data-lang="en">What does NHI cover — and what doesn't it cover?</span>
+        <span data-lang="vi">NHI bao gồm những gì — và không bao gồm gì?</span>
+        <span data-lang="id">Apa yang ditanggung NHI — dan apa yang tidak?</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -278,12 +382,36 @@
           <strong>NHI does NOT cover (supplement with private insurance):</strong>
           <ul>
             <li>Private/upgraded hospital room upgrades</li>
-            <li>Special medical materials & self-paid medications</li>
+            <li>Special medical materials &amp; self-paid medications</li>
             <li>Cosmetic dentistry (braces, implants)</li>
-            <li>Health check-ups & cosmetic surgery</li>
-            <li>Long-term care & disability support</li>
+            <li>Health check-ups &amp; cosmetic surgery</li>
+            <li>Long-term care &amp; disability support</li>
           </ul>
           This is where private insurance can fill the gap.
+        </div>
+        <div data-lang="vi">
+          <strong>NHI bao gồm:</strong> khám ngoại trú, nhập viện, phẫu thuật, cấp cứu, thuốc điều trị bệnh mãn tính, khám thai, v.v.<br/><br/>
+          <strong>NHI KHÔNG bao gồm (nên bổ sung bằng bảo hiểm tư nhân):</strong>
+          <ul>
+            <li>Nâng cấp phòng bệnh viện cao cấp</li>
+            <li>Vật liệu y tế đặc biệt &amp; thuốc tự chi trả</li>
+            <li>Nha khoa thẩm mỹ (niềng răng, cấy ghép)</li>
+            <li>Kiểm tra sức khỏe định kỳ &amp; phẫu thuật thẩm mỹ</li>
+            <li>Chăm sóc dài hạn &amp; hỗ trợ người khuyết tật</li>
+          </ul>
+          Đây chính là nơi bảo hiểm tư nhân có thể bù đắp.
+        </div>
+        <div data-lang="id">
+          <strong>NHI mencakup:</strong> kunjungan rawat jalan, rawat inap, operasi, perawatan darurat, obat penyakit kronis, pemeriksaan kehamilan, dll.<br/><br/>
+          <strong>NHI TIDAK mencakup (lengkapi dengan asuransi swasta):</strong>
+          <ul>
+            <li>Upgrade kamar rumah sakit</li>
+            <li>Bahan medis khusus &amp; obat berbayar mandiri</li>
+            <li>Perawatan gigi estetik (kawat gigi, implan)</li>
+            <li>Medical check-up &amp; operasi kosmetik</li>
+            <li>Perawatan jangka panjang &amp; dukungan disabilitas</li>
+          </ul>
+          Di sinilah asuransi swasta dapat mengisi celah tersebut.
         </div>
       </div>
     </div>
@@ -294,7 +422,9 @@
     <div class="section-title">
       <div class="section-icon icon-acc">🛡️</div>
       <span data-lang="zh">意外險 / 壽險</span>
-      <span data-lang="en">Accident & Life Insurance</span>
+      <span data-lang="en">Accident &amp; Life Insurance</span>
+      <span data-lang="vi">Bảo Hiểm Tai Nạn &amp; Nhân Thọ</span>
+      <span data-lang="id">Asuransi Kecelakaan &amp; Jiwa</span>
     </div>
 
     <!-- Q4 -->
@@ -302,6 +432,8 @@
       <button class="faq-q" onclick="toggle(this)">
         <span data-lang="zh">沒有台灣國籍，可以買意外險嗎？</span>
         <span data-lang="en">Can foreigners without Taiwan citizenship buy accident insurance?</span>
+        <span data-lang="vi">Người nước ngoài không có quốc tịch Đài Loan có thể mua bảo hiểm tai nạn không?</span>
+        <span data-lang="id">Bisakah orang asing tanpa kewarganegaraan Taiwan membeli asuransi kecelakaan?</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -317,6 +449,18 @@
             <li>Bring: ARC, passport, proof of Taiwan address</li>
           </ul>
         </div>
+        <div data-lang="vi">
+          Có. Người nước ngoài có ARC hợp lệ có thể mua bảo hiểm tai nạn từ hầu hết các công ty bảo hiểm Đài Loan. Một số hợp đồng cũng có thể mua khi có <strong>visa du lịch/thương mại</strong>, nhưng phạm vi bảo hiểm có thể bị hạn chế hơn.
+          <ul>
+            <li>Cần chuẩn bị: ARC, hộ chiếu, bằng chứng địa chỉ tại Đài Loan</li>
+          </ul>
+        </div>
+        <div data-lang="id">
+          Bisa. Orang asing yang memiliki ARC yang valid dapat membeli asuransi kecelakaan dari sebagian besar perusahaan asuransi Taiwan. Beberapa polis juga tersedia untuk pemegang <strong>visa kunjungan/bisnis</strong>, meskipun cakupannya mungkin lebih terbatas.
+          <ul>
+            <li>Siapkan: ARC, paspor, bukti alamat di Taiwan</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -325,6 +469,8 @@
       <button class="faq-q" onclick="toggle(this)">
         <span data-lang="zh">壽險的受益人可以是海外的家人嗎？</span>
         <span data-lang="en">Can beneficiaries of life insurance be family members living overseas?</span>
+        <span data-lang="vi">Người thụ hưởng bảo hiểm nhân thọ có thể là thành viên gia đình ở nước ngoài không?</span>
+        <span data-lang="id">Bisakah penerima manfaat asuransi jiwa adalah anggota keluarga yang tinggal di luar negeri?</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -334,6 +480,12 @@
         <div data-lang="en">
           Yes. You can designate overseas family members as beneficiaries on a Taiwanese life insurance policy. When filing a claim, beneficiaries will need to provide ID documents (passport, birth certificate, etc.), and payout can be transferred to an overseas bank account via wire transfer. It is strongly recommended to fill in beneficiary details clearly at the time of purchase.
         </div>
+        <div data-lang="vi">
+          Có. Bạn có thể chỉ định thành viên gia đình ở nước ngoài là người thụ hưởng trong hợp đồng bảo hiểm nhân thọ Đài Loan. Khi làm thủ tục bồi thường, người thụ hưởng cần cung cấp giấy tờ tùy thân (hộ chiếu, giấy khai sinh, v.v.), và tiền bồi thường có thể được chuyển đến tài khoản ngân hàng nước ngoài qua chuyển khoản quốc tế. Nên điền rõ thông tin người thụ hưởng ngay khi mua bảo hiểm để tránh tranh chấp sau này.
+        </div>
+        <div data-lang="id">
+          Bisa. Anda dapat menunjuk anggota keluarga di luar negeri sebagai penerima manfaat dalam polis asuransi jiwa Taiwan. Saat mengajukan klaim, penerima manfaat perlu memberikan dokumen identitas (paspor, akta kelahiran, dll.), dan pembayaran dapat ditransfer ke rekening bank luar negeri melalui wire transfer. Sangat disarankan untuk mengisi detail penerima manfaat dengan jelas saat pembelian untuk menghindari sengketa di kemudian hari.
+        </div>
       </div>
     </div>
 
@@ -341,7 +493,9 @@
     <div class="faq-item">
       <button class="faq-q" onclick="toggle(this)">
         <span data-lang="zh">意外險跟壽險有什麼差別？我需要哪個？</span>
-        <span data-lang="en">What's the difference between accident & life insurance? Which do I need?</span>
+        <span data-lang="en">What's the difference between accident &amp; life insurance? Which do I need?</span>
+        <span data-lang="vi">Sự khác biệt giữa bảo hiểm tai nạn và bảo hiểm nhân thọ là gì? Tôi cần loại nào?</span>
+        <span data-lang="id">Apa perbedaan asuransi kecelakaan dan asuransi jiwa? Yang mana yang saya butuhkan?</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -355,6 +509,16 @@
           <span class="tag">Life Insurance</span> covers death from both accidents <em>and</em> illness, offering broader protection — ideal if you have family dependents (children, aging parents abroad).<br/><br/>
           Recommendation: at minimum, get accident insurance; add life insurance if you have family financial responsibilities.
         </div>
+        <div data-lang="vi">
+          <span class="tag">Bảo hiểm tai nạn</span> chỉ chi trả cho thương tích, tàn tật hoặc tử vong do <strong>tai nạn</strong> (ví dụ: tai nạn xe, ngã, tai nạn lao động). Phí bảo hiểm rẻ và là điểm khởi đầu tốt cho người lao động nước ngoài.<br/><br/>
+          <span class="tag">Bảo hiểm nhân thọ</span> chi trả cho cả tai nạn <em>lẫn</em> bệnh tật, cung cấp bảo vệ toàn diện hơn — lý tưởng nếu bạn có người thân phụ thuộc (con cái, cha mẹ già ở nước ngoài).<br/><br/>
+          Khuyến nghị: ít nhất cần có bảo hiểm tai nạn; thêm bảo hiểm nhân thọ nếu bạn có trách nhiệm tài chính với gia đình.
+        </div>
+        <div data-lang="id">
+          <span class="tag">Asuransi Kecelakaan</span> hanya membayar untuk cedera, cacat, atau kematian akibat <strong>kecelakaan</strong> (mis. kecelakaan kendaraan, jatuh, kecelakaan kerja). Preminya terjangkau dan cocok sebagai perlindungan awal bagi pekerja asing.<br/><br/>
+          <span class="tag">Asuransi Jiwa</span> mencakup kematian akibat kecelakaan <em>maupun</em> penyakit, memberikan perlindungan lebih komprehensif — ideal jika Anda memiliki tanggungan (anak-anak, orang tua di luar negeri).<br/><br/>
+          Rekomendasi: minimal miliki asuransi kecelakaan; tambahkan asuransi jiwa jika Anda memiliki tanggung jawab finansial terhadap keluarga.
+        </div>
       </div>
     </div>
   </div>
@@ -364,7 +528,9 @@
     <div class="section-title">
       <div class="section-icon icon-visa">📋</div>
       <span data-lang="zh">工作簽證 / 身份限制</span>
-      <span data-lang="en">Work Permit & Visa Status</span>
+      <span data-lang="en">Work Permit &amp; Visa Status</span>
+      <span data-lang="vi">Giấy Phép Lao Động &amp; Thị Thực</span>
+      <span data-lang="id">Izin Kerja &amp; Status Visa</span>
     </div>
 
     <!-- Q7 -->
@@ -372,6 +538,8 @@
       <button class="faq-q" onclick="toggle(this)">
         <span data-lang="zh">不同簽證身份，能買的保險有差嗎？</span>
         <span data-lang="en">Does my visa type affect what insurance I can buy?</span>
+        <span data-lang="vi">Loại thị thực của tôi có ảnh hưởng đến bảo hiểm tôi có thể mua không?</span>
+        <span data-lang="id">Apakah jenis visa saya memengaruhi asuransi yang bisa saya beli?</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -393,6 +561,24 @@
             <li><span class="tag">Spousal/dependent residency</span> similar to ARC — most private insurance plans are accessible</li>
           </ul>
         </div>
+        <div data-lang="vi">
+          Có, trạng thái thị thực/cư trú của bạn có ảnh hưởng:
+          <ul>
+            <li><span class="tag">ARC</span> có thể mua hầu hết bảo hiểm nhân thọ, tai nạn và y tế — gần như giống cư dân Đài Loan</li>
+            <li><span class="tag">Giấy phép lao động (lao động di cư)</span> có thể mua bảo hiểm tai nạn ✅ và bảo hiểm nhóm ✅; bảo hiểm nhân thọ tùy công ty</li>
+            <li><span class="tag">Visa du lịch/thương mại</span> thường chỉ giới hạn ở bảo hiểm du lịch ngắn hạn hoặc tai nạn; hợp đồng dài hạn bị hạn chế</li>
+            <li><span class="tag">Cư trú theo diện vợ/chồng</span> tương tự ARC — hầu hết bảo hiểm tư nhân đều có thể mua</li>
+          </ul>
+        </div>
+        <div data-lang="id">
+          Ya, status visa/tempat tinggal Anda berpengaruh:
+          <ul>
+            <li><span class="tag">ARC</span> dapat membeli sebagian besar asuransi jiwa, kecelakaan, dan kesehatan — hampir sama dengan penduduk Taiwan</li>
+            <li><span class="tag">Izin kerja (pekerja migran)</span> asuransi kecelakaan ✅, asuransi kelompok ✅; asuransi jiwa tergantung perusahaan</li>
+            <li><span class="tag">Visa kunjungan/bisnis</span> biasanya terbatas pada asuransi perjalanan jangka pendek atau kecelakaan; polis jangka panjang terbatas</li>
+            <li><span class="tag">Tinggal ikut pasangan</span> mirip ARC — sebagian besar asuransi swasta dapat diakses</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -401,6 +587,8 @@
       <button class="faq-q" onclick="toggle(this)">
         <span data-lang="zh">簽證到期或離台，保單會怎樣？</span>
         <span data-lang="en">What happens to my insurance if my visa expires or I leave Taiwan?</span>
+        <span data-lang="vi">Điều gì xảy ra với bảo hiểm của tôi nếu thị thực hết hạn hoặc tôi rời Đài Loan?</span>
+        <span data-lang="id">Apa yang terjadi pada asuransi saya jika visa saya habis atau saya meninggalkan Taiwan?</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -422,6 +610,24 @@
           </ul>
           It's good practice to review your insurance status each time you renew your ARC or work permit.
         </div>
+        <div data-lang="vi">
+          Tùy thuộc vào loại hợp đồng:
+          <ul>
+            <li><strong>Bảo hiểm nhân thọ/y tế dài hạn:</strong> miễn là vẫn đóng phí, hợp đồng thường vẫn có hiệu lực dù bạn rời Đài Loan. Kiểm tra điều khoản về bồi thường y tế ở nước ngoài.</li>
+            <li><strong>Bảo hiểm tai nạn ngắn hạn (đóng phí hàng năm):</strong> kết thúc khi hết hạn; xác nhận khả năng gia hạn nếu tình trạng thị thực thay đổi.</li>
+            <li><strong>NHI:</strong> phải tạm dừng nếu rời Đài Loan hơn 6 tháng; đăng ký lại khi trở về.</li>
+          </ul>
+          Nên kiểm tra tình trạng bảo hiểm mỗi lần gia hạn ARC hoặc giấy phép lao động.
+        </div>
+        <div data-lang="id">
+          Tergantung jenis polis:
+          <ul>
+            <li><strong>Asuransi jiwa/kesehatan jangka panjang:</strong> selama premi dibayarkan, polis biasanya tetap berlaku meski Anda meninggalkan Taiwan. Periksa ketentuan klaim medis di luar negeri.</li>
+            <li><strong>Asuransi kecelakaan jangka pendek (tahunan):</strong> berakhir saat habis masa berlakunya; konfirmasi kelayakan perpanjangan jika status visa berubah.</li>
+            <li><strong>NHI:</strong> harus ditangguhkan jika Anda meninggalkan Taiwan lebih dari 6 bulan; daftar ulang saat kembali.</li>
+          </ul>
+          Sebaiknya tinjau status asuransi Anda setiap kali memperpanjang ARC atau izin kerja.
+        </div>
       </div>
     </div>
 
@@ -430,6 +636,8 @@
       <button class="faq-q" onclick="toggle(this)">
         <span data-lang="zh">我剛到台灣，健保還沒生效，這段時間怎麼辦？</span>
         <span data-lang="en">I just arrived in Taiwan and my NHI hasn't started yet. What should I do?</span>
+        <span data-lang="vi">Tôi vừa đến Đài Loan và NHI chưa có hiệu lực. Tôi nên làm gì?</span>
+        <span data-lang="id">Saya baru tiba di Taiwan dan NHI saya belum aktif. Apa yang harus saya lakukan?</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -449,6 +657,22 @@
           </ul>
           Medical costs without NHI can be high — it's wise to have coverage from day one.
         </div>
+        <div data-lang="vi">
+          NHI có thể có thời gian chờ lên đến 4 tháng trong một số trường hợp. Trong khoảng thời gian này, nên:
+          <ul>
+            <li>Mua <strong>bảo hiểm tai nạn ngắn hạn</strong> hoặc <strong>bảo hiểm y tế du lịch</strong> làm cầu nối</li>
+            <li>Hoặc hỏi xem công ty của bạn có cung cấp bảo hiểm nhóm không</li>
+          </ul>
+          Chi phí y tế khi không có NHI có thể rất cao — nên có bảo hiểm ngay từ ngày đầu tiên.
+        </div>
+        <div data-lang="id">
+          NHI bisa memiliki masa tunggu hingga 4 bulan dalam beberapa kasus. Selama masa jeda ini, disarankan untuk:
+          <ul>
+            <li>Membeli <strong>asuransi kecelakaan jangka pendek</strong> atau <strong>asuransi medis perjalanan</strong> sebagai jembatan</li>
+            <li>Atau tanyakan apakah pemberi kerja Anda menyediakan asuransi kelompok</li>
+          </ul>
+          Biaya medis tanpa NHI bisa sangat tinggi — bijaksana untuk memiliki perlindungan sejak hari pertama.
+        </div>
       </div>
     </div>
   </div>
@@ -463,16 +687,66 @@
       <p>Still have questions? Feel free to reach out — free consultation available!</p>
       <a href="https://instagram.com" target="_blank">📩 Contact Me</a>
     </div>
+    <div data-lang="vi">
+      <p>Còn câu hỏi nào khác? Hãy liên hệ với tôi — tư vấn miễn phí!</p>
+      <a href="https://instagram.com" target="_blank">📩 Liên hệ</a>
+    </div>
+    <div data-lang="id">
+      <p>Masih ada pertanyaan? Hubungi saya — konsultasi gratis tersedia!</p>
+      <a href="https://instagram.com" target="_blank">📩 Hubungi Saya</a>
+    </div>
   </div>
 </div>
 
 <script>
+  const LANGS = {
+    zh: { label: '中文',             htmlLang: 'zh-TW' },
+    en: { label: 'English',          htmlLang: 'en'    },
+    vi: { label: 'Tiếng Việt',       htmlLang: 'vi'    },
+    id: { label: 'Bahasa Indonesia', htmlLang: 'id'    },
+  };
+
+  let current = 'zh';
+
   function setLang(lang) {
-    document.body.classList.toggle('en', lang === 'en');
-    document.querySelectorAll('.lang-btn').forEach((btn, i) => {
-      btn.classList.toggle('active', (lang === 'zh' && i === 0) || (lang === 'en' && i === 1));
+    // Remove old lang class, add new one (zh = no class)
+    document.body.classList.remove('en', 'vi', 'id');
+    if (lang !== 'zh') document.body.classList.add(lang);
+
+    // Update html lang attribute
+    document.documentElement.lang = LANGS[lang].htmlLang;
+
+    // Update trigger label
+    document.getElementById('langLabel').textContent = LANGS[lang].label;
+
+    // Update checkmarks
+    Object.keys(LANGS).forEach(l => {
+      const btn = document.getElementById('opt-' + l);
+      const check = btn.querySelector('.check');
+      btn.classList.toggle('active', l === lang);
+      check.textContent = l === lang ? '✓' : '';
     });
+
+    // Close menu & collapse open FAQs
+    closeMenu();
+    document.querySelectorAll('.faq-q.open').forEach(q => {
+      q.classList.remove('open');
+      q.nextElementSibling.classList.remove('show');
+    });
+
+    current = lang;
   }
+
+  function toggleMenu(e) {
+    e.stopPropagation();
+    document.getElementById('langWrap').classList.toggle('open');
+  }
+
+  function closeMenu() {
+    document.getElementById('langWrap').classList.remove('open');
+  }
+
+  document.addEventListener('click', closeMenu);
 
   function toggle(btn) {
     const answer = btn.nextElementSibling;
