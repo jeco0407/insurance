@@ -8,7 +8,8 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Noto Sans", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC",
+                   "Noto Sans KR", "Noto Sans JP", "Noto Sans", sans-serif;
       background: #f7f8fa;
       color: #1a1a2e;
       min-height: 100vh;
@@ -22,7 +23,6 @@
       padding: 48px 20px 36px;
       text-align: center;
     }
-
     header h1 { font-size: 1.6rem; font-weight: 700; line-height: 1.4; }
     header p  { margin-top: 8px; font-size: 0.9rem; opacity: 0.75; }
 
@@ -32,7 +32,6 @@
       top: 14px;
       right: 14px;
     }
-
     .lang-trigger {
       display: flex;
       align-items: center;
@@ -49,7 +48,6 @@
       transition: background 0.15s;
     }
     .lang-trigger:hover { background: rgba(255,255,255,0.25); }
-    .lang-trigger .globe { font-size: 1rem; }
     .lang-trigger .chevron {
       font-size: 0.65rem;
       opacity: 0.8;
@@ -66,7 +64,7 @@
       border-radius: 12px;
       box-shadow: 0 8px 28px rgba(0,0,0,0.18);
       overflow: hidden;
-      min-width: 172px;
+      min-width: 180px;
       z-index: 200;
     }
     .lang-wrap.open .lang-menu { display: block; }
@@ -95,9 +93,7 @@
       margin: 0 auto;
       padding: 0 16px 60px;
     }
-
     .section { margin-top: 32px; }
-
     .section-title {
       display: flex;
       align-items: center;
@@ -109,16 +105,11 @@
       border-bottom: 2px solid #e0e7ff;
       margin-bottom: 16px;
     }
-
     .section-icon {
-      width: 32px;
-      height: 32px;
+      width: 32px; height: 32px;
       border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
     }
     .icon-nhi  { background: #dbeafe; }
     .icon-acc  { background: #dcfce7; }
@@ -132,7 +123,6 @@
       box-shadow: 0 1px 4px rgba(0,0,0,0.07);
       overflow: hidden;
     }
-
     .faq-q {
       width: 100%;
       text-align: left;
@@ -150,13 +140,10 @@
       line-height: 1.4;
     }
     .faq-q .arrow {
-      font-size: 0.7rem;
-      flex-shrink: 0;
-      color: #0f3460;
-      transition: transform 0.2s;
+      font-size: 0.7rem; flex-shrink: 0;
+      color: #0f3460; transition: transform 0.2s;
     }
     .faq-q.open .arrow { transform: rotate(180deg); }
-
     .faq-a {
       display: none;
       padding: 0 18px 16px;
@@ -170,84 +157,67 @@
     .faq-a li { margin-bottom: 4px; }
     .faq-a .tag {
       display: inline-block;
-      background: #e0e7ff;
-      color: #1e3a8a;
-      border-radius: 4px;
-      padding: 1px 7px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-right: 4px;
+      background: #e0e7ff; color: #1e3a8a;
+      border-radius: 4px; padding: 1px 7px;
+      font-size: 0.8rem; font-weight: 600; margin-right: 4px;
     }
 
     /* ── Contact bar ── */
     .contact-bar {
       margin-top: 40px;
       background: linear-gradient(135deg, #0f3460, #1a1a2e);
-      color: #fff;
-      border-radius: 16px;
-      padding: 24px 20px;
-      text-align: center;
+      color: #fff; border-radius: 16px;
+      padding: 24px 20px; text-align: center;
     }
     .contact-bar p { font-size: 0.9rem; opacity: 0.85; margin-bottom: 14px; }
     .contact-bar a {
       display: inline-block;
-      background: #fff;
-      color: #0f3460;
-      font-weight: 700;
-      padding: 10px 28px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 0.95rem;
+      background: #fff; color: #0f3460;
+      font-weight: 700; padding: 10px 28px;
+      border-radius: 8px; text-decoration: none; font-size: 0.95rem;
     }
 
     /* ── Language visibility ── */
-    /* Default: show zh only */
     [data-lang="en"],
     [data-lang="vi"],
-    [data-lang="id"] { display: none; }
+    [data-lang="id"],
+    [data-lang="ko"],
+    [data-lang="ja"] { display: none; }
 
-    /* Show selected language (block for divs) */
-    body.en  .faq-a    [data-lang="en"],
-    body.vi  .faq-a    [data-lang="vi"],
-    body.id  .faq-a    [data-lang="id"],
-    body.en  .contact-bar [data-lang="en"],
-    body.vi  .contact-bar [data-lang="vi"],
-    body.id  .contact-bar [data-lang="id"] { display: block; }
+    /* block contexts */
+    body.en  .faq-a [data-lang="en"],   body.en  .contact-bar [data-lang="en"],
+    body.vi  .faq-a [data-lang="vi"],   body.vi  .contact-bar [data-lang="vi"],
+    body.id  .faq-a [data-lang="id"],   body.id  .contact-bar [data-lang="id"],
+    body.ko  .faq-a [data-lang="ko"],   body.ko  .contact-bar [data-lang="ko"],
+    body.ja  .faq-a [data-lang="ja"],   body.ja  .contact-bar [data-lang="ja"] { display: block; }
 
-    /* Show selected language (inline for spans) */
+    /* inline contexts */
     body.en  span[data-lang="en"],
     body.vi  span[data-lang="vi"],
-    body.id  span[data-lang="id"] { display: inline; }
+    body.id  span[data-lang="id"],
+    body.ko  span[data-lang="ko"],
+    body.ja  span[data-lang="ja"] { display: inline; }
 
-    /* Hide zh when another lang is active */
-    body.en  [data-lang="zh"],
-    body.vi  [data-lang="zh"],
-    body.id  [data-lang="zh"] { display: none; }
+    /* hide zh */
+    body.en [data-lang="zh"], body.vi [data-lang="zh"],
+    body.id [data-lang="zh"], body.ko [data-lang="zh"],
+    body.ja [data-lang="zh"] { display: none; }
   </style>
 </head>
 <body>
 
 <header>
-  <!-- Language selector -->
   <div class="lang-wrap" id="langWrap">
     <button class="lang-trigger" onclick="toggleMenu(event)">
-      <span class="globe">🌐</span>
-      <span id="langLabel">中文</span>
-      <span class="chevron">▼</span>
+      🌐 <span id="langLabel">中文</span> <span class="chevron">▼</span>
     </button>
     <div class="lang-menu" id="langMenu">
-      <button class="lang-option active" id="opt-zh" onclick="setLang('zh')">
-        <span class="check">✓</span> 中文
-      </button>
-      <button class="lang-option" id="opt-en" onclick="setLang('en')">
-        <span class="check"></span> English
-      </button>
-      <button class="lang-option" id="opt-vi" onclick="setLang('vi')">
-        <span class="check"></span> Tiếng Việt
-      </button>
-      <button class="lang-option" id="opt-id" onclick="setLang('id')">
-        <span class="check"></span> Bahasa Indonesia
-      </button>
+      <button class="lang-option active" id="opt-zh" onclick="setLang('zh')"><span class="check">✓</span> 中文</button>
+      <button class="lang-option" id="opt-en" onclick="setLang('en')"><span class="check"></span> English</button>
+      <button class="lang-option" id="opt-vi" onclick="setLang('vi')"><span class="check"></span> Tiếng Việt</button>
+      <button class="lang-option" id="opt-id" onclick="setLang('id')"><span class="check"></span> Bahasa Indonesia</button>
+      <button class="lang-option" id="opt-ko" onclick="setLang('ko')"><span class="check"></span> 한국어</button>
+      <button class="lang-option" id="opt-ja" onclick="setLang('ja')"><span class="check"></span> 日本語</button>
     </div>
   </div>
 
@@ -256,12 +226,16 @@
     <span data-lang="en">Insurance FAQ for Foreigners in Taiwan</span>
     <span data-lang="vi">Câu Hỏi Thường Gặp về Bảo Hiểm tại Đài Loan</span>
     <span data-lang="id">FAQ Asuransi untuk Orang Asing di Taiwan</span>
+    <span data-lang="ko">대만 외국인을 위한 보험 FAQ</span>
+    <span data-lang="ja">在台外国人のための保険FAQ</span>
   </h1>
   <p>
     <span data-lang="zh">常見問題解答 — 外配 / 外籍工作者適用</span>
     <span data-lang="en">For foreign spouses &amp; foreign workers</span>
     <span data-lang="vi">Dành cho vợ/chồng nước ngoài &amp; người lao động nước ngoài</span>
     <span data-lang="id">Untuk pasangan asing &amp; pekerja asing</span>
+    <span data-lang="ko">외국인 배우자 &amp; 외국인 근로자를 위한 안내</span>
+    <span data-lang="ja">外国人配偶者 &amp; 在台外国人労働者向け</span>
   </p>
 </header>
 
@@ -275,6 +249,8 @@
       <span data-lang="en">National Health Insurance (NHI)</span>
       <span data-lang="vi">Bảo Hiểm Y Tế Toàn Dân (NHI)</span>
       <span data-lang="id">Asuransi Kesehatan Nasional (NHI)</span>
+      <span data-lang="ko">국민건강보험 (NHI)</span>
+      <span data-lang="ja">国民健康保険（NHI）</span>
     </div>
 
     <!-- Q1 -->
@@ -284,32 +260,34 @@
         <span data-lang="en">Can a foreign spouse join Taiwan's NHI?</span>
         <span data-lang="vi">Vợ/chồng nước ngoài có thể tham gia NHI không?</span>
         <span data-lang="id">Apakah pasangan asing bisa bergabung dengan NHI Taiwan?</span>
+        <span data-lang="ko">외국인 배우자도 건강보험에 가입할 수 있나요?</span>
+        <span data-lang="ja">外国人配偶者はNHIに加入できますか？</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
         <div data-lang="zh">
           可以。外籍配偶取得<strong>居留證（ARC）</strong>並完成戶籍登記後，即可以眷屬身份加入配偶的健保，或以個人身份投保。若已在台灣合法居留滿 6 個月，也可單獨申請加保。
-          <ul>
-            <li>所需文件：居留證、結婚登記證明、配偶健保卡（以眷屬加保時）</li>
-          </ul>
+          <ul><li>所需文件：居留證、結婚登記證明、配偶健保卡（以眷屬加保時）</li></ul>
         </div>
         <div data-lang="en">
           Yes. Once a foreign spouse obtains an <strong>ARC (Alien Resident Certificate)</strong> and completes household registration, they can join NHI as a dependant of their Taiwanese spouse, or enroll individually. Foreigners who have legally resided in Taiwan for 6+ continuous months may also apply independently.
-          <ul>
-            <li>Required documents: ARC, marriage certificate, spouse's NHI card (if enrolling as dependant)</li>
-          </ul>
+          <ul><li>Required documents: ARC, marriage certificate, spouse's NHI card (if enrolling as dependant)</li></ul>
         </div>
         <div data-lang="vi">
-          Có. Sau khi vợ/chồng nước ngoài có được <strong>Thẻ cư trú (ARC)</strong> và hoàn tất đăng ký hộ khẩu, họ có thể tham gia NHI với tư cách người phụ thuộc của vợ/chồng Đài Loan, hoặc đăng ký độc lập. Người nước ngoài cư trú hợp pháp tại Đài Loan liên tục từ 6 tháng trở lên cũng có thể đăng ký độc lập.
-          <ul>
-            <li>Giấy tờ cần thiết: ARC, giấy chứng nhận kết hôn, thẻ NHI của vợ/chồng (nếu đăng ký là người phụ thuộc)</li>
-          </ul>
+          Có. Sau khi vợ/chồng nước ngoài có được <strong>Thẻ cư trú (ARC)</strong> và hoàn tất đăng ký hộ khẩu, họ có thể tham gia NHI với tư cách người phụ thuộc hoặc đăng ký độc lập. Người nước ngoài cư trú hợp pháp tại Đài Loan từ 6 tháng trở lên cũng có thể đăng ký độc lập.
+          <ul><li>Giấy tờ cần thiết: ARC, giấy chứng nhận kết hôn, thẻ NHI của vợ/chồng (nếu đăng ký là người phụ thuộc)</li></ul>
         </div>
         <div data-lang="id">
-          Bisa. Setelah pasangan asing mendapatkan <strong>ARC (Kartu Izin Tinggal)</strong> dan menyelesaikan pendaftaran kependudukan, mereka bisa bergabung dengan NHI sebagai tanggungan pasangan Taiwan, atau mendaftar secara mandiri. Orang asing yang telah tinggal secara legal di Taiwan selama 6 bulan berturut-turut atau lebih juga dapat mendaftar secara mandiri.
-          <ul>
-            <li>Dokumen yang diperlukan: ARC, akta nikah, kartu NHI pasangan (jika mendaftar sebagai tanggungan)</li>
-          </ul>
+          Bisa. Setelah pasangan asing mendapatkan <strong>ARC (Kartu Izin Tinggal)</strong> dan menyelesaikan pendaftaran kependudukan, mereka bisa bergabung dengan NHI sebagai tanggungan atau mendaftar secara mandiri. Orang asing yang telah tinggal secara legal di Taiwan selama 6 bulan berturut-turut juga dapat mendaftar secara mandiri.
+          <ul><li>Dokumen yang diperlukan: ARC, akta nikah, kartu NHI pasangan (jika mendaftar sebagai tanggungan)</li></ul>
+        </div>
+        <div data-lang="ko">
+          네. 외국인 배우자가 <strong>거류증(ARC)</strong>을 취득하고 호적 등록을 완료하면, 대만인 배우자의 건강보험에 피부양자로 가입하거나 개인 자격으로 가입할 수 있습니다. 대만에 6개월 이상 합법적으로 거주한 외국인도 단독 가입이 가능합니다.
+          <ul><li>필요 서류: 거류증, 혼인 증명서, 배우자 건강보험증 (피부양자로 가입 시)</li></ul>
+        </div>
+        <div data-lang="ja">
+          はい。外国人配偶者が<strong>居留証（ARC）</strong>を取得し、戸籍登録を完了すると、台湾人配偶者の健康保険に被扶養者として加入するか、個人で加入することができます。台湾に6ヶ月以上合法的に居住している外国人も単独で申請できます。
+          <ul><li>必要書類：居留証、婚姻証明書、配偶者のNHIカード（被扶養者として加入する場合）</li></ul>
         </div>
       </div>
     </div>
@@ -321,6 +299,8 @@
         <span data-lang="en">How do foreign workers on a work permit join NHI?</span>
         <span data-lang="vi">Người lao động nước ngoài có giấy phép lao động tham gia NHI như thế nào?</span>
         <span data-lang="id">Bagaimana pekerja asing dengan izin kerja mendaftar NHI?</span>
+        <span data-lang="ko">취업 비자를 가진 외국인 직원은 어떻게 건강보험에 가입하나요?</span>
+        <span data-lang="ja">就労ビザを持つ外国人従業員はどのようにNHIに加入しますか？</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -352,6 +332,20 @@
             <li>Profesional asing (kerah putih): sama seperti karyawan lokal — pemberi kerja 60%, karyawan 30%, pemerintah 10%</li>
           </ul>
         </div>
+        <div data-lang="ko">
+          대만 회사에 고용된 외국인 직원의 경우, <strong>고용주가 반드시 건강보험에 가입시켜야 합니다</strong>. 입국 후 2개월 이내에 적용됩니다.
+          <ul>
+            <li>블루칼라 이주 노동자: 고용주가 신청 처리, 보험료는 고용주와 직원이 분담</li>
+            <li>화이트칼라 외국인 전문가: 내국인과 동일 — 고용주 60%, 직원 30%, 정부 10%</li>
+          </ul>
+        </div>
+        <div data-lang="ja">
+          台湾の企業に雇用された外国人従業員について、<strong>雇用主は入国後2ヶ月以内にNHIに加入させる法的義務があります</strong>。
+          <ul>
+            <li>ブルーカラーの移住労働者：雇用主が手続きを行い、保険料は雇用主と従業員で分担</li>
+            <li>ホワイトカラーの外国人専門家：地元の従業員と同様 — 雇用主60%、従業員30%、政府10%</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -362,6 +356,8 @@
         <span data-lang="en">What does NHI cover — and what doesn't it cover?</span>
         <span data-lang="vi">NHI bao gồm những gì — và không bao gồm gì?</span>
         <span data-lang="id">Apa yang ditanggung NHI — dan apa yang tidak?</span>
+        <span data-lang="ko">건강보험이 적용되는 것과 적용되지 않는 것은 무엇인가요?</span>
+        <span data-lang="ja">NHIが適用されるものとされないものは何ですか？</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -369,11 +365,9 @@
           <strong>健保包含：</strong>門診、住院、手術、急診、慢性病用藥、孕產婦檢查等。<br/><br/>
           <strong>健保不包含（建議搭配商業保險）：</strong>
           <ul>
-            <li>住院病房升等差額</li>
-            <li>特殊材料、自費藥品</li>
+            <li>住院病房升等差額</li><li>特殊材料、自費藥品</li>
             <li>牙科自費項目（例如矯正、植牙）</li>
-            <li>健檢、美容手術</li>
-            <li>失能照護與長期看護費用</li>
+            <li>健檢、美容手術</li><li>失能照護與長期看護費用</li>
           </ul>
           這正是商業保險可以補充的部分。
         </div>
@@ -413,6 +407,30 @@
           </ul>
           Di sinilah asuransi swasta dapat mengisi celah tersebut.
         </div>
+        <div data-lang="ko">
+          <strong>건강보험 적용 항목：</strong>외래 진료, 입원, 수술, 응급 치료, 만성질환 약제, 산전 검사 등.<br/><br/>
+          <strong>건강보험 미적용 항목（민간 보험으로 보완 필요）：</strong>
+          <ul>
+            <li>상급 병실 입원료 차액</li>
+            <li>특수 의료재료 &amp; 비급여 약품</li>
+            <li>심미 치과 (교정, 임플란트)</li>
+            <li>건강검진 &amp; 성형 수술</li>
+            <li>장기 요양 &amp; 장애 지원</li>
+          </ul>
+          이 부분을 민간 보험으로 보완할 수 있습니다.
+        </div>
+        <div data-lang="ja">
+          <strong>NHIの適用範囲：</strong>外来診療、入院、手術、救急治療、慢性疾患の薬、産前検診など。<br/><br/>
+          <strong>NHIが適用されないもの（民間保険で補完推奨）：</strong>
+          <ul>
+            <li>個室・上位病室への差額</li>
+            <li>特殊医療材料 &amp; 自己負担薬品</li>
+            <li>審美歯科（矯正、インプラント）</li>
+            <li>健康診断 &amp; 美容整形</li>
+            <li>長期介護 &amp; 障害者支援</li>
+          </ul>
+          ここが民間保険で補える部分です。
+        </div>
       </div>
     </div>
   </div>
@@ -425,6 +443,8 @@
       <span data-lang="en">Accident &amp; Life Insurance</span>
       <span data-lang="vi">Bảo Hiểm Tai Nạn &amp; Nhân Thọ</span>
       <span data-lang="id">Asuransi Kecelakaan &amp; Jiwa</span>
+      <span data-lang="ko">상해보험 &amp; 생명보험</span>
+      <span data-lang="ja">傷害保険 &amp; 生命保険</span>
     </div>
 
     <!-- Q4 -->
@@ -434,32 +454,34 @@
         <span data-lang="en">Can foreigners without Taiwan citizenship buy accident insurance?</span>
         <span data-lang="vi">Người nước ngoài không có quốc tịch Đài Loan có thể mua bảo hiểm tai nạn không?</span>
         <span data-lang="id">Bisakah orang asing tanpa kewarganegaraan Taiwan membeli asuransi kecelakaan?</span>
+        <span data-lang="ko">대만 국적 없이도 상해보험을 가입할 수 있나요?</span>
+        <span data-lang="ja">台湾国籍がなくても傷害保険に加入できますか？</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
         <div data-lang="zh">
           可以。持有合法居留證（ARC）的外籍人士，可向大多數台灣保險公司投保意外險。部分保單也開放持<strong>商務簽（停留證）</strong>的人士投保，但保障範圍可能較限制。
-          <ul>
-            <li>建議攜帶：居留證、護照、在台地址證明</li>
-          </ul>
+          <ul><li>建議攜帶：居留證、護照、在台地址證明</li></ul>
         </div>
         <div data-lang="en">
           Yes. Foreigners holding a valid ARC can purchase accident insurance from most Taiwanese insurers. Some policies are also available to those on a <strong>visitor/business visa</strong>, though coverage may be more limited.
-          <ul>
-            <li>Bring: ARC, passport, proof of Taiwan address</li>
-          </ul>
+          <ul><li>Bring: ARC, passport, proof of Taiwan address</li></ul>
         </div>
         <div data-lang="vi">
           Có. Người nước ngoài có ARC hợp lệ có thể mua bảo hiểm tai nạn từ hầu hết các công ty bảo hiểm Đài Loan. Một số hợp đồng cũng có thể mua khi có <strong>visa du lịch/thương mại</strong>, nhưng phạm vi bảo hiểm có thể bị hạn chế hơn.
-          <ul>
-            <li>Cần chuẩn bị: ARC, hộ chiếu, bằng chứng địa chỉ tại Đài Loan</li>
-          </ul>
+          <ul><li>Cần chuẩn bị: ARC, hộ chiếu, bằng chứng địa chỉ tại Đài Loan</li></ul>
         </div>
         <div data-lang="id">
           Bisa. Orang asing yang memiliki ARC yang valid dapat membeli asuransi kecelakaan dari sebagian besar perusahaan asuransi Taiwan. Beberapa polis juga tersedia untuk pemegang <strong>visa kunjungan/bisnis</strong>, meskipun cakupannya mungkin lebih terbatas.
-          <ul>
-            <li>Siapkan: ARC, paspor, bukti alamat di Taiwan</li>
-          </ul>
+          <ul><li>Siapkan: ARC, paspor, bukti alamat di Taiwan</li></ul>
+        </div>
+        <div data-lang="ko">
+          네. 유효한 거류증(ARC)을 보유한 외국인은 대부분의 대만 보험사에서 상해보험에 가입할 수 있습니다. 일부 보험은 <strong>방문/비즈니스 비자</strong> 소지자도 가입 가능하지만, 보장 범위가 더 제한될 수 있습니다.
+          <ul><li>준비 서류: 거류증, 여권, 대만 거주지 증명</li></ul>
+        </div>
+        <div data-lang="ja">
+          はい。有効な居留証（ARC）を持つ外国人は、ほとんどの台湾の保険会社で傷害保険に加入できます。一部の保険は<strong>観光・ビジネスビザ</strong>の方も対象ですが、補償範囲が限られる場合があります。
+          <ul><li>必要なもの：居留証、パスポート、台湾の住所証明</li></ul>
         </div>
       </div>
     </div>
@@ -471,6 +493,8 @@
         <span data-lang="en">Can beneficiaries of life insurance be family members living overseas?</span>
         <span data-lang="vi">Người thụ hưởng bảo hiểm nhân thọ có thể là thành viên gia đình ở nước ngoài không?</span>
         <span data-lang="id">Bisakah penerima manfaat asuransi jiwa adalah anggota keluarga yang tinggal di luar negeri?</span>
+        <span data-lang="ko">생명보험의 수익자를 해외에 있는 가족으로 지정할 수 있나요?</span>
+        <span data-lang="ja">生命保険の受取人を海外の家族にすることはできますか？</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -481,10 +505,16 @@
           Yes. You can designate overseas family members as beneficiaries on a Taiwanese life insurance policy. When filing a claim, beneficiaries will need to provide ID documents (passport, birth certificate, etc.), and payout can be transferred to an overseas bank account via wire transfer. It is strongly recommended to fill in beneficiary details clearly at the time of purchase.
         </div>
         <div data-lang="vi">
-          Có. Bạn có thể chỉ định thành viên gia đình ở nước ngoài là người thụ hưởng trong hợp đồng bảo hiểm nhân thọ Đài Loan. Khi làm thủ tục bồi thường, người thụ hưởng cần cung cấp giấy tờ tùy thân (hộ chiếu, giấy khai sinh, v.v.), và tiền bồi thường có thể được chuyển đến tài khoản ngân hàng nước ngoài qua chuyển khoản quốc tế. Nên điền rõ thông tin người thụ hưởng ngay khi mua bảo hiểm để tránh tranh chấp sau này.
+          Có. Bạn có thể chỉ định thành viên gia đình ở nước ngoài là người thụ hưởng trong hợp đồng bảo hiểm nhân thọ Đài Loan. Khi làm thủ tục bồi thường, người thụ hưởng cần cung cấp giấy tờ tùy thân (hộ chiếu, giấy khai sinh, v.v.), và tiền bồi thường có thể được chuyển đến tài khoản ngân hàng nước ngoài qua chuyển khoản quốc tế. Nên điền rõ thông tin người thụ hưởng ngay khi mua bảo hiểm.
         </div>
         <div data-lang="id">
-          Bisa. Anda dapat menunjuk anggota keluarga di luar negeri sebagai penerima manfaat dalam polis asuransi jiwa Taiwan. Saat mengajukan klaim, penerima manfaat perlu memberikan dokumen identitas (paspor, akta kelahiran, dll.), dan pembayaran dapat ditransfer ke rekening bank luar negeri melalui wire transfer. Sangat disarankan untuk mengisi detail penerima manfaat dengan jelas saat pembelian untuk menghindari sengketa di kemudian hari.
+          Bisa. Anda dapat menunjuk anggota keluarga di luar negeri sebagai penerima manfaat dalam polis asuransi jiwa Taiwan. Saat mengajukan klaim, penerima manfaat perlu memberikan dokumen identitas (paspor, akta kelahiran, dll.), dan pembayaran dapat ditransfer ke rekening bank luar negeri melalui wire transfer. Sangat disarankan untuk mengisi detail penerima manfaat dengan jelas saat pembelian.
+        </div>
+        <div data-lang="ko">
+          네. 대만 생명보험 계약의 수익자를 해외 가족으로 지정할 수 있습니다. 보험금 청구 시 수익자는 신분증 서류(여권, 출생증명서 등)를 제출해야 하며, 보험금은 해외 은행 계좌로 송금할 수 있습니다. 보험 가입 시 수익자 정보를 명확히 기재하는 것을 강력히 권장합니다.
+        </div>
+        <div data-lang="ja">
+          はい。台湾の生命保険契約で、海外の家族を受取人に指定することができます。保険金請求時には、受取人が身分証明書（パスポート、出生証明書など）を提出する必要があり、海外の銀行口座への振込みが可能です。加入時に受取人の情報を明確に記入することを強くお勧めします。
         </div>
       </div>
     </div>
@@ -496,6 +526,8 @@
         <span data-lang="en">What's the difference between accident &amp; life insurance? Which do I need?</span>
         <span data-lang="vi">Sự khác biệt giữa bảo hiểm tai nạn và bảo hiểm nhân thọ là gì? Tôi cần loại nào?</span>
         <span data-lang="id">Apa perbedaan asuransi kecelakaan dan asuransi jiwa? Yang mana yang saya butuhkan?</span>
+        <span data-lang="ko">상해보험과 생명보험의 차이는 무엇인가요? 어떤 것이 필요한가요?</span>
+        <span data-lang="ja">傷害保険と生命保険の違いは何ですか？どちらが必要ですか？</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -519,6 +551,16 @@
           <span class="tag">Asuransi Jiwa</span> mencakup kematian akibat kecelakaan <em>maupun</em> penyakit, memberikan perlindungan lebih komprehensif — ideal jika Anda memiliki tanggungan (anak-anak, orang tua di luar negeri).<br/><br/>
           Rekomendasi: minimal miliki asuransi kecelakaan; tambahkan asuransi jiwa jika Anda memiliki tanggung jawab finansial terhadap keluarga.
         </div>
+        <div data-lang="ko">
+          <span class="tag">상해보험</span>은 <strong>사고</strong>(교통사고, 낙상, 산업재해 등)로 인한 부상, 장애 또는 사망에만 보험금이 지급됩니다. 보험료가 저렴하여 외국인 근로자에게 좋은 시작점입니다.<br/><br/>
+          <span class="tag">생명보험</span>은 사고와 <em>질병</em> 모두에 의한 사망을 보장하여 더 폭넓은 보호를 제공합니다 — 부양 가족(자녀, 해외 부모님)이 있는 경우에 이상적입니다.<br/><br/>
+          권장 사항: 최소한 상해보험은 가입하고, 가족에 대한 경제적 책임이 있다면 생명보험을 추가하세요.
+        </div>
+        <div data-lang="ja">
+          <span class="tag">傷害保険</span>は<strong>事故</strong>（交通事故、転倒、労働災害など）による怪我、障害、または死亡のみに保険金が支払われます。保険料が手頃で、外国人労働者の基本的な保障として最適です。<br/><br/>
+          <span class="tag">生命保険</span>は事故<em>と</em>疾病による死亡を補償し、より幅広い保障を提供します — 扶養家族（子供、海外の親）がいる場合に理想的です。<br/><br/>
+          推奨：少なくとも傷害保険には加入し、家族への経済的責任がある場合は生命保険も追加しましょう。
+        </div>
       </div>
     </div>
   </div>
@@ -531,6 +573,8 @@
       <span data-lang="en">Work Permit &amp; Visa Status</span>
       <span data-lang="vi">Giấy Phép Lao Động &amp; Thị Thực</span>
       <span data-lang="id">Izin Kerja &amp; Status Visa</span>
+      <span data-lang="ko">취업 허가 &amp; 비자 상태</span>
+      <span data-lang="ja">就労許可 &amp; ビザの状況</span>
     </div>
 
     <!-- Q7 -->
@@ -540,6 +584,8 @@
         <span data-lang="en">Does my visa type affect what insurance I can buy?</span>
         <span data-lang="vi">Loại thị thực của tôi có ảnh hưởng đến bảo hiểm tôi có thể mua không?</span>
         <span data-lang="id">Apakah jenis visa saya memengaruhi asuransi yang bisa saya beli?</span>
+        <span data-lang="ko">비자 종류에 따라 가입할 수 있는 보험이 다른가요?</span>
+        <span data-lang="ja">ビザの種類によって加入できる保険は異なりますか？</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -579,6 +625,24 @@
             <li><span class="tag">Tinggal ikut pasangan</span> mirip ARC — sebagian besar asuransi swasta dapat diakses</li>
           </ul>
         </div>
+        <div data-lang="ko">
+          네, 비자/거주 상태에 따라 차이가 있습니다:
+          <ul>
+            <li><span class="tag">거류증(ARC)</span> — 대부분의 생명보험, 상해보험, 건강보험 가입 가능 — 대만 거주자와 거의 동일</li>
+            <li><span class="tag">취업 허가(이주 노동자)</span> — 상해보험 ✅, 단체보험 ✅; 생명보험은 보험사마다 다름</li>
+            <li><span class="tag">방문/비즈니스 비자</span> — 일반적으로 단기 여행 보험 또는 상해보험으로 제한; 장기 보험 가입 제한</li>
+            <li><span class="tag">배우자 동반 거류</span> — ARC와 유사 — 대부분의 민간 보험 접근 가능</li>
+          </ul>
+        </div>
+        <div data-lang="ja">
+          はい、ビザ・居住状況によって異なります：
+          <ul>
+            <li><span class="tag">居留証（ARC）</span> — ほとんどの生命保険・傷害保険・医療保険に加入可能 — 台湾居住者とほぼ同様</li>
+            <li><span class="tag">就労許可（移住労働者）</span> — 傷害保険 ✅、団体保険 ✅; 生命保険は保険会社により異なる</li>
+            <li><span class="tag">観光・ビジネスビザ</span> — 通常、短期旅行保険または傷害保険に限定; 長期保険は制限あり</li>
+            <li><span class="tag">配偶者ビザ・帯同居住</span> — ARCと同様 — ほとんどの民間保険に加入可能</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -589,6 +653,8 @@
         <span data-lang="en">What happens to my insurance if my visa expires or I leave Taiwan?</span>
         <span data-lang="vi">Điều gì xảy ra với bảo hiểm của tôi nếu thị thực hết hạn hoặc tôi rời Đài Loan?</span>
         <span data-lang="id">Apa yang terjadi pada asuransi saya jika visa saya habis atau saya meninggalkan Taiwan?</span>
+        <span data-lang="ko">비자가 만료되거나 대만을 떠나면 보험은 어떻게 되나요?</span>
+        <span data-lang="ja">ビザが切れたり台湾を離れたりした場合、保険はどうなりますか？</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -628,6 +694,24 @@
           </ul>
           Sebaiknya tinjau status asuransi Anda setiap kali memperpanjang ARC atau izin kerja.
         </div>
+        <div data-lang="ko">
+          보험 종류에 따라 다릅니다:
+          <ul>
+            <li><strong>장기 생명/의료보험:</strong> 보험료를 납부하는 한 대만을 떠나도 일반적으로 유효합니다. 해외 의료비 청구 조항은 약관을 확인하세요.</li>
+            <li><strong>단기 상해보험 (연납):</strong> 만료 시 종료; 비자 상태가 변경되면 갱신 가능 여부를 확인하세요.</li>
+            <li><strong>건강보험:</strong> 6개월 이상 대만을 떠나면 정지 신청 필요; 귀국 후 재가입.</li>
+          </ul>
+          거류증 또는 취업 허가를 갱신할 때마다 보험 상태를 확인하는 것이 좋습니다.
+        </div>
+        <div data-lang="ja">
+          保険の種類によって異なります：
+          <ul>
+            <li><strong>長期生命・医療保険：</strong>保険料を支払い続ける限り、台湾を離れても通常は有効です。海外での医療費請求については保険約款をご確認ください。</li>
+            <li><strong>短期傷害保険（年払い）：</strong>満期で終了; ビザの状況が変わる場合は更新可能か確認してください。</li>
+            <li><strong>健康保険：</strong>6ヶ月以上台湾を離れる場合は一時停止の手続きが必要; 帰国後に再加入。</li>
+          </ul>
+          居留証や就労許可を更新する際には、保険の状況も一緒に確認することをお勧めします。
+        </div>
       </div>
     </div>
 
@@ -638,6 +722,8 @@
         <span data-lang="en">I just arrived in Taiwan and my NHI hasn't started yet. What should I do?</span>
         <span data-lang="vi">Tôi vừa đến Đài Loan và NHI chưa có hiệu lực. Tôi nên làm gì?</span>
         <span data-lang="id">Saya baru tiba di Taiwan dan NHI saya belum aktif. Apa yang harus saya lakukan?</span>
+        <span data-lang="ko">대만에 막 도착했는데 건강보험이 아직 시작되지 않았어요. 어떻게 해야 하나요?</span>
+        <span data-lang="ja">台湾に来たばかりでまだNHIが始まっていません。どうすればいいですか？</span>
         <span class="arrow">▼</span>
       </button>
       <div class="faq-a">
@@ -673,6 +759,22 @@
           </ul>
           Biaya medis tanpa NHI bisa sangat tinggi — bijaksana untuk memiliki perlindungan sejak hari pertama.
         </div>
+        <div data-lang="ko">
+          건강보험은 경우에 따라 최대 4개월의 대기 기간이 있을 수 있습니다. 이 공백 기간 동안 권장 사항:
+          <ul>
+            <li>단기 <strong>상해보험</strong>이나 <strong>여행 의료보험</strong>을 가입하여 임시 보장</li>
+            <li>또는 고용주가 단체보험을 제공하는지 확인</li>
+          </ul>
+          건강보험 없이는 의료비가 높을 수 있습니다 — 첫날부터 보장을 갖추는 것이 현명합니다.
+        </div>
+        <div data-lang="ja">
+          NHIは場合によっては最大4ヶ月の待機期間がある場合があります。この空白期間中は以下をお勧めします：
+          <ul>
+            <li>短期<strong>傷害保険</strong>や<strong>旅行医療保険</strong>を架け橋として加入</li>
+            <li>または雇用主が団体保険を提供しているか確認する</li>
+          </ul>
+          NHIなしでの医療費は高額になる可能性があります — 初日から保障を確保するのが賢明です。
+        </div>
       </div>
     </div>
   </div>
@@ -695,6 +797,14 @@
       <p>Masih ada pertanyaan? Hubungi saya — konsultasi gratis tersedia!</p>
       <a href="https://instagram.com" target="_blank">📩 Hubungi Saya</a>
     </div>
+    <div data-lang="ko">
+      <p>다른 질문이 있으신가요? 언제든지 연락주세요 — 무료 상담 가능합니다!</p>
+      <a href="https://instagram.com" target="_blank">📩 문의하기</a>
+    </div>
+    <div data-lang="ja">
+      <p>他にご質問はありますか？お気軽にご連絡ください — 無料相談承ります！</p>
+      <a href="https://instagram.com" target="_blank">📩 お問い合わせ</a>
+    </div>
   </div>
 </div>
 
@@ -704,37 +814,25 @@
     en: { label: 'English',          htmlLang: 'en'    },
     vi: { label: 'Tiếng Việt',       htmlLang: 'vi'    },
     id: { label: 'Bahasa Indonesia', htmlLang: 'id'    },
+    ko: { label: '한국어',            htmlLang: 'ko'    },
+    ja: { label: '日本語',            htmlLang: 'ja'    },
   };
 
-  let current = 'zh';
-
   function setLang(lang) {
-    // Remove old lang class, add new one (zh = no class)
-    document.body.classList.remove('en', 'vi', 'id');
+    document.body.classList.remove('en', 'vi', 'id', 'ko', 'ja');
     if (lang !== 'zh') document.body.classList.add(lang);
-
-    // Update html lang attribute
     document.documentElement.lang = LANGS[lang].htmlLang;
-
-    // Update trigger label
     document.getElementById('langLabel').textContent = LANGS[lang].label;
-
-    // Update checkmarks
     Object.keys(LANGS).forEach(l => {
       const btn = document.getElementById('opt-' + l);
-      const check = btn.querySelector('.check');
       btn.classList.toggle('active', l === lang);
-      check.textContent = l === lang ? '✓' : '';
+      btn.querySelector('.check').textContent = l === lang ? '✓' : '';
     });
-
-    // Close menu & collapse open FAQs
     closeMenu();
     document.querySelectorAll('.faq-q.open').forEach(q => {
       q.classList.remove('open');
       q.nextElementSibling.classList.remove('show');
     });
-
-    current = lang;
   }
 
   function toggleMenu(e) {
