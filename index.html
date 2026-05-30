@@ -1,863 +1,883 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>外籍人士保險 FAQ | Insurance FAQ for Foreigners in Taiwan</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>保險好鄰居 | 外籍人士保險知識平台</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #e5d9cf;
+  --navy:   #12515f;
+  --blue:   #465169;
+  --red:    #b95756;
+  --white:  #ffffff;
+  --cream:  #f5ede6;
+  --card:   #faf6f2;
+  --text:   #2a2a2a;
+  --muted:  #7a8a96;
+  --border: rgba(18,81,95,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); font-family: 'Noto Sans TC', sans-serif; color: var(--text); min-height: 100vh; }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC",
-                   "Noto Sans KR", "Noto Sans JP", "Noto Sans", sans-serif;
-      background: #f7f8fa;
-      color: #1a1a2e;
-      min-height: 100vh;
-    }
+/* hide non-active langs */
+[data-lang="en"],[data-lang="vi"],[data-lang="id"] { display: none; }
+body.en [data-lang="en"]  { display: revert; }
+body.vi [data-lang="vi"]  { display: revert; }
+body.id [data-lang="id"]  { display: revert; }
+body.en [data-lang="zh"],
+body.vi [data-lang="zh"],
+body.id [data-lang="zh"]  { display: none; }
 
-    /* ── Header ── */
-    header {
-      position: relative;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
-      color: #fff;
-      padding: 48px 20px 36px;
-      text-align: center;
-    }
-    header h1 { font-size: 1.6rem; font-weight: 700; line-height: 1.4; }
-    header p  { margin-top: 8px; font-size: 0.9rem; opacity: 0.75; }
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(229,217,207,0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-logo {
+  font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 700;
+  color: var(--navy); text-decoration: none;
+}
+.nav-center {
+  display: flex; align-items: center; gap: 28px; list-style: none;
+}
+.nav-center a {
+  font-size: 14px; font-weight: 500; color: var(--blue);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-center a:hover { color: var(--navy); }
 
-    /* ── Language dropdown ── */
-    .lang-wrap {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-    }
-    .lang-trigger {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.35);
-      color: #fff;
-      border-radius: 8px;
-      padding: 7px 12px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.15s;
-    }
-    .lang-trigger:hover { background: rgba(255,255,255,0.25); }
-    .lang-trigger .chevron {
-      font-size: 0.65rem;
-      opacity: 0.8;
-      transition: transform 0.2s;
-    }
-    .lang-wrap.open .lang-trigger .chevron { transform: rotate(180deg); }
+/* Language switcher */
+.lang-wrap { position: relative; }
+.lang-trigger {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--navy); color: white;
+  border: none; border-radius: 20px;
+  padding: 8px 16px; font-size: 13px; font-weight: 600;
+  cursor: pointer; white-space: nowrap; transition: background 0.15s;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+.lang-trigger:hover { background: #0e3f4b; }
+.lang-trigger .chevron { font-size: 9px; opacity: 0.7; transition: transform 0.2s; }
+.lang-wrap.open .lang-trigger .chevron { transform: rotate(180deg); }
+.lang-menu {
+  display: none; position: absolute; top: calc(100% + 8px); right: 0;
+  background: white; border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+  overflow: hidden; min-width: 180px; z-index: 300;
+}
+.lang-wrap.open .lang-menu { display: block; }
+.lang-option {
+  width: 100%; text-align: left; background: none; border: none;
+  padding: 11px 16px; font-size: 14px; color: var(--text);
+  cursor: pointer; display: flex; align-items: center; gap: 10px;
+  transition: background 0.12s; font-family: 'Noto Sans TC', sans-serif;
+}
+.lang-option:hover { background: #f0f5f6; }
+.lang-option.active { color: var(--navy); font-weight: 700; }
+.lang-check { width: 14px; font-size: 12px; color: var(--navy); }
 
-    .lang-menu {
-      display: none;
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
-      overflow: hidden;
-      min-width: 180px;
-      z-index: 200;
-    }
-    .lang-wrap.open .lang-menu { display: block; }
+/* ── HERO ── */
+.hero {
+  max-width: 1080px; margin: 0 auto;
+  padding: 72px 32px 60px;
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: 56px; align-items: center;
+}
+.hero-tags { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.tag-pill {
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+  color: var(--navy); background: rgba(18,81,95,0.10);
+  padding: 5px 14px; border-radius: 20px;
+}
+.tag-pill.red { color: var(--red); background: rgba(185,87,86,0.10); }
+.hero h1 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(32px, 4.5vw, 50px); font-weight: 700;
+  line-height: 1.25; color: var(--navy); margin-bottom: 16px;
+}
+.hero h1 em { font-style: normal; color: var(--red); }
+.hero-sub {
+  font-size: clamp(14px, 2vw, 16px); color: var(--blue);
+  line-height: 1.85; margin-bottom: 12px; max-width: 460px;
+}
+.hero-en { font-size: 13px; color: var(--muted); margin-bottom: 32px; max-width: 460px; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--navy); color: white; font-size: 15px; font-weight: 700;
+  padding: 13px 28px; border-radius: 28px; text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-primary:hover { background: #0e3f4b; transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: var(--navy); font-size: 15px; font-weight: 600;
+  padding: 13px 28px; border-radius: 28px; border: 2px solid var(--navy);
+  text-decoration: none; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-outline:hover { background: var(--navy); color: white; }
 
-    .lang-option {
-      width: 100%;
-      text-align: left;
-      background: none;
-      border: none;
-      padding: 12px 16px;
-      font-size: 0.9rem;
-      color: #1a1a2e;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: background 0.12s;
-    }
-    .lang-option:hover { background: #f0f4ff; }
-    .lang-option.active { color: #0f3460; font-weight: 700; }
-    .lang-option .check { width: 14px; font-size: 0.75rem; color: #0f3460; }
+/* Hero visual card */
+.hero-visual {
+  background: var(--navy); border-radius: 20px;
+  padding: 32px 28px; position: relative; overflow: hidden;
+}
+.hero-visual::before {
+  content: '';
+  position: absolute; top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+.hero-visual::after {
+  content: '';
+  position: absolute; bottom: -60px; left: -30px;
+  width: 160px; height: 160px;
+  background: rgba(185,87,86,0.12);
+  border-radius: 50%;
+}
+.visual-brand {
+  font-family: 'Noto Serif TC', serif; font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,0.5); letter-spacing: 1px;
+  margin-bottom: 24px; position: relative; z-index: 1;
+}
+.visual-items { display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 1; }
+.visual-item {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 12px; padding: 16px 18px;
+  display: flex; align-items: center; gap: 14px;
+}
+.visual-num {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(255,255,255,0.12); color: white;
+  font-size: 15px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.visual-info { flex: 1; }
+.visual-zh { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 700; color: white; }
+.visual-en { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.visual-check { font-size: 16px; }
+.visual-footer {
+  margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.10);
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; z-index: 1;
+}
+.visual-ig { font-size: 13px; color: rgba(255,255,255,0.5); }
+.visual-ig strong { color: rgba(255,255,255,0.8); }
+.visual-dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
 
-    /* ── Body layout ── */
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 0 16px 60px;
-    }
-    .section { margin-top: 32px; }
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #0f3460;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #e0e7ff;
-      margin-bottom: 16px;
-    }
-    .section-icon {
-      width: 32px; height: 32px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; flex-shrink: 0;
-    }
-    .icon-nhi  { background: #dbeafe; }
-    .icon-acc  { background: #dcfce7; }
-    .icon-visa { background: #fef9c3; }
+/* ── PILLARS BAR ── */
+.pillars-bar { background: var(--navy); }
+.pillars-inner {
+  max-width: 1080px; margin: 0 auto;
+  padding: 0 32px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.pillar {
+  padding: 32px 24px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.2s;
+}
+.pillar:last-child { border-right: none; }
+.pillar:hover { background: rgba(255,255,255,0.04); }
+.pillar-icon { font-size: 30px; margin-bottom: 12px; }
+.pillar-zh { font-family: 'Noto Serif TC', serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 6px; }
+.pillar-en { font-size: 13px; color: rgba(255,255,255,0.55); }
 
-    /* ── FAQ items ── */
-    .faq-item {
-      background: #fff;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-      overflow: hidden;
-    }
-    .faq-q {
-      width: 100%;
-      text-align: left;
-      background: none;
-      border: none;
-      padding: 16px 18px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #1a1a2e;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      line-height: 1.4;
-    }
-    .faq-q .arrow {
-      font-size: 0.7rem; flex-shrink: 0;
-      color: #0f3460; transition: transform 0.2s;
-    }
-    .faq-q.open .arrow { transform: rotate(180deg); }
-    .faq-a {
-      display: none;
-      padding: 0 18px 16px;
-      font-size: 0.9rem;
-      line-height: 1.8;
-      color: #444;
-      border-top: 1px solid #f0f0f0;
-    }
-    .faq-a.show { display: block; }
-    .faq-a ul { padding-left: 18px; margin-top: 6px; }
-    .faq-a li { margin-bottom: 4px; }
-    .faq-a .tag {
-      display: inline-block;
-      background: #e0e7ff; color: #1e3a8a;
-      border-radius: 4px; padding: 1px 7px;
-      font-size: 0.8rem; font-weight: 600; margin-right: 4px;
-    }
+/* ── SECTION ── */
+.section-wrap { max-width: 1080px; margin: 0 auto; padding: 56px 32px; }
+.section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--red); margin-bottom: 8px; text-transform: uppercase; }
+.section-heading { font-family: 'Noto Serif TC', serif; font-size: clamp(22px, 4vw, 30px); font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.section-sub { font-size: 13px; color: var(--muted); margin-bottom: 36px; }
 
-    /* ── Contact bar ── */
-    .contact-bar {
-      margin-top: 40px;
-      background: linear-gradient(135deg, #0f3460, #1a1a2e);
-      color: #fff; border-radius: 16px;
-      padding: 24px 20px; text-align: center;
-    }
-    .contact-bar p { font-size: 0.9rem; opacity: 0.85; margin-bottom: 14px; }
-    .contact-bar a {
-      display: inline-block;
-      background: #fff; color: #0f3460;
-      font-weight: 700; padding: 10px 28px;
-      border-radius: 8px; text-decoration: none; font-size: 0.95rem;
-    }
+/* ── ARTICLES ── */
+.articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.article-card {
+  background: var(--white); border-radius: 16px; overflow: hidden;
+  box-shadow: 0 2px 16px rgba(18,81,95,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none; display: block; color: inherit;
+}
+.article-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(18,81,95,0.14); }
+.article-thumb {
+  height: 150px; display: flex; align-items: center; justify-content: center; position: relative;
+}
+.thumb-text {
+  font-family: 'Noto Serif TC', serif; font-size: 26px; font-weight: 700;
+  color: white; text-align: center; line-height: 1.3; padding: 16px;
+}
+.article-content { padding: 18px 20px 20px; }
+.article-cat { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--red); margin-bottom: 8px; }
+.article-title { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 700; color: var(--navy); line-height: 1.5; margin-bottom: 6px; }
+.article-excerpt { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+.article-footer { display: flex; align-items: center; justify-content: space-between; }
+.article-read { font-size: 12px; font-weight: 700; color: var(--navy); }
 
-    /* ── Language visibility ── */
-    [data-lang="en"],
-    [data-lang="vi"],
-    [data-lang="id"],
-    [data-lang="ko"],
-    [data-lang="ja"] { display: none; }
+/* ── GUIDE ── */
+.guide-section { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.guide-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.guide-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(18,81,95,0.06); }
+.guide-top { padding: 20px 22px; display: flex; align-items: center; gap: 12px; }
+.guide-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.15); color: white;
+  font-size: 16px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.guide-top h3 { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 700; color: white; }
+.guide-top .en { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.guide-body { padding: 18px 22px 22px; }
+.guide-trigger { background: #f0f5f6; border-radius: 10px; padding: 11px 14px; margin-bottom: 16px; font-size: 12.5px; color: var(--text); line-height: 1.5; }
+.guide-items { list-style: none; }
+.guide-items li { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.6; }
+.guide-items li:last-child { border-bottom: none; }
+.guide-dot { width: 6px; height: 6px; background: var(--navy); border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+.guide-note { margin-top: 14px; background: #fdf3f3; border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 12px; color: var(--blue); line-height: 1.7; }
 
-    /* block contexts */
-    body.en  .faq-a [data-lang="en"],   body.en  .contact-bar [data-lang="en"],
-    body.vi  .faq-a [data-lang="vi"],   body.vi  .contact-bar [data-lang="vi"],
-    body.id  .faq-a [data-lang="id"],   body.id  .contact-bar [data-lang="id"],
-    body.ko  .faq-a [data-lang="ko"],   body.ko  .contact-bar [data-lang="ko"],
-    body.ja  .faq-a [data-lang="ja"],   body.ja  .contact-bar [data-lang="ja"] { display: block; }
+/* ── FAQ ── */
+.faq-cols { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
+.faq-sidebar h2 { font-family: 'Noto Serif TC', serif; font-size: 28px; font-weight: 700; color: var(--navy); line-height: 1.4; margin-bottom: 12px; }
+.faq-sidebar p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
+.faq-sidebar .lang-note { background: var(--navy); border-radius: 10px; padding: 14px 16px; font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.7; }
+.faq-item { background: var(--white); border-radius: 12px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(18,81,95,0.06); }
+.faq-q {
+  width: 100%; text-align: left; background: none; border: none;
+  padding: 16px 20px; font-size: 15px; font-weight: 600; color: var(--text);
+  cursor: pointer; display: flex; justify-content: space-between;
+  align-items: center; gap: 12px; line-height: 1.5;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+.faq-q .arr { font-size: 11px; color: var(--navy); transition: transform 0.2s; flex-shrink: 0; }
+.faq-q.open .arr { transform: rotate(180deg); }
+.faq-a { display: none; padding: 0 20px 16px; font-size: 14px; line-height: 1.9; color: #555; border-top: 1px solid var(--border); }
+.faq-a.show { display: block; }
+.faq-a ul { padding-left: 16px; margin-top: 8px; }
+.faq-a li { margin-bottom: 4px; }
+.faq-tag { display: inline-block; background: rgba(18,81,95,0.10); color: var(--navy); border-radius: 4px; padding: 1px 8px; font-size: 12px; font-weight: 700; margin-right: 4px; margin-bottom: 4px; }
 
-    /* inline contexts */
-    body.en  span[data-lang="en"],
-    body.vi  span[data-lang="vi"],
-    body.id  span[data-lang="id"],
-    body.ko  span[data-lang="ko"],
-    body.ja  span[data-lang="ja"] { display: inline; }
+/* ── ABOUT ── */
+.about-section { background: var(--navy); }
+.about-inner {
+  max-width: 1080px; margin: 0 auto; padding: 64px 32px;
+  display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: center;
+}
+.about-photo {
+  width: 100%; aspect-ratio: 1; object-fit: cover;
+  border-radius: 50%; border: 4px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+}
+.about-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.4); margin-bottom: 10px; text-transform: uppercase; }
+.about-content h2 { font-family: 'Noto Serif TC', serif; font-size: clamp(22px, 4vw, 34px); font-weight: 700; color: white; margin-bottom: 14px; line-height: 1.3; }
+.about-content p { font-size: 15px; color: rgba(255,255,255,0.72); line-height: 1.9; margin-bottom: 24px; }
+.about-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+.about-badge { background: rgba(255,255,255,0.10); color: rgba(255,255,255,0.9); font-size: 13px; font-weight: 600; padding: 7px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); }
+.about-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.about-btn { background: white; color: var(--navy); font-size: 14px; font-weight: 700; padding: 11px 24px; border-radius: 24px; text-decoration: none; transition: all 0.2s; }
+.about-btn:hover { background: var(--red); color: white; }
+.about-btn.outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.35); }
+.about-btn.outline:hover { background: rgba(255,255,255,0.1); }
 
-    /* hide zh */
-    body.en [data-lang="zh"], body.vi [data-lang="zh"],
-    body.id [data-lang="zh"], body.ko [data-lang="zh"],
-    body.ja [data-lang="zh"] { display: none; }
-  </style>
+/* ── CTA ── */
+.cta-section { max-width: 1080px; margin: 0 auto; padding: 56px 32px; }
+.cta-card { background: var(--red); border-radius: 20px; padding: 48px 40px; text-align: center; }
+.cta-card h2 { font-family: 'Noto Serif TC', serif; font-size: clamp(20px, 4vw, 30px); font-weight: 700; color: white; margin-bottom: 10px; }
+.cta-card p { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.8; margin-bottom: 28px; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.cta-btn { background: white; color: var(--red); font-size: 15px; font-weight: 700; padding: 13px 28px; border-radius: 28px; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+.cta-btn:hover { background: var(--navy); color: white; }
+.cta-btn.outline { background: rgba(255,255,255,0.15); color: white; border: 2px solid rgba(255,255,255,0.4); }
+.cta-btn.outline:hover { background: rgba(255,255,255,0.25); }
+
+/* ── FOOTER ── */
+footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
+.footer-logo { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.65); margin-bottom: 6px; }
+.footer-meta { font-size: 12px; color: rgba(255,255,255,0.32); line-height: 1.8; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .articles-grid { grid-template-columns: repeat(2, 1fr); }
+  .guide-cards { grid-template-columns: 1fr; }
+  .faq-cols { grid-template-columns: 1fr; }
+  .about-inner { grid-template-columns: 1fr; text-align: center; }
+  .about-photo { width: 140px; margin: 0 auto; }
+  .about-badges, .about-btns { justify-content: center; }
+  .pillars-inner { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  nav { padding: 0 16px; }
+  .nav-center { display: none; }
+  .hero { padding: 48px 20px 40px; }
+  .section-wrap { padding: 40px 20px; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .cta-section { padding: 40px 20px; }
+  .cta-card { padding: 36px 24px; }
+  .about-inner { padding: 48px 20px; }
+}
+</style>
 </head>
 <body>
 
-<header>
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="#">保險好鄰居</a>
+
+  <ul class="nav-center">
+    <li><a href="#guide">
+      <span data-lang="zh">保險知識</span>
+      <span data-lang="en">Insurance Guide</span>
+      <span data-lang="vi">Kiến Thức BH</span>
+      <span data-lang="id">Panduan BH</span>
+    </a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#about">
+      <span data-lang="zh">關於我</span>
+      <span data-lang="en">About</span>
+      <span data-lang="vi">Về Tôi</span>
+      <span data-lang="id">Tentang Saya</span>
+    </a></li>
+  </ul>
+
   <div class="lang-wrap" id="langWrap">
     <button class="lang-trigger" onclick="toggleMenu(event)">
-      🌐 <span id="langLabel">中文</span> <span class="chevron">▼</span>
+      🌐 <span id="langLabel">語言</span> <span class="chevron">▼</span>
     </button>
     <div class="lang-menu" id="langMenu">
-      <button class="lang-option active" id="opt-zh" onclick="setLang('zh')"><span class="check">✓</span> 中文</button>
-      <button class="lang-option" id="opt-en" onclick="setLang('en')"><span class="check"></span> English</button>
-      <button class="lang-option" id="opt-vi" onclick="setLang('vi')"><span class="check"></span> Tiếng Việt</button>
-      <button class="lang-option" id="opt-id" onclick="setLang('id')"><span class="check"></span> Bahasa Indonesia</button>
-      <button class="lang-option" id="opt-ko" onclick="setLang('ko')"><span class="check"></span> 한국어</button>
-      <button class="lang-option" id="opt-ja" onclick="setLang('ja')"><span class="check"></span> 日本語</button>
+      <button class="lang-option active" id="opt-zh" onclick="setLang('zh')"><span class="lang-check">✓</span> 中文</button>
+      <button class="lang-option"         id="opt-en" onclick="setLang('en')"><span class="lang-check"> </span> English</button>
+      <button class="lang-option"         id="opt-vi" onclick="setLang('vi')"><span class="lang-check"> </span> Tiếng Việt</button>
+      <button class="lang-option"         id="opt-id" onclick="setLang('id')"><span class="lang-check"> </span> Bahasa Indonesia</button>
     </div>
   </div>
+</nav>
 
-  <h1>
-    <span data-lang="zh">外籍人士在台保險 FAQ</span>
-    <span data-lang="en">Insurance FAQ for Foreigners in Taiwan</span>
-    <span data-lang="vi">Câu Hỏi Thường Gặp về Bảo Hiểm tại Đài Loan</span>
-    <span data-lang="id">FAQ Asuransi untuk Orang Asing di Taiwan</span>
-    <span data-lang="ko">대만 외국인을 위한 보험 FAQ</span>
-    <span data-lang="ja">在台外国人のための保険FAQ</span>
-  </h1>
-  <p>
-    <span data-lang="zh">常見問題解答 — 外配 / 外籍工作者適用</span>
-    <span data-lang="en">For foreign spouses &amp; foreign workers</span>
-    <span data-lang="vi">Dành cho vợ/chồng nước ngoài &amp; người lao động nước ngoài</span>
-    <span data-lang="id">Untuk pasangan asing &amp; pekerja asing</span>
-    <span data-lang="ko">외국인 배우자 &amp; 외국인 근로자를 위한 안내</span>
-    <span data-lang="ja">外国人配偶者 &amp; 在台外国人労働者向け</span>
-  </p>
-</header>
+<!-- ── HERO ── -->
+<section>
+  <div class="hero">
+    <div>
+      <div class="hero-tags">
+        <span class="tag-pill"><span data-lang="zh">保險觀念</span><span data-lang="en">Insurance 101</span><span data-lang="vi">Kiến Thức BH</span><span data-lang="id">Konsep Asuransi</span></span>
+        <span class="tag-pill"><span data-lang="zh">真實案例</span><span data-lang="en">Real Cases</span><span data-lang="vi">Trường Hợp Thực</span><span data-lang="id">Kasus Nyata</span></span>
+        <span class="tag-pill red"><span data-lang="zh">理財思維</span><span data-lang="en">Financial Planning</span><span data-lang="vi">Tư Duy Tài Chính</span><span data-lang="id">Perencanaan Keuangan</span></span>
+      </div>
 
-<div class="container">
+      <h1>
+        <span data-lang="zh">外籍人士保險<br>你的<em>好鄰居</em>在這</span>
+        <span data-lang="en">Insurance in Taiwan<br>Your <em>Good Neighbor</em></span>
+        <span data-lang="vi">Bảo Hiểm tại Đài Loan<br><em>Người Hàng Xóm Tốt</em> của bạn</span>
+        <span data-lang="id">Asuransi di Taiwan<br><em>Tetangga Baik</em> Anda</span>
+      </h1>
 
-  <!-- ===== 健保 / NHI ===== -->
-  <div class="section">
-    <div class="section-title">
-      <div class="section-icon icon-nhi">🏥</div>
-      <span data-lang="zh">全民健保（NHI）相關問題</span>
-      <span data-lang="en">National Health Insurance (NHI)</span>
-      <span data-lang="vi">Bảo Hiểm Y Tế Toàn Dân (NHI)</span>
-      <span data-lang="id">Asuransi Kesehatan Nasional (NHI)</span>
-      <span data-lang="ko">국민건강보험 (NHI)</span>
-      <span data-lang="ja">国民健康保険（NHI）</span>
-    </div>
+      <div class="hero-sub">
+        <span data-lang="zh">不懂台灣保險沒關係，我用你聽得懂的語言解釋每一件事——讓保險不再是陌生的東西。</span>
+        <span data-lang="en">Don't worry if you don't understand Taiwanese insurance. I'll explain everything in a language you understand.</span>
+        <span data-lang="vi">Không hiểu bảo hiểm Đài Loan không sao, tôi sẽ giải thích mọi thứ bằng ngôn ngữ bạn hiểu.</span>
+        <span data-lang="id">Tidak masalah jika tidak mengerti asuransi Taiwan. Saya akan menjelaskan segalanya dalam bahasa Anda.</span>
+      </div>
 
-    <!-- Q1 -->
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggle(this)">
-        <span data-lang="zh">外籍配偶可以加入健保嗎？</span>
-        <span data-lang="en">Can a foreign spouse join Taiwan's NHI?</span>
-        <span data-lang="vi">Vợ/chồng nước ngoài có thể tham gia NHI không?</span>
-        <span data-lang="id">Apakah pasangan asing bisa bergabung dengan NHI Taiwan?</span>
-        <span data-lang="ko">외국인 배우자도 건강보험에 가입할 수 있나요?</span>
-        <span data-lang="ja">外国人配偶者はNHIに加入できますか？</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-a">
-        <div data-lang="zh">
-          可以。外籍配偶取得<strong>居留證（ARC）</strong>並完成戶籍登記後，即可以眷屬身份加入配偶的健保，或以個人身份投保。若已在台灣合法居留滿 6 個月，也可單獨申請加保。
-          <ul><li>所需文件：居留證、結婚登記證明、配偶健保卡（以眷屬加保時）</li></ul>
-        </div>
-        <div data-lang="en">
-          Yes. Once a foreign spouse obtains an <strong>ARC (Alien Resident Certificate)</strong> and completes household registration, they can join NHI as a dependant of their Taiwanese spouse, or enroll individually. Foreigners who have legally resided in Taiwan for 6+ continuous months may also apply independently.
-          <ul><li>Required documents: ARC, marriage certificate, spouse's NHI card (if enrolling as dependant)</li></ul>
-        </div>
-        <div data-lang="vi">
-          Có. Sau khi vợ/chồng nước ngoài có được <strong>Thẻ cư trú (ARC)</strong> và hoàn tất đăng ký hộ khẩu, họ có thể tham gia NHI với tư cách người phụ thuộc hoặc đăng ký độc lập. Người nước ngoài cư trú hợp pháp tại Đài Loan từ 6 tháng trở lên cũng có thể đăng ký độc lập.
-          <ul><li>Giấy tờ cần thiết: ARC, giấy chứng nhận kết hôn, thẻ NHI của vợ/chồng (nếu đăng ký là người phụ thuộc)</li></ul>
-        </div>
-        <div data-lang="id">
-          Bisa. Setelah pasangan asing mendapatkan <strong>ARC (Kartu Izin Tinggal)</strong> dan menyelesaikan pendaftaran kependudukan, mereka bisa bergabung dengan NHI sebagai tanggungan atau mendaftar secara mandiri. Orang asing yang telah tinggal secara legal di Taiwan selama 6 bulan berturut-turut juga dapat mendaftar secara mandiri.
-          <ul><li>Dokumen yang diperlukan: ARC, akta nikah, kartu NHI pasangan (jika mendaftar sebagai tanggungan)</li></ul>
-        </div>
-        <div data-lang="ko">
-          네. 외국인 배우자가 <strong>거류증(ARC)</strong>을 취득하고 호적 등록을 완료하면, 대만인 배우자의 건강보험에 피부양자로 가입하거나 개인 자격으로 가입할 수 있습니다. 대만에 6개월 이상 합법적으로 거주한 외국인도 단독 가입이 가능합니다.
-          <ul><li>필요 서류: 거류증, 혼인 증명서, 배우자 건강보험증 (피부양자로 가입 시)</li></ul>
-        </div>
-        <div data-lang="ja">
-          はい。外国人配偶者が<strong>居留証（ARC）</strong>を取得し、戸籍登録を完了すると、台湾人配偶者の健康保険に被扶養者として加入するか、個人で加入することができます。台湾に6ヶ月以上合法的に居住している外国人も単独で申請できます。
-          <ul><li>必要書類：居留証、婚姻証明書、配偶者のNHIカード（被扶養者として加入する場合）</li></ul>
-        </div>
+      <div class="hero-btns">
+        <a href="#guide" class="btn-primary">
+          <span data-lang="zh">📖 保險懶人包</span>
+          <span data-lang="en">📖 Insurance Guide</span>
+          <span data-lang="vi">📖 Hướng Dẫn BH</span>
+          <span data-lang="id">📖 Panduan Asuransi</span>
+        </a>
+        <a href="#faq" class="btn-outline">
+          <span data-lang="zh">🙋 常見問題</span>
+          <span data-lang="en">🙋 FAQ</span>
+          <span data-lang="vi">🙋 Câu Hỏi Thường Gặp</span>
+          <span data-lang="id">🙋 Pertanyaan Umum</span>
+        </a>
       </div>
     </div>
 
-    <!-- Q2 -->
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggle(this)">
-        <span data-lang="zh">工作簽證的外籍員工怎麼加入健保？</span>
-        <span data-lang="en">How do foreign workers on a work permit join NHI?</span>
-        <span data-lang="vi">Người lao động nước ngoài có giấy phép lao động tham gia NHI như thế nào?</span>
-        <span data-lang="id">Bagaimana pekerja asing dengan izin kerja mendaftar NHI?</span>
-        <span data-lang="ko">취업 비자를 가진 외국인 직원은 어떻게 건강보험에 가입하나요?</span>
-        <span data-lang="ja">就労ビザを持つ外国人従業員はどのようにNHIに加入しますか？</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-a">
-        <div data-lang="zh">
-          受僱於台灣公司的外籍員工，<strong>雇主必須替員工辦理健保加保</strong>。抵台後兩個月內即須生效。
-          <ul>
-            <li>藍領外勞（移工）：由雇主代辦，保費由雇主與員工共同負擔</li>
-            <li>白領外籍人才：同本地員工，雇主負擔 60%，員工負擔 30%，政府補助 10%</li>
-          </ul>
+    <!-- Hero visual -->
+    <div class="hero-visual">
+      <div class="visual-brand">保險好鄰居 ｜ @urbxneighbor</div>
+      <div class="visual-items">
+        <div class="visual-item">
+          <div class="visual-num">1</div>
+          <div class="visual-info">
+            <div class="visual-zh"><span data-lang="zh">意外險</span><span data-lang="en">Accident Insurance</span><span data-lang="vi">Bảo Hiểm Tai Nạn</span><span data-lang="id">Asuransi Kecelakaan</span></div>
+            <div class="visual-en"><span data-lang="zh">Personal Accident Insurance</span><span data-lang="en">Covers accidental injuries only</span><span data-lang="vi">Chỉ bảo hiểm tai nạn bên ngoài</span><span data-lang="id">Hanya menanggung kecelakaan</span></div>
+          </div>
+          <span class="visual-check">✓</span>
         </div>
-        <div data-lang="en">
-          Employers in Taiwan are <strong>legally required to enroll foreign employees in NHI</strong> within 2 months of arrival.
-          <ul>
-            <li>Blue-collar migrant workers: employer handles enrollment; costs split between employer &amp; employee</li>
-            <li>White-collar foreign professionals: same as local employees — employer 60%, employee 30%, government 10%</li>
-          </ul>
+        <div class="visual-item">
+          <div class="visual-num">2</div>
+          <div class="visual-info">
+            <div class="visual-zh"><span data-lang="zh">醫療實支實付</span><span data-lang="en">Medical Reimbursement</span><span data-lang="vi">Bảo Hiểm Y Tế Thực Chi</span><span data-lang="id">Reimbursmen Medis</span></div>
+            <div class="visual-en"><span data-lang="zh">Medical Reimbursement Insurance</span><span data-lang="en">Covers hospitalization & surgery costs</span><span data-lang="vi">Bảo hiểm nhập viện và phẫu thuật</span><span data-lang="id">Rawat inap & biaya operasi</span></div>
+          </div>
+          <span class="visual-check">✓</span>
         </div>
-        <div data-lang="vi">
-          Người sử dụng lao động tại Đài Loan <strong>có nghĩa vụ pháp lý phải đăng ký NHI cho nhân viên nước ngoài</strong> trong vòng 2 tháng sau khi đến nơi.
-          <ul>
-            <li>Lao động phổ thông (lao động di cư): chủ lao động xử lý đăng ký; chi phí chia sẻ giữa hai bên</li>
-            <li>Chuyên gia nước ngoài (cổ trắng): tương tự nhân viên địa phương — chủ lao động 60%, nhân viên 30%, chính phủ 10%</li>
-          </ul>
-        </div>
-        <div data-lang="id">
-          Pemberi kerja di Taiwan <strong>diwajibkan secara hukum untuk mendaftarkan karyawan asing ke NHI</strong> dalam 2 bulan setelah kedatangan.
-          <ul>
-            <li>Pekerja kasar (pekerja migran): pemberi kerja mengurus pendaftaran; biaya ditanggung bersama</li>
-            <li>Profesional asing (kerah putih): sama seperti karyawan lokal — pemberi kerja 60%, karyawan 30%, pemerintah 10%</li>
-          </ul>
-        </div>
-        <div data-lang="ko">
-          대만 회사에 고용된 외국인 직원의 경우, <strong>고용주가 반드시 건강보험에 가입시켜야 합니다</strong>. 입국 후 2개월 이내에 적용됩니다.
-          <ul>
-            <li>블루칼라 이주 노동자: 고용주가 신청 처리, 보험료는 고용주와 직원이 분담</li>
-            <li>화이트칼라 외국인 전문가: 내국인과 동일 — 고용주 60%, 직원 30%, 정부 10%</li>
-          </ul>
-        </div>
-        <div data-lang="ja">
-          台湾の企業に雇用された外国人従業員について、<strong>雇用主は入国後2ヶ月以内にNHIに加入させる法的義務があります</strong>。
-          <ul>
-            <li>ブルーカラーの移住労働者：雇用主が手続きを行い、保険料は雇用主と従業員で分担</li>
-            <li>ホワイトカラーの外国人専門家：地元の従業員と同様 — 雇用主60%、従業員30%、政府10%</li>
-          </ul>
+        <div class="visual-item">
+          <div class="visual-num">3</div>
+          <div class="visual-info">
+            <div class="visual-zh"><span data-lang="zh">重大傷病險</span><span data-lang="en">Critical Illness</span><span data-lang="vi">Bảo Hiểm Bệnh Nặng</span><span data-lang="id">Asuransi Penyakit Kritis</span></div>
+            <div class="visual-en"><span data-lang="zh">Critical Illness Insurance</span><span data-lang="en">22 categories, lump-sum payout</span><span data-lang="vi">22 loại, thanh toán một lần</span><span data-lang="id">22 kategori, pembayaran sekaligus</span></div>
+          </div>
+          <span class="visual-check">✓</span>
         </div>
       </div>
-    </div>
-
-    <!-- Q3 -->
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggle(this)">
-        <span data-lang="zh">健保涵蓋範圍有哪些？哪些不包含？</span>
-        <span data-lang="en">What does NHI cover — and what doesn't it cover?</span>
-        <span data-lang="vi">NHI bao gồm những gì — và không bao gồm gì?</span>
-        <span data-lang="id">Apa yang ditanggung NHI — dan apa yang tidak?</span>
-        <span data-lang="ko">건강보험이 적용되는 것과 적용되지 않는 것은 무엇인가요?</span>
-        <span data-lang="ja">NHIが適用されるものとされないものは何ですか？</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-a">
-        <div data-lang="zh">
-          <strong>健保包含：</strong>門診、住院、手術、急診、慢性病用藥、孕產婦檢查等。<br/><br/>
-          <strong>健保不包含（建議搭配商業保險）：</strong>
-          <ul>
-            <li>住院病房升等差額</li><li>特殊材料、自費藥品</li>
-            <li>牙科自費項目（例如矯正、植牙）</li>
-            <li>健檢、美容手術</li><li>失能照護與長期看護費用</li>
-          </ul>
-          這正是商業保險可以補充的部分。
-        </div>
-        <div data-lang="en">
-          <strong>NHI covers:</strong> outpatient visits, hospitalization, surgery, emergency care, chronic disease medications, prenatal check-ups, and more.<br/><br/>
-          <strong>NHI does NOT cover (supplement with private insurance):</strong>
-          <ul>
-            <li>Private/upgraded hospital room upgrades</li>
-            <li>Special medical materials &amp; self-paid medications</li>
-            <li>Cosmetic dentistry (braces, implants)</li>
-            <li>Health check-ups &amp; cosmetic surgery</li>
-            <li>Long-term care &amp; disability support</li>
-          </ul>
-          This is where private insurance can fill the gap.
-        </div>
-        <div data-lang="vi">
-          <strong>NHI bao gồm:</strong> khám ngoại trú, nhập viện, phẫu thuật, cấp cứu, thuốc điều trị bệnh mãn tính, khám thai, v.v.<br/><br/>
-          <strong>NHI KHÔNG bao gồm (nên bổ sung bằng bảo hiểm tư nhân):</strong>
-          <ul>
-            <li>Nâng cấp phòng bệnh viện cao cấp</li>
-            <li>Vật liệu y tế đặc biệt &amp; thuốc tự chi trả</li>
-            <li>Nha khoa thẩm mỹ (niềng răng, cấy ghép)</li>
-            <li>Kiểm tra sức khỏe định kỳ &amp; phẫu thuật thẩm mỹ</li>
-            <li>Chăm sóc dài hạn &amp; hỗ trợ người khuyết tật</li>
-          </ul>
-          Đây chính là nơi bảo hiểm tư nhân có thể bù đắp.
-        </div>
-        <div data-lang="id">
-          <strong>NHI mencakup:</strong> kunjungan rawat jalan, rawat inap, operasi, perawatan darurat, obat penyakit kronis, pemeriksaan kehamilan, dll.<br/><br/>
-          <strong>NHI TIDAK mencakup (lengkapi dengan asuransi swasta):</strong>
-          <ul>
-            <li>Upgrade kamar rumah sakit</li>
-            <li>Bahan medis khusus &amp; obat berbayar mandiri</li>
-            <li>Perawatan gigi estetik (kawat gigi, implan)</li>
-            <li>Medical check-up &amp; operasi kosmetik</li>
-            <li>Perawatan jangka panjang &amp; dukungan disabilitas</li>
-          </ul>
-          Di sinilah asuransi swasta dapat mengisi celah tersebut.
-        </div>
-        <div data-lang="ko">
-          <strong>건강보험 적용 항목：</strong>외래 진료, 입원, 수술, 응급 치료, 만성질환 약제, 산전 검사 등.<br/><br/>
-          <strong>건강보험 미적용 항목（민간 보험으로 보완 필요）：</strong>
-          <ul>
-            <li>상급 병실 입원료 차액</li>
-            <li>특수 의료재료 &amp; 비급여 약품</li>
-            <li>심미 치과 (교정, 임플란트)</li>
-            <li>건강검진 &amp; 성형 수술</li>
-            <li>장기 요양 &amp; 장애 지원</li>
-          </ul>
-          이 부분을 민간 보험으로 보완할 수 있습니다.
-        </div>
-        <div data-lang="ja">
-          <strong>NHIの適用範囲：</strong>外来診療、入院、手術、救急治療、慢性疾患の薬、産前検診など。<br/><br/>
-          <strong>NHIが適用されないもの（民間保険で補完推奨）：</strong>
-          <ul>
-            <li>個室・上位病室への差額</li>
-            <li>特殊医療材料 &amp; 自己負担薬品</li>
-            <li>審美歯科（矯正、インプラント）</li>
-            <li>健康診断 &amp; 美容整形</li>
-            <li>長期介護 &amp; 障害者支援</li>
-          </ul>
-          ここが民間保険で補える部分です。
-        </div>
+      <div class="visual-footer">
+        <span class="visual-ig"><strong data-lang="zh">免費諮詢</strong><strong data-lang="en">Free Consultation</strong><strong data-lang="vi">Tư Vấn Miễn Phí</strong><strong data-lang="id">Konsultasi Gratis</strong></span>
+        <div class="visual-dot"></div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ===== 意外險 / 壽險 ===== -->
-  <div class="section">
-    <div class="section-title">
-      <div class="section-icon icon-acc">🛡️</div>
-      <span data-lang="zh">意外險 / 壽險</span>
-      <span data-lang="en">Accident &amp; Life Insurance</span>
-      <span data-lang="vi">Bảo Hiểm Tai Nạn &amp; Nhân Thọ</span>
-      <span data-lang="id">Asuransi Kecelakaan &amp; Jiwa</span>
-      <span data-lang="ko">상해보험 &amp; 생명보험</span>
-      <span data-lang="ja">傷害保険 &amp; 生命保険</span>
+<!-- ── PILLARS ── -->
+<div class="pillars-bar">
+  <div class="pillars-inner">
+    <div class="pillar">
+      <div class="pillar-icon">👨‍👩‍👧</div>
+      <div class="pillar-zh"><span data-lang="zh">外籍配偶</span><span data-lang="en">Foreign Spouses</span><span data-lang="vi">Vợ/Chồng Nước Ngoài</span><span data-lang="id">Pasangan Asing</span></div>
+      <div class="pillar-en"><span data-lang="zh">Foreign Spouses</span><span data-lang="en">ARC holders & family</span><span data-lang="vi">ARC & gia đình</span><span data-lang="id">Pemegang ARC & keluarga</span></div>
     </div>
-
-    <!-- Q4 -->
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggle(this)">
-        <span data-lang="zh">沒有台灣國籍，可以買意外險嗎？</span>
-        <span data-lang="en">Can foreigners without Taiwan citizenship buy accident insurance?</span>
-        <span data-lang="vi">Người nước ngoài không có quốc tịch Đài Loan có thể mua bảo hiểm tai nạn không?</span>
-        <span data-lang="id">Bisakah orang asing tanpa kewarganegaraan Taiwan membeli asuransi kecelakaan?</span>
-        <span data-lang="ko">대만 국적 없이도 상해보험을 가입할 수 있나요?</span>
-        <span data-lang="ja">台湾国籍がなくても傷害保険に加入できますか？</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-a">
-        <div data-lang="zh">
-          可以。持有合法居留證（ARC）的外籍人士，可向大多數台灣保險公司投保意外險。部分保單也開放持<strong>商務簽（停留證）</strong>的人士投保，但保障範圍可能較限制。
-          <ul><li>建議攜帶：居留證、護照、在台地址證明</li></ul>
-        </div>
-        <div data-lang="en">
-          Yes. Foreigners holding a valid ARC can purchase accident insurance from most Taiwanese insurers. Some policies are also available to those on a <strong>visitor/business visa</strong>, though coverage may be more limited.
-          <ul><li>Bring: ARC, passport, proof of Taiwan address</li></ul>
-        </div>
-        <div data-lang="vi">
-          Có. Người nước ngoài có ARC hợp lệ có thể mua bảo hiểm tai nạn từ hầu hết các công ty bảo hiểm Đài Loan. Một số hợp đồng cũng có thể mua khi có <strong>visa du lịch/thương mại</strong>, nhưng phạm vi bảo hiểm có thể bị hạn chế hơn.
-          <ul><li>Cần chuẩn bị: ARC, hộ chiếu, bằng chứng địa chỉ tại Đài Loan</li></ul>
-        </div>
-        <div data-lang="id">
-          Bisa. Orang asing yang memiliki ARC yang valid dapat membeli asuransi kecelakaan dari sebagian besar perusahaan asuransi Taiwan. Beberapa polis juga tersedia untuk pemegang <strong>visa kunjungan/bisnis</strong>, meskipun cakupannya mungkin lebih terbatas.
-          <ul><li>Siapkan: ARC, paspor, bukti alamat di Taiwan</li></ul>
-        </div>
-        <div data-lang="ko">
-          네. 유효한 거류증(ARC)을 보유한 외국인은 대부분의 대만 보험사에서 상해보험에 가입할 수 있습니다. 일부 보험은 <strong>방문/비즈니스 비자</strong> 소지자도 가입 가능하지만, 보장 범위가 더 제한될 수 있습니다.
-          <ul><li>준비 서류: 거류증, 여권, 대만 거주지 증명</li></ul>
-        </div>
-        <div data-lang="ja">
-          はい。有効な居留証（ARC）を持つ外国人は、ほとんどの台湾の保険会社で傷害保険に加入できます。一部の保険は<strong>観光・ビジネスビザ</strong>の方も対象ですが、補償範囲が限られる場合があります。
-          <ul><li>必要なもの：居留証、パスポート、台湾の住所証明</li></ul>
-        </div>
-      </div>
+    <div class="pillar">
+      <div class="pillar-icon">👷</div>
+      <div class="pillar-zh"><span data-lang="zh">在台移工</span><span data-lang="en">Migrant Workers</span><span data-lang="vi">Lao Động Nước Ngoài</span><span data-lang="id">Pekerja Migran</span></div>
+      <div class="pillar-en"><span data-lang="zh">Migrant Workers</span><span data-lang="en">Blue & white collar</span><span data-lang="vi">Lao động phổ thông & văn phòng</span><span data-lang="id">Blue & white collar</span></div>
     </div>
-
-    <!-- Q5 -->
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggle(this)">
-        <span data-lang="zh">壽險的受益人可以是海外的家人嗎？</span>
-        <span data-lang="en">Can beneficiaries of life insurance be family members living overseas?</span>
-        <span data-lang="vi">Người thụ hưởng bảo hiểm nhân thọ có thể là thành viên gia đình ở nước ngoài không?</span>
-        <span data-lang="id">Bisakah penerima manfaat asuransi jiwa adalah anggota keluarga yang tinggal di luar negeri?</span>
-        <span data-lang="ko">생명보험의 수익자를 해외에 있는 가족으로 지정할 수 있나요?</span>
-        <span data-lang="ja">生命保険の受取人を海外の家族にすることはできますか？</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-a">
-        <div data-lang="zh">
-          可以。台灣壽險保單的受益人可以指定為海外親屬。理賠時需提供受益人的身份證明文件（護照、出生證明等），保險公司會以外匯方式匯款至境外帳戶。建議在投保時就明確填寫受益人資料，避免日後爭議。
-        </div>
-        <div data-lang="en">
-          Yes. You can designate overseas family members as beneficiaries on a Taiwanese life insurance policy. When filing a claim, beneficiaries will need to provide ID documents (passport, birth certificate, etc.), and payout can be transferred to an overseas bank account via wire transfer. It is strongly recommended to fill in beneficiary details clearly at the time of purchase.
-        </div>
-        <div data-lang="vi">
-          Có. Bạn có thể chỉ định thành viên gia đình ở nước ngoài là người thụ hưởng trong hợp đồng bảo hiểm nhân thọ Đài Loan. Khi làm thủ tục bồi thường, người thụ hưởng cần cung cấp giấy tờ tùy thân (hộ chiếu, giấy khai sinh, v.v.), và tiền bồi thường có thể được chuyển đến tài khoản ngân hàng nước ngoài qua chuyển khoản quốc tế. Nên điền rõ thông tin người thụ hưởng ngay khi mua bảo hiểm.
-        </div>
-        <div data-lang="id">
-          Bisa. Anda dapat menunjuk anggota keluarga di luar negeri sebagai penerima manfaat dalam polis asuransi jiwa Taiwan. Saat mengajukan klaim, penerima manfaat perlu memberikan dokumen identitas (paspor, akta kelahiran, dll.), dan pembayaran dapat ditransfer ke rekening bank luar negeri melalui wire transfer. Sangat disarankan untuk mengisi detail penerima manfaat dengan jelas saat pembelian.
-        </div>
-        <div data-lang="ko">
-          네. 대만 생명보험 계약의 수익자를 해외 가족으로 지정할 수 있습니다. 보험금 청구 시 수익자는 신분증 서류(여권, 출생증명서 등)를 제출해야 하며, 보험금은 해외 은행 계좌로 송금할 수 있습니다. 보험 가입 시 수익자 정보를 명확히 기재하는 것을 강력히 권장합니다.
-        </div>
-        <div data-lang="ja">
-          はい。台湾の生命保険契約で、海外の家族を受取人に指定することができます。保険金請求時には、受取人が身分証明書（パスポート、出生証明書など）を提出する必要があり、海外の銀行口座への振込みが可能です。加入時に受取人の情報を明確に記入することを強くお勧めします。
-        </div>
-      </div>
+    <div class="pillar">
+      <div class="pillar-icon">🎓</div>
+      <div class="pillar-zh"><span data-lang="zh">僑生族群</span><span data-lang="en">Overseas Students</span><span data-lang="vi">Du Học Sinh</span><span data-lang="id">Mahasiswa Luar Negeri</span></div>
+      <div class="pillar-en"><span data-lang="zh">Overseas Students</span><span data-lang="en">Study & residence</span><span data-lang="vi">Học tập & cư trú</span><span data-lang="id">Studi & residensi</span></div>
     </div>
-
-    <!-- Q6 -->
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggle(this)">
-        <span data-lang="zh">意外險跟壽險有什麼差別？我需要哪個？</span>
-        <span data-lang="en">What's the difference between accident &amp; life insurance? Which do I need?</span>
-        <span data-lang="vi">Sự khác biệt giữa bảo hiểm tai nạn và bảo hiểm nhân thọ là gì? Tôi cần loại nào?</span>
-        <span data-lang="id">Apa perbedaan asuransi kecelakaan dan asuransi jiwa? Yang mana yang saya butuhkan?</span>
-        <span data-lang="ko">상해보험과 생명보험의 차이는 무엇인가요? 어떤 것이 필요한가요?</span>
-        <span data-lang="ja">傷害保険と生命保険の違いは何ですか？どちらが必要ですか？</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-a">
-        <div data-lang="zh">
-          <span class="tag">意外險</span>只在<strong>意外事故</strong>（如車禍、跌倒、工傷）造成傷殘或死亡時理賠，保費便宜，適合外籍工作者作為基本保障。<br/><br/>
-          <span class="tag">壽險</span>不論是意外或疾病死亡都理賠，保障更全面，適合有家庭責任（如子女、海外父母）的人。<br/><br/>
-          建議：在台工作者至少備有意外險；若有家庭經濟責任，再搭配壽險。
-        </div>
-        <div data-lang="en">
-          <span class="tag">Accident Insurance</span> only pays out for <strong>accidental</strong> injury, disability, or death (e.g., car accidents, falls, workplace injuries). It's affordable and a great starting point for foreign workers.<br/><br/>
-          <span class="tag">Life Insurance</span> covers death from both accidents <em>and</em> illness, offering broader protection — ideal if you have family dependents (children, aging parents abroad).<br/><br/>
-          Recommendation: at minimum, get accident insurance; add life insurance if you have family financial responsibilities.
-        </div>
-        <div data-lang="vi">
-          <span class="tag">Bảo hiểm tai nạn</span> chỉ chi trả cho thương tích, tàn tật hoặc tử vong do <strong>tai nạn</strong> (ví dụ: tai nạn xe, ngã, tai nạn lao động). Phí bảo hiểm rẻ và là điểm khởi đầu tốt cho người lao động nước ngoài.<br/><br/>
-          <span class="tag">Bảo hiểm nhân thọ</span> chi trả cho cả tai nạn <em>lẫn</em> bệnh tật, cung cấp bảo vệ toàn diện hơn — lý tưởng nếu bạn có người thân phụ thuộc (con cái, cha mẹ già ở nước ngoài).<br/><br/>
-          Khuyến nghị: ít nhất cần có bảo hiểm tai nạn; thêm bảo hiểm nhân thọ nếu bạn có trách nhiệm tài chính với gia đình.
-        </div>
-        <div data-lang="id">
-          <span class="tag">Asuransi Kecelakaan</span> hanya membayar untuk cedera, cacat, atau kematian akibat <strong>kecelakaan</strong> (mis. kecelakaan kendaraan, jatuh, kecelakaan kerja). Preminya terjangkau dan cocok sebagai perlindungan awal bagi pekerja asing.<br/><br/>
-          <span class="tag">Asuransi Jiwa</span> mencakup kematian akibat kecelakaan <em>maupun</em> penyakit, memberikan perlindungan lebih komprehensif — ideal jika Anda memiliki tanggungan (anak-anak, orang tua di luar negeri).<br/><br/>
-          Rekomendasi: minimal miliki asuransi kecelakaan; tambahkan asuransi jiwa jika Anda memiliki tanggung jawab finansial terhadap keluarga.
-        </div>
-        <div data-lang="ko">
-          <span class="tag">상해보험</span>은 <strong>사고</strong>(교통사고, 낙상, 산업재해 등)로 인한 부상, 장애 또는 사망에만 보험금이 지급됩니다. 보험료가 저렴하여 외국인 근로자에게 좋은 시작점입니다.<br/><br/>
-          <span class="tag">생명보험</span>은 사고와 <em>질병</em> 모두에 의한 사망을 보장하여 더 폭넓은 보호를 제공합니다 — 부양 가족(자녀, 해외 부모님)이 있는 경우에 이상적입니다.<br/><br/>
-          권장 사항: 최소한 상해보험은 가입하고, 가족에 대한 경제적 책임이 있다면 생명보험을 추가하세요.
-        </div>
-        <div data-lang="ja">
-          <span class="tag">傷害保険</span>は<strong>事故</strong>（交通事故、転倒、労働災害など）による怪我、障害、または死亡のみに保険金が支払われます。保険料が手頃で、外国人労働者の基本的な保障として最適です。<br/><br/>
-          <span class="tag">生命保険</span>は事故<em>と</em>疾病による死亡を補償し、より幅広い保障を提供します — 扶養家族（子供、海外の親）がいる場合に理想的です。<br/><br/>
-          推奨：少なくとも傷害保険には加入し、家族への経済的責任がある場合は生命保険も追加しましょう。
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== 簽證身份限制 ===== -->
-  <div class="section">
-    <div class="section-title">
-      <div class="section-icon icon-visa">📋</div>
-      <span data-lang="zh">工作簽證 / 身份限制</span>
-      <span data-lang="en">Work Permit &amp; Visa Status</span>
-      <span data-lang="vi">Giấy Phép Lao Động &amp; Thị Thực</span>
-      <span data-lang="id">Izin Kerja &amp; Status Visa</span>
-      <span data-lang="ko">취업 허가 &amp; 비자 상태</span>
-      <span data-lang="ja">就労許可 &amp; ビザの状況</span>
-    </div>
-
-    <!-- Q7 -->
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggle(this)">
-        <span data-lang="zh">不同簽證身份，能買的保險有差嗎？</span>
-        <span data-lang="en">Does my visa type affect what insurance I can buy?</span>
-        <span data-lang="vi">Loại thị thực của tôi có ảnh hưởng đến bảo hiểm tôi có thể mua không?</span>
-        <span data-lang="id">Apakah jenis visa saya memengaruhi asuransi yang bisa saya beli?</span>
-        <span data-lang="ko">비자 종류에 따라 가입할 수 있는 보험이 다른가요?</span>
-        <span data-lang="ja">ビザの種類によって加入できる保険は異なりますか？</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-a">
-        <div data-lang="zh">
-          有差異。大致如下：
-          <ul>
-            <li><span class="tag">居留證（ARC）</span>可投保大多數壽險、意外險、醫療險，與本地居民幾乎相同</li>
-            <li><span class="tag">工作許可（移工）</span>可投保意外險、境外人員團體保險，壽險依保險公司規定</li>
-            <li><span class="tag">停留簽（觀光/商務）</span>通常只能投保短期旅遊險或意外險，長期商業保單受限</li>
-            <li><span class="tag">依親居留</span>與 ARC 相近，可投保大多數商業保險</li>
-          </ul>
-        </div>
-        <div data-lang="en">
-          Yes, your visa/residency status matters:
-          <ul>
-            <li><span class="tag">ARC holders</span> can purchase most life, accident, and health insurance — nearly the same as Taiwanese residents</li>
-            <li><span class="tag">Work permit (migrant workers)</span> can get accident insurance and group insurance plans; life insurance depends on the insurer</li>
-            <li><span class="tag">Visitor/business visa</span> typically limited to short-term travel insurance or accident insurance; long-term policies are restricted</li>
-            <li><span class="tag">Spousal/dependent residency</span> similar to ARC — most private insurance plans are accessible</li>
-          </ul>
-        </div>
-        <div data-lang="vi">
-          Có, trạng thái thị thực/cư trú của bạn có ảnh hưởng:
-          <ul>
-            <li><span class="tag">ARC</span> có thể mua hầu hết bảo hiểm nhân thọ, tai nạn và y tế — gần như giống cư dân Đài Loan</li>
-            <li><span class="tag">Giấy phép lao động (lao động di cư)</span> có thể mua bảo hiểm tai nạn ✅ và bảo hiểm nhóm ✅; bảo hiểm nhân thọ tùy công ty</li>
-            <li><span class="tag">Visa du lịch/thương mại</span> thường chỉ giới hạn ở bảo hiểm du lịch ngắn hạn hoặc tai nạn; hợp đồng dài hạn bị hạn chế</li>
-            <li><span class="tag">Cư trú theo diện vợ/chồng</span> tương tự ARC — hầu hết bảo hiểm tư nhân đều có thể mua</li>
-          </ul>
-        </div>
-        <div data-lang="id">
-          Ya, status visa/tempat tinggal Anda berpengaruh:
-          <ul>
-            <li><span class="tag">ARC</span> dapat membeli sebagian besar asuransi jiwa, kecelakaan, dan kesehatan — hampir sama dengan penduduk Taiwan</li>
-            <li><span class="tag">Izin kerja (pekerja migran)</span> asuransi kecelakaan ✅, asuransi kelompok ✅; asuransi jiwa tergantung perusahaan</li>
-            <li><span class="tag">Visa kunjungan/bisnis</span> biasanya terbatas pada asuransi perjalanan jangka pendek atau kecelakaan; polis jangka panjang terbatas</li>
-            <li><span class="tag">Tinggal ikut pasangan</span> mirip ARC — sebagian besar asuransi swasta dapat diakses</li>
-          </ul>
-        </div>
-        <div data-lang="ko">
-          네, 비자/거주 상태에 따라 차이가 있습니다:
-          <ul>
-            <li><span class="tag">거류증(ARC)</span> — 대부분의 생명보험, 상해보험, 건강보험 가입 가능 — 대만 거주자와 거의 동일</li>
-            <li><span class="tag">취업 허가(이주 노동자)</span> — 상해보험 ✅, 단체보험 ✅; 생명보험은 보험사마다 다름</li>
-            <li><span class="tag">방문/비즈니스 비자</span> — 일반적으로 단기 여행 보험 또는 상해보험으로 제한; 장기 보험 가입 제한</li>
-            <li><span class="tag">배우자 동반 거류</span> — ARC와 유사 — 대부분의 민간 보험 접근 가능</li>
-          </ul>
-        </div>
-        <div data-lang="ja">
-          はい、ビザ・居住状況によって異なります：
-          <ul>
-            <li><span class="tag">居留証（ARC）</span> — ほとんどの生命保険・傷害保険・医療保険に加入可能 — 台湾居住者とほぼ同様</li>
-            <li><span class="tag">就労許可（移住労働者）</span> — 傷害保険 ✅、団体保険 ✅; 生命保険は保険会社により異なる</li>
-            <li><span class="tag">観光・ビジネスビザ</span> — 通常、短期旅行保険または傷害保険に限定; 長期保険は制限あり</li>
-            <li><span class="tag">配偶者ビザ・帯同居住</span> — ARCと同様 — ほとんどの民間保険に加入可能</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Q8 -->
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggle(this)">
-        <span data-lang="zh">簽證到期或離台，保單會怎樣？</span>
-        <span data-lang="en">What happens to my insurance if my visa expires or I leave Taiwan?</span>
-        <span data-lang="vi">Điều gì xảy ra với bảo hiểm của tôi nếu thị thực hết hạn hoặc tôi rời Đài Loan?</span>
-        <span data-lang="id">Apa yang terjadi pada asuransi saya jika visa saya habis atau saya meninggalkan Taiwan?</span>
-        <span data-lang="ko">비자가 만료되거나 대만을 떠나면 보험은 어떻게 되나요?</span>
-        <span data-lang="ja">ビザが切れたり台湾を離れたりした場合、保険はどうなりますか？</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-a">
-        <div data-lang="zh">
-          這取決於保單類型：
-          <ul>
-            <li><strong>長期壽險/醫療險：</strong>只要持續繳費，保單通常仍有效，即使離台。但在海外就醫是否理賠需確認保單條款。</li>
-            <li><strong>短期意外險（年繳）：</strong>到期不續保即終止；若簽證到期建議確認是否能繼續投保。</li>
-            <li><strong>健保：</strong>離台超過 6 個月須辦理停保，返台後再重新加保。</li>
-          </ul>
-          建議每次更新簽證/居留證時，一併確認保單狀態。
-        </div>
-        <div data-lang="en">
-          It depends on the policy type:
-          <ul>
-            <li><strong>Long-term life/medical insurance:</strong> as long as premiums are paid, the policy usually remains valid even if you leave Taiwan. Check terms for overseas medical claim coverage.</li>
-            <li><strong>Short-term accident insurance (annual):</strong> ends when it expires; confirm eligibility to renew if your visa status changes.</li>
-            <li><strong>NHI:</strong> must be suspended if you leave Taiwan for 6+ months; re-enroll upon return.</li>
-          </ul>
-          It's good practice to review your insurance status each time you renew your ARC or work permit.
-        </div>
-        <div data-lang="vi">
-          Tùy thuộc vào loại hợp đồng:
-          <ul>
-            <li><strong>Bảo hiểm nhân thọ/y tế dài hạn:</strong> miễn là vẫn đóng phí, hợp đồng thường vẫn có hiệu lực dù bạn rời Đài Loan. Kiểm tra điều khoản về bồi thường y tế ở nước ngoài.</li>
-            <li><strong>Bảo hiểm tai nạn ngắn hạn (đóng phí hàng năm):</strong> kết thúc khi hết hạn; xác nhận khả năng gia hạn nếu tình trạng thị thực thay đổi.</li>
-            <li><strong>NHI:</strong> phải tạm dừng nếu rời Đài Loan hơn 6 tháng; đăng ký lại khi trở về.</li>
-          </ul>
-          Nên kiểm tra tình trạng bảo hiểm mỗi lần gia hạn ARC hoặc giấy phép lao động.
-        </div>
-        <div data-lang="id">
-          Tergantung jenis polis:
-          <ul>
-            <li><strong>Asuransi jiwa/kesehatan jangka panjang:</strong> selama premi dibayarkan, polis biasanya tetap berlaku meski Anda meninggalkan Taiwan. Periksa ketentuan klaim medis di luar negeri.</li>
-            <li><strong>Asuransi kecelakaan jangka pendek (tahunan):</strong> berakhir saat habis masa berlakunya; konfirmasi kelayakan perpanjangan jika status visa berubah.</li>
-            <li><strong>NHI:</strong> harus ditangguhkan jika Anda meninggalkan Taiwan lebih dari 6 bulan; daftar ulang saat kembali.</li>
-          </ul>
-          Sebaiknya tinjau status asuransi Anda setiap kali memperpanjang ARC atau izin kerja.
-        </div>
-        <div data-lang="ko">
-          보험 종류에 따라 다릅니다:
-          <ul>
-            <li><strong>장기 생명/의료보험:</strong> 보험료를 납부하는 한 대만을 떠나도 일반적으로 유효합니다. 해외 의료비 청구 조항은 약관을 확인하세요.</li>
-            <li><strong>단기 상해보험 (연납):</strong> 만료 시 종료; 비자 상태가 변경되면 갱신 가능 여부를 확인하세요.</li>
-            <li><strong>건강보험:</strong> 6개월 이상 대만을 떠나면 정지 신청 필요; 귀국 후 재가입.</li>
-          </ul>
-          거류증 또는 취업 허가를 갱신할 때마다 보험 상태를 확인하는 것이 좋습니다.
-        </div>
-        <div data-lang="ja">
-          保険の種類によって異なります：
-          <ul>
-            <li><strong>長期生命・医療保険：</strong>保険料を支払い続ける限り、台湾を離れても通常は有効です。海外での医療費請求については保険約款をご確認ください。</li>
-            <li><strong>短期傷害保険（年払い）：</strong>満期で終了; ビザの状況が変わる場合は更新可能か確認してください。</li>
-            <li><strong>健康保険：</strong>6ヶ月以上台湾を離れる場合は一時停止の手続きが必要; 帰国後に再加入。</li>
-          </ul>
-          居留証や就労許可を更新する際には、保険の状況も一緒に確認することをお勧めします。
-        </div>
-      </div>
-    </div>
-
-    <!-- Q9 -->
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggle(this)">
-        <span data-lang="zh">我剛到台灣，健保還沒生效，這段時間怎麼辦？</span>
-        <span data-lang="en">I just arrived in Taiwan and my NHI hasn't started yet. What should I do?</span>
-        <span data-lang="vi">Tôi vừa đến Đài Loan và NHI chưa có hiệu lực. Tôi nên làm gì?</span>
-        <span data-lang="id">Saya baru tiba di Taiwan dan NHI saya belum aktif. Apa yang harus saya lakukan?</span>
-        <span data-lang="ko">대만에 막 도착했는데 건강보험이 아직 시작되지 않았어요. 어떻게 해야 하나요?</span>
-        <span data-lang="ja">台湾に来たばかりでまだNHIが始まっていません。どうすればいいですか？</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="faq-a">
-        <div data-lang="zh">
-          健保在某些情況下有等待期（最長 4 個月）。這段空窗期建議：
-          <ul>
-            <li>投保<strong>短期意外險</strong>或<strong>旅遊醫療險</strong>作為過渡保障</li>
-            <li>或詢問雇主是否有提供團體保險</li>
-          </ul>
-          空窗期就醫需自費，費用可能較高，提早準備最安心。
-        </div>
-        <div data-lang="en">
-          NHI can have a waiting period of up to 4 months in some cases. During this gap period, it's recommended to:
-          <ul>
-            <li>Purchase a <strong>short-term accident or travel medical insurance</strong> policy as a bridge</li>
-            <li>Or check if your employer provides group insurance coverage</li>
-          </ul>
-          Medical costs without NHI can be high — it's wise to have coverage from day one.
-        </div>
-        <div data-lang="vi">
-          NHI có thể có thời gian chờ lên đến 4 tháng trong một số trường hợp. Trong khoảng thời gian này, nên:
-          <ul>
-            <li>Mua <strong>bảo hiểm tai nạn ngắn hạn</strong> hoặc <strong>bảo hiểm y tế du lịch</strong> làm cầu nối</li>
-            <li>Hoặc hỏi xem công ty của bạn có cung cấp bảo hiểm nhóm không</li>
-          </ul>
-          Chi phí y tế khi không có NHI có thể rất cao — nên có bảo hiểm ngay từ ngày đầu tiên.
-        </div>
-        <div data-lang="id">
-          NHI bisa memiliki masa tunggu hingga 4 bulan dalam beberapa kasus. Selama masa jeda ini, disarankan untuk:
-          <ul>
-            <li>Membeli <strong>asuransi kecelakaan jangka pendek</strong> atau <strong>asuransi medis perjalanan</strong> sebagai jembatan</li>
-            <li>Atau tanyakan apakah pemberi kerja Anda menyediakan asuransi kelompok</li>
-          </ul>
-          Biaya medis tanpa NHI bisa sangat tinggi — bijaksana untuk memiliki perlindungan sejak hari pertama.
-        </div>
-        <div data-lang="ko">
-          건강보험은 경우에 따라 최대 4개월의 대기 기간이 있을 수 있습니다. 이 공백 기간 동안 권장 사항:
-          <ul>
-            <li>단기 <strong>상해보험</strong>이나 <strong>여행 의료보험</strong>을 가입하여 임시 보장</li>
-            <li>또는 고용주가 단체보험을 제공하는지 확인</li>
-          </ul>
-          건강보험 없이는 의료비가 높을 수 있습니다 — 첫날부터 보장을 갖추는 것이 현명합니다.
-        </div>
-        <div data-lang="ja">
-          NHIは場合によっては最大4ヶ月の待機期間がある場合があります。この空白期間中は以下をお勧めします：
-          <ul>
-            <li>短期<strong>傷害保険</strong>や<strong>旅行医療保険</strong>を架け橋として加入</li>
-            <li>または雇用主が団体保険を提供しているか確認する</li>
-          </ul>
-          NHIなしでの医療費は高額になる可能性があります — 初日から保障を確保するのが賢明です。
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Contact Bar -->
-  <div class="contact-bar">
-    <div data-lang="zh">
-      <p>還有其他問題？歡迎直接詢問，我提供免費諮詢！</p>
-      <a href="https://instagram.com" target="_blank">📩 聯絡我</a>
-    </div>
-    <div data-lang="en">
-      <p>Still have questions? Feel free to reach out — free consultation available!</p>
-      <a href="https://instagram.com" target="_blank">📩 Contact Me</a>
-    </div>
-    <div data-lang="vi">
-      <p>Còn câu hỏi nào khác? Hãy liên hệ với tôi — tư vấn miễn phí!</p>
-      <a href="https://instagram.com" target="_blank">📩 Liên hệ</a>
-    </div>
-    <div data-lang="id">
-      <p>Masih ada pertanyaan? Hubungi saya — konsultasi gratis tersedia!</p>
-      <a href="https://instagram.com" target="_blank">📩 Hubungi Saya</a>
-    </div>
-    <div data-lang="ko">
-      <p>다른 질문이 있으신가요? 언제든지 연락주세요 — 무료 상담 가능합니다!</p>
-      <a href="https://instagram.com" target="_blank">📩 문의하기</a>
-    </div>
-    <div data-lang="ja">
-      <p>他にご質問はありますか？お気軽にご連絡ください — 無料相談承ります！</p>
-      <a href="https://instagram.com" target="_blank">📩 お問い合わせ</a>
+    <div class="pillar">
+      <div class="pillar-icon">💬</div>
+      <div class="pillar-zh"><span data-lang="zh">免費諮詢</span><span data-lang="en">Free Consultation</span><span data-lang="vi">Tư Vấn Miễn Phí</span><span data-lang="id">Konsultasi Gratis</span></div>
+      <div class="pillar-en"><span data-lang="zh">LINE / Instagram</span><span data-lang="en">LINE / Instagram</span><span data-lang="vi">LINE / Instagram</span><span data-lang="id">LINE / Instagram</span></div>
     </div>
   </div>
 </div>
 
+<!-- ── ARTICLES ── -->
+<section id="articles">
+  <div class="section-wrap">
+    <div class="section-label">BLOG</div>
+    <div class="section-heading">
+      <span data-lang="zh">保險知識文章</span>
+      <span data-lang="en">Insurance Articles</span>
+      <span data-lang="vi">Bài Viết Bảo Hiểm</span>
+      <span data-lang="id">Artikel Asuransi</span>
+    </div>
+    <div class="section-sub">
+      <span data-lang="zh">Insurance Knowledge Articles</span>
+      <span data-lang="en">In Traditional Chinese — with key terms translated</span>
+      <span data-lang="vi">Bằng tiếng Trung — có dịch thuật ngữ chính</span>
+      <span data-lang="id">Dalam bahasa Mandarin — dengan istilah kunci diterjemahkan</span>
+    </div>
+
+    <div class="articles-grid">
+      <a class="article-card" href="#guide">
+        <div class="article-thumb" style="background:var(--navy);">
+          <div class="thumb-text"><span data-lang="zh">外籍配偶<br>必備保險</span><span data-lang="en">Foreign Spouse<br>Insurance</span><span data-lang="vi">BH Bắt Buộc<br>Vợ/Chồng Nước Ngoài</span><span data-lang="id">Asuransi Wajib<br>Pasangan Asing</span></div>
+        </div>
+        <div class="article-content">
+          <div class="article-cat">GUIDE</div>
+          <div class="article-title"><span data-lang="zh">外籍配偶必備保險懶人包</span><span data-lang="en">Essential Insurance for Foreign Spouses</span><span data-lang="vi">Hướng Dẫn BH Cho Vợ/Chồng Nước Ngoài</span><span data-lang="id">Panduan BH untuk Pasangan Asing</span></div>
+          <div class="article-excerpt"><span data-lang="zh">沒有這3個，一次意外可能花掉你20萬。</span><span data-lang="en">Without these 3, one accident could cost you NT$200,000.</span><span data-lang="vi">Thiếu 3 loại này, một tai nạn có thể tốn 200,000 NTD.</span><span data-lang="id">Tanpa 3 ini, satu kecelakaan bisa menghabiskan NT$200.000.</span></div>
+          <div class="article-footer"><span class="article-read"><span data-lang="zh">閱讀 →</span><span data-lang="en">Read →</span><span data-lang="vi">Đọc →</span><span data-lang="id">Baca →</span></span></div>
+        </div>
+      </a>
+
+      <a class="article-card" href="#faq">
+        <div class="article-thumb" style="background:var(--blue);">
+          <div class="thumb-text"><span data-lang="zh">健保<br>FAQ</span><span data-lang="en">NHI<br>FAQ</span><span data-lang="vi">Bảo Hiểm<br>Y Tế FAQ</span><span data-lang="id">NHI<br>FAQ</span></div>
+        </div>
+        <div class="article-content">
+          <div class="article-cat">FAQ</div>
+          <div class="article-title"><span data-lang="zh">外籍人士健保常見問題 9 則</span><span data-lang="en">9 NHI FAQs for Foreigners</span><span data-lang="vi">9 Câu Hỏi Thường Gặp về NHI</span><span data-lang="id">9 FAQ NHI untuk Orang Asing</span></div>
+          <div class="article-excerpt"><span data-lang="zh">不同身份能買的保險有什麼差別？</span><span data-lang="en">How does visa status affect your insurance options?</span><span data-lang="vi">Tình trạng visa ảnh hưởng đến bảo hiểm như thế nào?</span><span data-lang="id">Bagaimana status visa mempengaruhi pilihan asuransi Anda?</span></div>
+          <div class="article-footer"><span class="article-read"><span data-lang="zh">閱讀 →</span><span data-lang="en">Read →</span><span data-lang="vi">Đọc →</span><span data-lang="id">Baca →</span></span></div>
+        </div>
+      </a>
+
+      <a class="article-card" href="#about">
+        <div class="article-thumb" style="background:#2d7a6e;">
+          <div class="thumb-text"><span data-lang="zh">保險<br>不是奢侈品</span><span data-lang="en">Insurance is<br>Not a Luxury</span><span data-lang="vi">BH Không<br>Phải Xa Xỉ</span><span data-lang="id">Asuransi<br>Bukan Kemewahan</span></div>
+        </div>
+        <div class="article-content">
+          <div class="article-cat">CONCEPT</div>
+          <div class="article-title"><span data-lang="zh">保險不會讓你變有錢，但防止生活不被改變</span><span data-lang="en">Insurance won't make you rich — but keeps your life unchanged</span><span data-lang="vi">Bảo hiểm không giúp bạn giàu — nhưng giữ cuộc sống ổn định</span><span data-lang="id">Asuransi tidak membuat kaya — tapi menjaga hidup tetap stabil</span></div>
+          <div class="article-excerpt"><span data-lang="zh">我們無法預測疾病或意外，但可以選擇準備好。</span><span data-lang="en">We can't predict illness or accidents — but we can prepare.</span><span data-lang="vi">Chúng ta không thể dự đoán bệnh tật hay tai nạn — nhưng có thể chuẩn bị.</span><span data-lang="id">Kita tidak bisa memprediksi — tapi bisa mempersiapkan diri.</span></div>
+          <div class="article-footer"><span class="article-read"><span data-lang="zh">閱讀 →</span><span data-lang="en">Read →</span><span data-lang="vi">Đọc →</span><span data-lang="id">Baca →</span></span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── INSURANCE GUIDE ── -->
+<section id="guide" class="guide-section">
+  <div class="section-wrap">
+    <div class="section-label">INSURANCE GUIDE</div>
+    <div class="section-heading">
+      <span data-lang="zh">外籍人士必備 3 大險種</span>
+      <span data-lang="en">3 Essential Insurance Types</span>
+      <span data-lang="vi">3 Loại Bảo Hiểm Thiết Yếu</span>
+      <span data-lang="id">3 Jenis Asuransi Penting</span>
+    </div>
+    <div class="section-sub">
+      <span data-lang="zh">Essential Insurance for Foreign Spouses &amp; Workers in Taiwan</span>
+      <span data-lang="en">For foreign spouses &amp; workers in Taiwan</span>
+      <span data-lang="vi">Dành cho vợ/chồng nước ngoài &amp; lao động tại Đài Loan</span>
+      <span data-lang="id">Untuk pasangan asing &amp; pekerja di Taiwan</span>
+    </div>
+    <div class="guide-cards">
+
+      <div class="guide-card">
+        <div class="guide-top" style="background:var(--navy);">
+          <div class="guide-num">1</div>
+          <div>
+            <h3><span data-lang="zh">意外險</span><span data-lang="en">Accident Insurance</span><span data-lang="vi">BH Tai Nạn</span><span data-lang="id">Asuransi Kecelakaan</span></h3>
+            <div class="en">Personal Accident Insurance</div>
+          </div>
+        </div>
+        <div class="guide-body">
+          <div class="guide-trigger">
+            <span data-lang="zh"><strong>啟動條件：</strong>外來 ＋ 突發 ＋ 非疾病（三者同時成立）</span>
+            <span data-lang="en"><strong>When:</strong> External + Sudden + Non-illness (all 3 required)</span>
+            <span data-lang="vi"><strong>Điều kiện:</strong> Bên ngoài + Đột ngột + Không phải bệnh (cả 3)</span>
+            <span data-lang="id"><strong>Syarat:</strong> Eksternal + Mendadak + Bukan penyakit (ketiganya)</span>
+          </div>
+          <ul class="guide-items">
+            <li><div class="guide-dot"></div><div><span data-lang="zh">身故保險金</span><span data-lang="en">Death Benefit</span><span data-lang="vi">Quyền lợi tử vong</span><span data-lang="id">Manfaat Kematian</span></div></li>
+            <li><div class="guide-dot"></div><div><span data-lang="zh">失能保險金</span><span data-lang="en">Disability Benefit</span><span data-lang="vi">Quyền lợi tàn tật</span><span data-lang="id">Manfaat Kecacatan</span></div></li>
+            <li><div class="guide-dot"></div><div><span data-lang="zh">意外住院日額</span><span data-lang="en">Hospitalization Daily Benefit</span><span data-lang="vi">Trợ cấp nhập viện hàng ngày</span><span data-lang="id">Tunjangan Rawat Inap Harian</span></div></li>
+            <li><div class="guide-dot"></div><div><span data-lang="zh">意外實支實付</span><span data-lang="en">Medical Reimbursement</span><span data-lang="vi">Hoàn trả chi phí y tế</span><span data-lang="id">Penggantian Biaya Medis</span></div></li>
+          </ul>
+          <div class="guide-note">
+            <span data-lang="zh">⚠️ 不賠疾病造成的傷害（如心臟病、中風）</span>
+            <span data-lang="en">⚠️ Does NOT cover illness-related injuries (e.g. heart attack, stroke)</span>
+            <span data-lang="vi">⚠️ KHÔNG chi trả tổn thương do bệnh tật (tim mạch, đột quỵ)</span>
+            <span data-lang="id">⚠️ TIDAK menanggung cedera akibat penyakit (serangan jantung, stroke)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <div class="guide-top" style="background:var(--blue);">
+          <div class="guide-num">2</div>
+          <div>
+            <h3><span data-lang="zh">醫療實支實付</span><span data-lang="en">Medical Reimbursement</span><span data-lang="vi">BH Y Tế Thực Chi</span><span data-lang="id">Reimbursmen Medis</span></h3>
+            <div class="en">Medical Reimbursement Insurance</div>
+          </div>
+        </div>
+        <div class="guide-body">
+          <div class="guide-trigger">
+            <span data-lang="zh"><strong>啟動條件：</strong>住院 或 手術（擇一即可啟動）</span>
+            <span data-lang="en"><strong>When:</strong> Hospitalization or Surgery (either one)</span>
+            <span data-lang="vi"><strong>Điều kiện:</strong> Nhập viện hoặc Phẫu thuật (một trong hai)</span>
+            <span data-lang="id"><strong>Syarat:</strong> Rawat inap atau Operasi (salah satu)</span>
+          </div>
+          <ul class="guide-items">
+            <li><div class="guide-dot"></div><div><span data-lang="zh">病房費差額</span><span data-lang="en">Room Upgrade Fee</span><span data-lang="vi">Phí nâng cấp phòng</span><span data-lang="id">Biaya Upgrade Kamar</span></div></li>
+            <li><div class="guide-dot"></div><div><span data-lang="zh">手術費用</span><span data-lang="en">Surgery Fees</span><span data-lang="vi">Phí phẫu thuật</span><span data-lang="id">Biaya Operasi</span></div></li>
+            <li><div class="guide-dot"></div><div><span data-lang="zh">自費藥品與耗材</span><span data-lang="en">Self-pay Medications</span><span data-lang="vi">Thuốc tự chi trả</span><span data-lang="id">Obat Berbayar Mandiri</span></div></li>
+            <li><div class="guide-dot"></div><div><span data-lang="zh">各項雜費</span><span data-lang="en">Miscellaneous Fees</span><span data-lang="vi">Phí linh tinh</span><span data-lang="id">Biaya Lain-lain</span></div></li>
+          </ul>
+          <div class="guide-note">
+            <span data-lang="zh">⚠️ 花多少賠多少，只賠自費部分，有上限</span>
+            <span data-lang="en">⚠️ Pay-as-you-spend, only out-of-pocket costs, up to policy limit</span>
+            <span data-lang="vi">⚠️ Hoàn trả theo thực chi, chỉ phần tự trả, có giới hạn</span>
+            <span data-lang="id">⚠️ Dibayar sesuai pengeluaran, hanya biaya mandiri, ada batas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <div class="guide-top" style="background:#7a4a4a;">
+          <div class="guide-num">3</div>
+          <div>
+            <h3><span data-lang="zh">重大傷病險</span><span data-lang="en">Critical Illness</span><span data-lang="vi">BH Bệnh Nặng</span><span data-lang="id">Penyakit Kritis</span></h3>
+            <div class="en">Critical Illness Insurance</div>
+          </div>
+        </div>
+        <div class="guide-body">
+          <div class="guide-trigger">
+            <span data-lang="zh"><strong>啟動條件：</strong>確診衛福部重大傷病，無需住院</span>
+            <span data-lang="en"><strong>When:</strong> Diagnosed with MoHW Critical Illness (no hospitalization)</span>
+            <span data-lang="vi"><strong>Điều kiện:</strong> Chẩn đoán bệnh nặng Bộ Y tế (không cần nhập viện)</span>
+            <span data-lang="id"><strong>Syarat:</strong> Didiagnosis penyakit kritis MoHW (tanpa rawat inap)</span>
+          </div>
+          <ul class="guide-items">
+            <li><div class="guide-dot"></div><div><span data-lang="zh">癌症・心肌梗塞・腦中風</span><span data-lang="en">Cancer, Heart Attack, Stroke</span><span data-lang="vi">Ung thư, Nhồi máu cơ tim, Đột quỵ</span><span data-lang="id">Kanker, Serangan Jantung, Stroke</span></div></li>
+            <li><div class="guide-dot"></div><div><span data-lang="zh">慢性腎衰竭・重大器官移植</span><span data-lang="en">Renal Failure, Organ Transplant</span><span data-lang="vi">Suy thận mãn tính, Cấy ghép nội tạng</span><span data-lang="id">Gagal Ginjal, Transplantasi Organ</span></div></li>
+            <li><div class="guide-dot"></div><div><span data-lang="zh">共 22 大類疾病</span><span data-lang="en">22 categories total</span><span data-lang="vi">Tổng cộng 22 loại</span><span data-lang="id">Total 22 kategori</span></div></li>
+            <li><div class="guide-dot"></div><div><span data-lang="zh">一次性給付，用途不限</span><span data-lang="en">Lump sum, flexible use</span><span data-lang="vi">Thanh toán một lần, dùng tùy ý</span><span data-lang="id">Lump sum, penggunaan fleksibel</span></div></li>
+          </ul>
+          <div class="guide-note">
+            <span data-lang="zh">⚠️ 重大傷病險 ≠ 癌症險，涵蓋 22 大類，範圍更廣</span>
+            <span data-lang="en">⚠️ NOT the same as cancer-only insurance — covers 22 categories</span>
+            <span data-lang="vi">⚠️ KHÔNG phải BH ung thư — bao gồm 22 loại bệnh</span>
+            <span data-lang="id">⚠️ BUKAN asuransi kanker saja — mencakup 22 kategori</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section id="faq">
+  <div class="section-wrap">
+    <div class="faq-cols">
+      <div class="faq-sidebar">
+        <div class="section-label">FAQ</div>
+        <h2>
+          <span data-lang="zh">常見<br>問題解答</span>
+          <span data-lang="en">Frequently<br>Asked Questions</span>
+          <span data-lang="vi">Câu Hỏi<br>Thường Gặp</span>
+          <span data-lang="id">Pertanyaan<br>yang Sering Ditanyakan</span>
+        </h2>
+        <p>
+          <span data-lang="zh">整理外籍人士在台灣投保時最常遇到的問題，直接給你清楚的答案。</span>
+          <span data-lang="en">Common questions foreigners have about insurance in Taiwan — answered clearly.</span>
+          <span data-lang="vi">Các câu hỏi thường gặp về bảo hiểm tại Đài Loan — được trả lời rõ ràng.</span>
+          <span data-lang="id">Pertanyaan umum tentang asuransi di Taiwan — dijawab dengan jelas.</span>
+        </p>
+        <div class="lang-note">
+          <span data-lang="zh">🌐 本站支援 <strong>4 種語言</strong><br>中文・English・Tiếng Việt・Bahasa Indonesia</span>
+          <span data-lang="en">🌐 This site supports <strong>4 languages</strong><br>中文・English・Tiếng Việt・Bahasa Indonesia</span>
+          <span data-lang="vi">🌐 Trang này hỗ trợ <strong>4 ngôn ngữ</strong><br>中文・English・Tiếng Việt・Bahasa Indonesia</span>
+          <span data-lang="id">🌐 Situs ini mendukung <strong>4 bahasa</strong><br>中文・English・Tiếng Việt・Bahasa Indonesia</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span data-lang="zh">外籍配偶可以加入健保嗎？</span>
+            <span data-lang="en">Can a foreign spouse join Taiwan's NHI?</span>
+            <span data-lang="vi">Vợ/chồng nước ngoài có thể tham gia NHI không?</span>
+            <span data-lang="id">Apakah pasangan asing bisa bergabung dengan NHI?</span>
+            <span class="arr">▼</span>
+          </button>
+          <div class="faq-a">
+            <span data-lang="zh">取得<strong>居留證（ARC）</strong>並完成戶籍登記後，可以眷屬身份加入配偶健保，或以個人身份投保。合法居留滿 6 個月也可單獨申請。所需文件：居留證、結婚登記證明、配偶健保卡。</span>
+            <span data-lang="en">Yes. Once a foreign spouse obtains an <strong>ARC</strong> and completes household registration, they can join NHI as a dependant or individually. Foreigners who have legally resided for 6+ months may also apply independently. Documents needed: ARC, marriage certificate, spouse's NHI card.</span>
+            <span data-lang="vi">Có. Sau khi có <strong>ARC</strong> và hoàn tất đăng ký hộ khẩu, có thể tham gia NHI với tư cách người phụ thuộc hoặc cá nhân. Cư trú hợp pháp 6 tháng+ có thể đăng ký độc lập. Cần: ARC, giấy đăng ký kết hôn, thẻ NHI của vợ/chồng.</span>
+            <span data-lang="id">Ya. Setelah mendapat <strong>ARC</strong> dan mendaftar kependudukan, bisa bergabung NHI sebagai tanggungan atau mandiri. Tinggal legal 6+ bulan juga bisa mendaftar mandiri. Dokumen: ARC, akta nikah, kartu NHI pasangan.</span>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span data-lang="zh">健保不包含哪些項目？</span>
+            <span data-lang="en">What doesn't NHI cover?</span>
+            <span data-lang="vi">NHI không bao gồm những gì?</span>
+            <span data-lang="id">Apa yang tidak ditanggung NHI?</span>
+            <span class="arr">▼</span>
+          </button>
+          <div class="faq-a">
+            <span data-lang="zh">
+              健保<strong>不包含</strong>：住院病房升等差額、特殊材料與自費藥品、牙科自費項目（矯正、植牙）、健檢、美容手術、長期看護費用。這些正是商業保險可以補充的部分。
+            </span>
+            <span data-lang="en">
+              NHI does <strong>NOT cover</strong>: private room upgrade fees, special materials &amp; self-pay medications, cosmetic dentistry (braces, implants), health check-ups, cosmetic surgery, long-term care. This is where private insurance fills the gap.
+            </span>
+            <span data-lang="vi">
+              NHI <strong>không bao gồm</strong>: phí nâng cấp phòng, vật liệu đặc biệt &amp; thuốc tự trả, nha khoa thẩm mỹ (niềng răng, implant), kiểm tra sức khỏe, phẫu thuật thẩm mỹ, chăm sóc dài hạn.
+            </span>
+            <span data-lang="id">
+              NHI <strong>tidak mencakup</strong>: upgrade kamar, bahan khusus &amp; obat mandiri, perawatan gigi estetik (kawat, implan), medical check-up, bedah kosmetik, perawatan jangka panjang.
+            </span>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span data-lang="zh">沒有台灣國籍，可以買意外險嗎？</span>
+            <span data-lang="en">Can foreigners without Taiwan citizenship buy accident insurance?</span>
+            <span data-lang="vi">Người không có quốc tịch Đài Loan có mua được BH tai nạn không?</span>
+            <span data-lang="id">Bisakah orang asing tanpa kewarganegaraan Taiwan beli asuransi kecelakaan?</span>
+            <span class="arr">▼</span>
+          </button>
+          <div class="faq-a">
+            <span data-lang="zh">可以。持有合法居留證（ARC）的外籍人士，可向大多數台灣保險公司投保意外險。建議攜帶：居留證、護照、在台地址證明。</span>
+            <span data-lang="en">Yes. Foreigners holding a valid ARC can purchase accident insurance from most Taiwanese insurers. Bring: ARC, passport, proof of Taiwan address.</span>
+            <span data-lang="vi">Có. Người nước ngoài có ARC hợp lệ có thể mua BH tai nạn từ hầu hết công ty bảo hiểm Đài Loan. Cần: ARC, hộ chiếu, bằng chứng địa chỉ tại Đài Loan.</span>
+            <span data-lang="id">Bisa. Orang asing dengan ARC valid dapat membeli asuransi kecelakaan dari sebagian besar perusahaan asuransi Taiwan. Bawa: ARC, paspor, bukti alamat di Taiwan.</span>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span data-lang="zh">不同簽證身份，能買的保險有差嗎？</span>
+            <span data-lang="en">Does my visa type affect what insurance I can buy?</span>
+            <span data-lang="vi">Loại visa ảnh hưởng đến bảo hiểm tôi có thể mua không?</span>
+            <span data-lang="id">Apakah jenis visa mempengaruhi asuransi yang bisa saya beli?</span>
+            <span class="arr">▼</span>
+          </button>
+          <div class="faq-a">
+            <div data-lang="zh">
+              <span class="faq-tag">居留證 ARC</span> 可投保大多數壽險、意外險、醫療險<br>
+              <span class="faq-tag">工作許可（移工）</span> 可投保意外險、團體保險<br>
+              <span class="faq-tag">停留簽（觀光）</span> 通常只能投保短期旅遊險<br>
+              <span class="faq-tag">依親居留</span> 與 ARC 相近，可投保大多數商業保險
+            </div>
+            <div data-lang="en">
+              <span class="faq-tag">ARC holders</span> can get most life, accident &amp; health insurance<br>
+              <span class="faq-tag">Work permit (migrant)</span> accident insurance &amp; group plans<br>
+              <span class="faq-tag">Visitor/business visa</span> short-term travel or accident insurance only<br>
+              <span class="faq-tag">Spousal residency</span> similar to ARC — most private insurance accessible
+            </div>
+            <div data-lang="vi">
+              <span class="faq-tag">ARC</span> Hầu hết bảo hiểm nhân thọ, tai nạn, y tế<br>
+              <span class="faq-tag">Giấy phép lao động</span> BH tai nạn &amp; nhóm<br>
+              <span class="faq-tag">Visa du lịch</span> Chỉ BH du lịch ngắn hạn<br>
+              <span class="faq-tag">Cư trú theo diện vợ/chồng</span> Tương tự ARC
+            </div>
+            <div data-lang="id">
+              <span class="faq-tag">ARC</span> Sebagian besar asuransi jiwa, kecelakaan, kesehatan<br>
+              <span class="faq-tag">Izin kerja</span> Asuransi kecelakaan &amp; kelompok<br>
+              <span class="faq-tag">Visa kunjungan</span> Hanya asuransi perjalanan jangka pendek<br>
+              <span class="faq-tag">Tinggal ikut pasangan</span> Mirip ARC
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span data-lang="zh">剛到台灣健保還沒生效，這段時間怎麼辦？</span>
+            <span data-lang="en">I just arrived and my NHI hasn't started yet. What to do?</span>
+            <span data-lang="vi">Tôi vừa đến Đài Loan và NHI chưa có hiệu lực. Phải làm gì?</span>
+            <span data-lang="id">Baru tiba di Taiwan dan NHI belum aktif. Apa yang harus dilakukan?</span>
+            <span class="arr">▼</span>
+          </button>
+          <div class="faq-a">
+            <span data-lang="zh">健保等待期最長 4 個月。建議投保<strong>短期意外險</strong>或<strong>旅遊醫療險</strong>作為過渡保障，或詢問雇主是否提供團體保險。空窗期就醫需自費，費用可能很高，提早準備最安心。</span>
+            <span data-lang="en">NHI waiting period can be up to 4 months. Purchase a <strong>short-term accident</strong> or <strong>travel medical insurance</strong> as a bridge, or check if your employer provides group insurance. Medical costs without NHI can be very high.</span>
+            <span data-lang="vi">Thời gian chờ NHI có thể lên đến 4 tháng. Hãy mua <strong>BH tai nạn ngắn hạn</strong> hoặc <strong>BH y tế du lịch</strong> làm cầu nối, hoặc hỏi chủ lao động về bảo hiểm nhóm. Chi phí y tế không có NHI rất cao.</span>
+            <span data-lang="id">Masa tunggu NHI bisa sampai 4 bulan. Beli <strong>asuransi kecelakaan jangka pendek</strong> atau <strong>asuransi medis perjalanan</strong> sebagai jembatan, atau tanya pemberi kerja tentang asuransi kelompok.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" class="about-section">
+  <div class="about-inner">
+    <img class="about-photo" src="photo/IMG_3499.PNG" alt="Jecko 保險好鄰居"
+         onerror="this.style.background='rgba(255,255,255,0.08)'">
+    <div class="about-content">
+      <div class="about-label">ABOUT ME</div>
+      <h2>
+        <span data-lang="zh">我是 JECKO<br>你的保險好鄰居</span>
+        <span data-lang="en">I'm JECKO<br>Your Insurance Good Neighbor</span>
+        <span data-lang="vi">Tôi là JECKO<br>Người Hàng Xóm Bảo Hiểm của bạn</span>
+        <span data-lang="id">Saya JECKO<br>Tetangga Asuransi Anda</span>
+      </h2>
+      <p>
+        <span data-lang="zh">臺菲混血，從小在兩種文化之間長大，深刻理解外籍人士在台灣面對的困惑。我的使命是讓每一位在台的外籍人士，都能用自己聽得懂的語言了解保險。</span>
+        <span data-lang="en">Taiwanese-Filipino background, I grew up between two cultures and deeply understand the challenges foreigners face in Taiwan. My mission: help every foreigner understand insurance in their own language.</span>
+        <span data-lang="vi">Gốc Đài-Philippines, tôi lớn lên giữa hai nền văn hóa và hiểu rõ khó khăn của người nước ngoài tại Đài Loan. Sứ mệnh của tôi: giúp mọi người hiểu bảo hiểm bằng ngôn ngữ của họ.</span>
+        <span data-lang="id">Latar belakang Taiwan-Filipina, saya besar di antara dua budaya dan memahami tantangan orang asing di Taiwan. Misi saya: membantu setiap orang asing memahami asuransi dalam bahasa mereka sendiri.</span>
+      </p>
+      <div class="about-badges">
+        <span class="about-badge">🇹🇼🇵🇭 <span data-lang="zh">臺菲混血</span><span data-lang="en">Taiwanese-Filipino</span><span data-lang="vi">Gốc Đài-Philippines</span><span data-lang="id">Latar Taiwan-Filipina</span></span>
+        <span class="about-badge">🎓 <span data-lang="zh">曾受邀大學演講</span><span data-lang="en">University Speaker</span><span data-lang="vi">Diễn giả đại học</span><span data-lang="id">Pembicara Universitas</span></span>
+        <span class="about-badge">🌍 <span data-lang="zh">外籍人士專屬服務</span><span data-lang="en">International Clients</span><span data-lang="vi">Phục vụ người nước ngoài</span><span data-lang="id">Klien Internasional</span></span>
+      </div>
+      <div class="about-btns">
+        <a href="https://lin.ee/6Lbn2Ba" target="_blank" class="about-btn">💬 LINE</a>
+        <a href="https://www.instagram.com/urbxneighbor/" target="_blank" class="about-btn outline">📷 @urbxneighbor</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section>
+  <div class="cta-section">
+    <div class="cta-card">
+      <h2>
+        <span data-lang="zh">還有問題？歡迎找我</span>
+        <span data-lang="en">Have questions? Feel free to reach out</span>
+        <span data-lang="vi">Còn câu hỏi? Hãy liên hệ với tôi</span>
+        <span data-lang="id">Ada pertanyaan? Silakan hubungi saya</span>
+      </h2>
+      <p>
+        <span data-lang="zh">不用準備什麼，直接來問就好 — 免費諮詢</span>
+        <span data-lang="en">No need to prepare anything — free consultation available</span>
+        <span data-lang="vi">Không cần chuẩn bị gì — tư vấn miễn phí</span>
+        <span data-lang="id">Tidak perlu persiapan apapun — konsultasi gratis</span>
+      </p>
+      <div class="cta-btns">
+        <a href="https://lin.ee/6Lbn2Ba" target="_blank" class="cta-btn">💬 LINE</a>
+        <a href="https://www.instagram.com/urbxneighbor/" target="_blank" class="cta-btn outline">📷 @urbxneighbor</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
+  <div class="footer-meta">
+    <span data-lang="zh">以上資訊僅供參考，實際理賠條件以各保險公司保單條款為準。</span>
+    <span data-lang="en">This information is for reference only. Actual terms are subject to individual policy conditions.</span>
+    <span data-lang="vi">Thông tin chỉ mang tính tham khảo. Điều khoản thực tế theo từng hợp đồng bảo hiểm.</span>
+    <span data-lang="id">Informasi ini hanya untuk referensi. Ketentuan aktual sesuai masing-masing polis asuransi.</span>
+  </div>
+</footer>
+
 <script>
-  const LANGS = {
-    zh: { label: '中文',             htmlLang: 'zh-TW' },
-    en: { label: 'English',          htmlLang: 'en'    },
-    vi: { label: 'Tiếng Việt',       htmlLang: 'vi'    },
-    id: { label: 'Bahasa Indonesia', htmlLang: 'id'    },
-    ko: { label: '한국어',            htmlLang: 'ko'    },
-    ja: { label: '日本語',            htmlLang: 'ja'    },
-  };
+const LANGS = {
+  zh: { label: '語言', html: 'zh-TW' },
+  en: { label: 'Language', html: 'en' },
+  vi: { label: 'Ngôn ngữ', html: 'vi' },
+  id: { label: 'Bahasa', html: 'id' },
+};
 
-  function setLang(lang) {
-    document.body.classList.remove('en', 'vi', 'id', 'ko', 'ja');
-    if (lang !== 'zh') document.body.classList.add(lang);
-    document.documentElement.lang = LANGS[lang].htmlLang;
-    document.getElementById('langLabel').textContent = LANGS[lang].label;
-    Object.keys(LANGS).forEach(l => {
-      const btn = document.getElementById('opt-' + l);
-      btn.classList.toggle('active', l === lang);
-      btn.querySelector('.check').textContent = l === lang ? '✓' : '';
-    });
-    closeMenu();
-    document.querySelectorAll('.faq-q.open').forEach(q => {
-      q.classList.remove('open');
-      q.nextElementSibling.classList.remove('show');
-    });
-  }
+function setLang(lang) {
+  document.body.classList.remove('en','vi','id');
+  if (lang !== 'zh') document.body.classList.add(lang);
+  document.documentElement.lang = LANGS[lang].html;
+  document.getElementById('langLabel').textContent = LANGS[lang].label;
+  Object.keys(LANGS).forEach(l => {
+    const btn = document.getElementById('opt-' + l);
+    btn.classList.toggle('active', l === lang);
+    btn.querySelector('.lang-check').textContent = l === lang ? '✓' : ' ';
+  });
+  closeMenu();
+  document.querySelectorAll('.faq-q.open').forEach(q => {
+    q.classList.remove('open');
+    q.nextElementSibling.classList.remove('show');
+  });
+}
 
-  function toggleMenu(e) {
-    e.stopPropagation();
-    document.getElementById('langWrap').classList.toggle('open');
-  }
+function toggleMenu(e) {
+  e.stopPropagation();
+  document.getElementById('langWrap').classList.toggle('open');
+}
+function closeMenu() { document.getElementById('langWrap').classList.remove('open'); }
+document.addEventListener('click', closeMenu);
 
-  function closeMenu() {
-    document.getElementById('langWrap').classList.remove('open');
-  }
-
-  document.addEventListener('click', closeMenu);
-
-  function toggle(btn) {
-    const answer = btn.nextElementSibling;
-    const isOpen = btn.classList.contains('open');
-    document.querySelectorAll('.faq-q.open').forEach(q => {
-      q.classList.remove('open');
-      q.nextElementSibling.classList.remove('show');
-    });
-    if (!isOpen) {
-      btn.classList.add('open');
-      answer.classList.add('show');
-    }
-  }
+function toggleFaq(btn) {
+  const ans = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q.open').forEach(q => {
+    q.classList.remove('open');
+    q.nextElementSibling.classList.remove('show');
+  });
+  if (!isOpen) { btn.classList.add('open'); ans.classList.add('show'); }
+}
 </script>
 </body>
 </html>
