@@ -12,16 +12,18 @@
   --blue:   #465169;
   --red:    #b95756;
   --white:  #ffffff;
-  --cream:  #f5ede6;
   --card:   #faf6f2;
   --text:   #2a2a2a;
   --muted:  #7a8a96;
   --border: rgba(18,81,95,0.10);
+  --teal:   #1a7a6a;
+  --teal-light: #e8f5f2;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body { background: var(--bg); font-family: 'Noto Sans TC', sans-serif; color: var(--text); min-height: 100vh; }
 
-/* hide non-active langs */
+/* ── hide inactive langs ── */
 [data-lang="en"],[data-lang="vi"],[data-lang="id"] { display: none; }
 body.en [data-lang="en"]  { display: revert; }
 body.vi [data-lang="vi"]  { display: revert; }
@@ -30,10 +32,15 @@ body.en [data-lang="zh"],
 body.vi [data-lang="zh"],
 body.id [data-lang="zh"]  { display: none; }
 
+/* ── PAGES ── */
+.page { display: none; }
+.page.active { display: block; animation: fadeIn 0.25s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
 /* ── NAV ── */
 nav {
   position: sticky; top: 0; z-index: 200;
-  background: rgba(229,217,207,0.94);
+  background: rgba(229,217,207,0.95);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
   padding: 0 32px;
@@ -42,18 +49,21 @@ nav {
 }
 .nav-logo {
   font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 700;
-  color: var(--navy); text-decoration: none;
+  color: var(--navy); background: none; border: none; cursor: pointer;
+  font-family: 'Noto Serif TC', serif;
 }
-.nav-center {
-  display: flex; align-items: center; gap: 28px; list-style: none;
+.nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+.nav-btn {
+  font-size: 13.5px; font-weight: 500; color: var(--blue);
+  background: none; border: none; cursor: pointer;
+  padding: 6px 14px; border-radius: 20px;
+  transition: all 0.18s; font-family: 'Noto Sans TC', sans-serif;
 }
-.nav-center a {
-  font-size: 14px; font-weight: 500; color: var(--blue);
-  text-decoration: none; transition: color 0.2s;
-}
-.nav-center a:hover { color: var(--navy); }
+.nav-btn:hover { color: var(--navy); background: rgba(18,81,95,0.07); }
+.nav-btn.active { color: var(--navy); background: rgba(18,81,95,0.12); font-weight: 700; }
 
 /* Language switcher */
+.nav-right { display: flex; align-items: center; gap: 10px; }
 .lang-wrap { position: relative; }
 .lang-trigger {
   display: flex; align-items: center; gap: 6px;
@@ -83,7 +93,9 @@ nav {
 .lang-option.active { color: var(--navy); font-weight: 700; }
 .lang-check { width: 14px; font-size: 12px; color: var(--navy); }
 
-/* ── HERO ── */
+/* ─────────────────────────
+   HOME PAGE – HERO
+───────────────────────── */
 .hero {
   max-width: 1080px; margin: 0 auto;
   padding: 72px 32px 60px;
@@ -111,37 +123,32 @@ nav {
 .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 .btn-primary {
   background: var(--navy); color: white; font-size: 15px; font-weight: 700;
-  padding: 13px 28px; border-radius: 28px; text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
+  padding: 13px 28px; border-radius: 28px; border: none;
+  transition: background 0.2s, transform 0.15s; cursor: pointer;
   display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 .btn-primary:hover { background: #0e3f4b; transform: translateY(-1px); }
 .btn-outline {
   background: transparent; color: var(--navy); font-size: 15px; font-weight: 600;
   padding: 13px 28px; border-radius: 28px; border: 2px solid var(--navy);
-  text-decoration: none; transition: all 0.2s;
+  transition: all 0.2s; cursor: pointer;
   display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 .btn-outline:hover { background: var(--navy); color: white; }
-
 /* Hero visual card */
 .hero-visual {
   background: var(--navy); border-radius: 20px;
   padding: 32px 28px; position: relative; overflow: hidden;
 }
 .hero-visual::before {
-  content: '';
-  position: absolute; top: -40px; right: -40px;
-  width: 200px; height: 200px;
-  background: rgba(255,255,255,0.04);
-  border-radius: 50%;
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 200px; height: 200px; background: rgba(255,255,255,0.04); border-radius: 50%;
 }
 .hero-visual::after {
-  content: '';
-  position: absolute; bottom: -60px; left: -30px;
-  width: 160px; height: 160px;
-  background: rgba(185,87,86,0.12);
-  border-radius: 50%;
+  content: ''; position: absolute; bottom: -60px; left: -30px;
+  width: 160px; height: 160px; background: rgba(185,87,86,0.12); border-radius: 50%;
 }
 .visual-brand {
   font-family: 'Noto Serif TC', serif; font-size: 13px; font-weight: 700;
@@ -174,44 +181,41 @@ nav {
 .visual-dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
 
-/* ── PILLARS BAR ── */
+/* Pillars bar */
 .pillars-bar { background: var(--navy); }
 .pillars-inner {
-  max-width: 1080px; margin: 0 auto;
-  padding: 0 32px;
+  max-width: 1080px; margin: 0 auto; padding: 0 32px;
   display: grid; grid-template-columns: repeat(4, 1fr);
 }
 .pillar {
-  padding: 32px 24px; text-align: center;
+  padding: 28px 20px; text-align: center;
   border-right: 1px solid rgba(255,255,255,0.08);
-  transition: background 0.2s;
+  cursor: pointer; transition: background 0.2s;
 }
 .pillar:last-child { border-right: none; }
 .pillar:hover { background: rgba(255,255,255,0.04); }
-.pillar-icon { font-size: 30px; margin-bottom: 12px; }
-.pillar-zh { font-family: 'Noto Serif TC', serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 6px; }
-.pillar-en { font-size: 13px; color: rgba(255,255,255,0.55); }
+.pillar-icon { font-size: 28px; margin-bottom: 10px; }
+.pillar-zh { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 700; color: white; margin-bottom: 5px; }
+.pillar-en { font-size: 12px; color: rgba(255,255,255,0.5); }
 
-/* ── SECTION ── */
+/* Entry section */
 .section-wrap { max-width: 1080px; margin: 0 auto; padding: 56px 32px; }
 .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--red); margin-bottom: 8px; text-transform: uppercase; }
-.section-heading { font-family: 'Noto Serif TC', serif; font-size: clamp(22px, 4vw, 30px); font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-.section-sub { font-size: 13px; color: var(--muted); margin-bottom: 36px; }
-
-/* ── ARTICLES ── */
-.articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.section-heading { font-family: 'Noto Serif TC', serif; font-size: clamp(20px, 3.5vw, 28px); font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.section-sub { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+.articles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .article-card {
-  background: var(--white); border-radius: 16px; overflow: hidden;
+  background: var(--white); border-radius: 12px; overflow: hidden;
   box-shadow: 0 2px 16px rgba(18,81,95,0.07);
   transition: transform 0.2s, box-shadow 0.2s;
-  text-decoration: none; display: block; color: inherit;
+  text-decoration: none; display: block; color: inherit; cursor: pointer;
 }
 .article-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(18,81,95,0.14); }
 .article-thumb {
-  height: 150px; display: flex; align-items: center; justify-content: center; position: relative;
+  height: 140px; display: flex; align-items: center; justify-content: center;
 }
 .thumb-text {
-  font-family: 'Noto Serif TC', serif; font-size: 26px; font-weight: 700;
+  font-family: 'Noto Serif TC', serif; font-size: 24px; font-weight: 700;
   color: white; text-align: center; line-height: 1.3; padding: 16px;
 }
 .article-content { padding: 18px 20px 20px; }
@@ -221,8 +225,32 @@ nav {
 .article-footer { display: flex; align-items: center; justify-content: space-between; }
 .article-read { font-size: 12px; font-weight: 700; color: var(--navy); }
 
-/* ── GUIDE ── */
-.guide-section { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+/* ─────────────────────────
+   INNER PAGE SHARED
+───────────────────────── */
+.inner-top {
+  background: var(--navy); padding: 44px 32px 44px;
+  text-align: center;
+}
+.back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: rgba(255,255,255,0.55); font-size: 13px;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif; margin-bottom: 20px;
+  transition: color 0.2s; position: relative; z-index: 1;
+}
+.back-btn:hover { color: rgba(255,255,255,0.9); }
+.inner-top h1 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(24px, 4vw, 36px); color: white;
+  line-height: 1.4; margin-bottom: 10px; position: relative; z-index: 1;
+}
+.inner-top p { font-size: 14px; color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto; position: relative; z-index: 1; }
+.page-body { max-width: 980px; margin: 0 auto; padding: 40px 32px 72px; }
+
+/* ─────────────────────────
+   GUIDE PAGE (3 險種)
+───────────────────────── */
 .guide-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .guide-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(18,81,95,0.06); }
 .guide-top { padding: 20px 22px; display: flex; align-items: center; gap: 12px; }
@@ -233,7 +261,7 @@ nav {
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .guide-top h3 { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 700; color: white; }
-.guide-top .en { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.guide-top .sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
 .guide-body { padding: 18px 22px 22px; }
 .guide-trigger { background: #f0f5f6; border-radius: 10px; padding: 11px 14px; margin-bottom: 16px; font-size: 12.5px; color: var(--text); line-height: 1.5; }
 .guide-items { list-style: none; }
@@ -241,12 +269,56 @@ nav {
 .guide-items li:last-child { border-bottom: none; }
 .guide-dot { width: 6px; height: 6px; background: var(--navy); border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
 .guide-note { margin-top: 14px; background: #fdf3f3; border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 12px; color: var(--blue); line-height: 1.7; }
+/* Foreigners tabs */
+.tab-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+.tab-btn {
+  padding: 8px 22px; border-radius: 30px;
+  border: 2px solid var(--navy); background: transparent;
+  color: var(--navy); font-size: 13px; font-weight: 700;
+  cursor: pointer; font-family: 'Noto Sans TC', sans-serif; transition: all 0.2s;
+}
+.tab-btn.active, .tab-btn:hover { background: var(--navy); color: white; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.info-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.info-card { background: var(--white); border-radius: 14px; padding: 20px 22px; border: 1px solid var(--border); }
+.info-card.highlight { background: var(--teal-light); border-color: rgba(26,122,106,0.2); }
+.info-card.warn { border-left: 4px solid var(--red); }
+.info-card h3 { font-family: 'Noto Serif TC', serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.info-card p, .info-card li { font-size: 13px; color: #555; line-height: 1.7; }
+.info-card ul { list-style: none; padding: 0; }
+.info-card ul li { padding: 3px 0; }
+.info-card ul li::before { content: '・'; color: var(--navy); }
+.note-box { background: rgba(18,81,95,0.06); border-left: 3px solid var(--navy); border-radius: 0 10px 10px 0; padding: 12px 16px; font-size: 12.5px; color: var(--blue); line-height: 1.7; margin-top: 20px; }
 
-/* ── FAQ ── */
-.faq-cols { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
-.faq-sidebar h2 { font-family: 'Noto Serif TC', serif; font-size: 28px; font-weight: 700; color: var(--navy); line-height: 1.4; margin-bottom: 12px; }
+/* ─────────────────────────
+   OVERSEAS PAGE (僑生)
+───────────────────────── */
+.os-badge { display: inline-block; background: var(--teal-light); color: var(--teal); font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 4px 14px; border-radius: 20px; margin-bottom: 20px; }
+.os-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.os-card { background: var(--white); border-radius: 14px; padding: 20px 20px 22px; border: 1px solid var(--border); }
+.os-card.full { grid-column: 1 / -1; }
+.os-card.highlight { background: var(--teal-light); border-color: rgba(26,122,106,0.2); }
+.os-card-tag { display: inline-block; background: rgba(18,81,95,0.08); color: var(--navy); font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; letter-spacing: 1px; }
+.os-card.highlight .os-card-tag { background: rgba(26,122,106,0.15); color: var(--teal); }
+.os-card h3 { font-family: 'Noto Serif TC', serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.os-card p, .os-card li { font-size: 13px; color: #555; line-height: 1.7; }
+.os-card ul { list-style: none; padding: 0; }
+.os-card ul li { padding: 3px 0; }
+.os-card ul li::before { content: '・'; color: var(--navy); }
+.os-amt { color: var(--navy); font-weight: 700; }
+.os-amt-row { display: flex; gap: 32px; margin-top: 10px; flex-wrap: wrap; }
+.os-amt-block .lbl { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.os-amt-block .num { font-size: 20px; font-weight: 700; color: var(--navy); }
+.os-note { background: rgba(18,81,95,0.05); border-left: 3px solid var(--navy); border-radius: 0 10px 10px 0; padding: 12px 16px; margin-top: 20px; font-size: 12.5px; color: var(--blue); line-height: 1.7; }
+
+/* ─────────────────────────
+   FAQ PAGE
+───────────────────────── */
+.faq-cols { display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start; }
+.faq-sidebar h2 { font-family: 'Noto Serif TC', serif; font-size: 26px; font-weight: 700; color: var(--navy); line-height: 1.4; margin-bottom: 12px; }
 .faq-sidebar p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
-.faq-sidebar .lang-note { background: var(--navy); border-radius: 10px; padding: 14px 16px; font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.7; }
+.lang-note { background: var(--navy); border-radius: 10px; padding: 14px 16px; font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.7; }
 .faq-item { background: var(--white); border-radius: 12px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(18,81,95,0.06); }
 .faq-q {
   width: 100%; text-align: left; background: none; border: none;
@@ -259,69 +331,63 @@ nav {
 .faq-q.open .arr { transform: rotate(180deg); }
 .faq-a { display: none; padding: 0 20px 16px; font-size: 14px; line-height: 1.9; color: #555; border-top: 1px solid var(--border); }
 .faq-a.show { display: block; }
-.faq-a ul { padding-left: 16px; margin-top: 8px; }
-.faq-a li { margin-bottom: 4px; }
 .faq-tag { display: inline-block; background: rgba(18,81,95,0.10); color: var(--navy); border-radius: 4px; padding: 1px 8px; font-size: 12px; font-weight: 700; margin-right: 4px; margin-bottom: 4px; }
 
-/* ── ABOUT ── */
-.about-section { background: var(--navy); }
-.about-inner {
-  max-width: 1080px; margin: 0 auto; padding: 64px 32px;
-  display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: center;
-}
-.about-photo {
-  width: 100%; aspect-ratio: 1; object-fit: cover;
-  border-radius: 50%; border: 4px solid rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.08);
-}
-.about-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.4); margin-bottom: 10px; text-transform: uppercase; }
-.about-content h2 { font-family: 'Noto Serif TC', serif; font-size: clamp(22px, 4vw, 34px); font-weight: 700; color: white; margin-bottom: 14px; line-height: 1.3; }
-.about-content p { font-size: 15px; color: rgba(255,255,255,0.72); line-height: 1.9; margin-bottom: 24px; }
+/* ─────────────────────────
+   ABOUT PAGE
+───────────────────────── */
+.about-grid { display: grid; grid-template-columns: 200px 1fr; gap: 52px; align-items: start; }
+.about-photo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; border: 4px solid var(--border); background: rgba(18,81,95,0.08); }
+.about-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; }
+.about-content h2 { font-family: 'Noto Serif TC', serif; font-size: clamp(22px, 4vw, 32px); font-weight: 700; color: var(--navy); margin-bottom: 14px; line-height: 1.3; }
+.about-content p { font-size: 15px; color: #555; line-height: 1.9; margin-bottom: 22px; }
 .about-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
-.about-badge { background: rgba(255,255,255,0.10); color: rgba(255,255,255,0.9); font-size: 13px; font-weight: 600; padding: 7px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); }
+.about-badge { background: rgba(18,81,95,0.08); color: var(--navy); font-size: 13px; font-weight: 600; padding: 7px 16px; border-radius: 20px; border: 1px solid var(--border); }
 .about-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-.about-btn { background: white; color: var(--navy); font-size: 14px; font-weight: 700; padding: 11px 24px; border-radius: 24px; text-decoration: none; transition: all 0.2s; }
-.about-btn:hover { background: var(--red); color: white; }
-.about-btn.outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.35); }
-.about-btn.outline:hover { background: rgba(255,255,255,0.1); }
+.about-btn { background: var(--navy); color: white; font-size: 14px; font-weight: 700; padding: 11px 24px; border-radius: 24px; text-decoration: none; transition: all 0.2s; }
+.about-btn:hover { background: #0e3f4b; }
+.about-btn.outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+.about-btn.outline:hover { background: var(--navy); color: white; }
 
-/* ── CTA ── */
-.cta-section { max-width: 1080px; margin: 0 auto; padding: 56px 32px; }
-.cta-card { background: var(--red); border-radius: 20px; padding: 48px 40px; text-align: center; }
-.cta-card h2 { font-family: 'Noto Serif TC', serif; font-size: clamp(20px, 4vw, 30px); font-weight: 700; color: white; margin-bottom: 10px; }
-.cta-card p { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.8; margin-bottom: 28px; }
+/* CTA strip */
+.cta-strip { background: var(--red); border-radius: 20px; padding: 44px 36px; text-align: center; margin-top: 48px; }
+.cta-strip h2 { font-family: 'Noto Serif TC', serif; font-size: clamp(18px,3vw,26px); font-weight: 700; color: white; margin-bottom: 8px; }
+.cta-strip p { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.8; margin-bottom: 24px; }
 .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-.cta-btn { background: white; color: var(--red); font-size: 15px; font-weight: 700; padding: 13px 28px; border-radius: 28px; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+.cta-btn { background: white; color: var(--red); font-size: 15px; font-weight: 700; padding: 12px 26px; border-radius: 28px; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
 .cta-btn:hover { background: var(--navy); color: white; }
 .cta-btn.outline { background: rgba(255,255,255,0.15); color: white; border: 2px solid rgba(255,255,255,0.4); }
 .cta-btn.outline:hover { background: rgba(255,255,255,0.25); }
 
 /* ── FOOTER ── */
-footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
-.footer-logo { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.65); margin-bottom: 6px; }
-.footer-meta { font-size: 12px; color: rgba(255,255,255,0.32); line-height: 1.8; }
+footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
+.footer-logo { font-family: 'Noto Serif TC', serif; font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.6); margin-bottom: 5px; }
+.footer-meta { font-size: 11.5px; color: rgba(255,255,255,0.28); line-height: 1.8; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; }
+  .hero { grid-template-columns: 1fr; gap: 32px; }
   .hero-visual { display: none; }
-  .articles-grid { grid-template-columns: repeat(2, 1fr); }
-  .guide-cards { grid-template-columns: 1fr; }
-  .faq-cols { grid-template-columns: 1fr; }
-  .about-inner { grid-template-columns: 1fr; text-align: center; }
-  .about-photo { width: 140px; margin: 0 auto; }
-  .about-badges, .about-btns { justify-content: center; }
   .pillars-inner { grid-template-columns: repeat(2, 1fr); }
+  .guide-cards { grid-template-columns: 1fr; }
+  .os-cards { grid-template-columns: repeat(2, 1fr); }
+  .os-card.full { grid-column: 1 / -1; }
+  .faq-cols { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; text-align: center; }
+  .about-photo { width: 130px; margin: 0 auto; }
+  .about-badges, .about-btns { justify-content: center; }
 }
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   nav { padding: 0 16px; }
-  .nav-center { display: none; }
+  .nav-links { display: none; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .os-cards { grid-template-columns: 1fr; }
+  .os-card.full { grid-column: 1; }
+  .page-body { padding: 32px 20px 56px; }
   .hero { padding: 48px 20px 40px; }
   .section-wrap { padding: 40px 20px; }
-  .articles-grid { grid-template-columns: 1fr; }
-  .cta-section { padding: 40px 20px; }
-  .cta-card { padding: 36px 24px; }
-  .about-inner { padding: 48px 20px; }
+  .os-amt-row { flex-direction: column; gap: 12px; }
+  .inner-top { padding: 36px 20px 36px; }
 }
 </style>
 </head>
@@ -329,39 +395,43 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
 
 <!-- ── NAV ── -->
 <nav>
-  <a class="nav-logo" href="#">保險好鄰居</a>
+  <button class="nav-logo" onclick="showPage('home')">保險好鄰居</button>
 
-  <ul class="nav-center">
-    <li><a href="#guide">
-      <span data-lang="zh">保險知識</span>
-      <span data-lang="en">Insurance Guide</span>
-      <span data-lang="vi">Kiến Thức BH</span>
-      <span data-lang="id">Panduan BH</span>
-    </a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#about">
-      <span data-lang="zh">關於我</span>
-      <span data-lang="en">About</span>
-      <span data-lang="vi">Về Tôi</span>
-      <span data-lang="id">Tentang Saya</span>
-    </a></li>
+  <ul class="nav-links">
+    <li><button class="nav-btn active" id="nav-home"     onclick="showPage('home')">
+      <span data-lang="zh">首頁</span><span data-lang="en">Home</span><span data-lang="vi">Trang Chủ</span><span data-lang="id">Beranda</span>
+    </button></li>
+    <li><button class="nav-btn" id="nav-guide"    onclick="showPage('guide')">
+      <span data-lang="zh">保險知識</span><span data-lang="en">Insurance</span><span data-lang="vi">Kiến Thức</span><span data-lang="id">Panduan</span>
+    </button></li>
+    <li><button class="nav-btn" id="nav-overseas" onclick="showPage('overseas')">僑生專區</button></li>
+    <li><button class="nav-btn" id="nav-faq"      onclick="showPage('faq')">FAQ</button></li>
+    <li><button class="nav-btn" id="nav-about"    onclick="showPage('about')">
+      <span data-lang="zh">關於我</span><span data-lang="en">About</span><span data-lang="vi">Về Tôi</span><span data-lang="id">Tentang</span>
+    </button></li>
   </ul>
 
-  <div class="lang-wrap" id="langWrap">
-    <button class="lang-trigger" onclick="toggleMenu(event)">
-      🌐 <span id="langLabel">語言</span> <span class="chevron">▼</span>
-    </button>
-    <div class="lang-menu" id="langMenu">
-      <button class="lang-option active" id="opt-zh" onclick="setLang('zh')"><span class="lang-check">✓</span> 中文</button>
-      <button class="lang-option"         id="opt-en" onclick="setLang('en')"><span class="lang-check"> </span> English</button>
-      <button class="lang-option"         id="opt-vi" onclick="setLang('vi')"><span class="lang-check"> </span> Tiếng Việt</button>
-      <button class="lang-option"         id="opt-id" onclick="setLang('id')"><span class="lang-check"> </span> Bahasa Indonesia</button>
+  <div class="nav-right">
+    <div class="lang-wrap" id="langWrap">
+      <button class="lang-trigger" onclick="toggleMenu(event)">
+        🌐 <span id="langLabel">語言</span> <span class="chevron">▼</span>
+      </button>
+      <div class="lang-menu" id="langMenu">
+        <button class="lang-option active" id="opt-zh" onclick="setLang('zh')"><span class="lang-check">✓</span> 中文</button>
+        <button class="lang-option"         id="opt-en" onclick="setLang('en')"><span class="lang-check"> </span> English</button>
+        <button class="lang-option"         id="opt-vi" onclick="setLang('vi')"><span class="lang-check"> </span> Tiếng Việt</button>
+        <button class="lang-option"         id="opt-id" onclick="setLang('id')"><span class="lang-check"> </span> Bahasa Indonesia</button>
+      </div>
     </div>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
-<section>
+<!-- ═══════════════════════════════
+     HOME PAGE
+═══════════════════════════════ -->
+<div id="home" class="page active">
+
+  <!-- Hero -->
   <div class="hero">
     <div>
       <div class="hero-tags">
@@ -385,29 +455,29 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
       </div>
 
       <div class="hero-btns">
-        <a href="#guide" class="btn-primary">
+        <button class="btn-primary" onclick="showPage('guide')">
           <span data-lang="zh">📖 保險懶人包</span>
           <span data-lang="en">📖 Insurance Guide</span>
           <span data-lang="vi">📖 Hướng Dẫn BH</span>
           <span data-lang="id">📖 Panduan Asuransi</span>
-        </a>
-        <a href="#faq" class="btn-outline">
+        </button>
+        <button class="btn-outline" onclick="showPage('faq')">
           <span data-lang="zh">🙋 常見問題</span>
           <span data-lang="en">🙋 FAQ</span>
           <span data-lang="vi">🙋 Câu Hỏi Thường Gặp</span>
           <span data-lang="id">🙋 Pertanyaan Umum</span>
-        </a>
+        </button>
       </div>
     </div>
 
-    <!-- Hero visual -->
+    <!-- Hero visual card -->
     <div class="hero-visual">
       <div class="visual-brand">保險好鄰居 ｜ @urbxneighbor</div>
       <div class="visual-items">
         <div class="visual-item">
           <div class="visual-num">1</div>
           <div class="visual-info">
-            <div class="visual-zh"><span data-lang="zh">意外險</span><span data-lang="en">Accident Insurance</span><span data-lang="vi">Bảo Hiểm Tai Nạn</span><span data-lang="id">Asuransi Kecelakaan</span></div>
+            <div class="visual-zh"><span data-lang="zh">意外險</span><span data-lang="en">Accident Insurance</span><span data-lang="vi">BH Tai Nạn</span><span data-lang="id">Asuransi Kecelakaan</span></div>
             <div class="visual-en"><span data-lang="zh">Personal Accident Insurance</span><span data-lang="en">Covers accidental injuries only</span><span data-lang="vi">Chỉ bảo hiểm tai nạn bên ngoài</span><span data-lang="id">Hanya menanggung kecelakaan</span></div>
           </div>
           <span class="visual-check">✓</span>
@@ -415,16 +485,16 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
         <div class="visual-item">
           <div class="visual-num">2</div>
           <div class="visual-info">
-            <div class="visual-zh"><span data-lang="zh">醫療實支實付</span><span data-lang="en">Medical Reimbursement</span><span data-lang="vi">Bảo Hiểm Y Tế Thực Chi</span><span data-lang="id">Reimbursmen Medis</span></div>
-            <div class="visual-en"><span data-lang="zh">Medical Reimbursement Insurance</span><span data-lang="en">Covers hospitalization & surgery costs</span><span data-lang="vi">Bảo hiểm nhập viện và phẫu thuật</span><span data-lang="id">Rawat inap & biaya operasi</span></div>
+            <div class="visual-zh"><span data-lang="zh">醫療實支實付</span><span data-lang="en">Medical Reimbursement</span><span data-lang="vi">BH Y Tế Thực Chi</span><span data-lang="id">Reimbursmen Medis</span></div>
+            <div class="visual-en"><span data-lang="zh">住院 & 手術費用保障</span><span data-lang="en">Covers hospitalization & surgery costs</span><span data-lang="vi">Bảo hiểm nhập viện và phẫu thuật</span><span data-lang="id">Rawat inap & biaya operasi</span></div>
           </div>
           <span class="visual-check">✓</span>
         </div>
         <div class="visual-item">
           <div class="visual-num">3</div>
           <div class="visual-info">
-            <div class="visual-zh"><span data-lang="zh">重大傷病險</span><span data-lang="en">Critical Illness</span><span data-lang="vi">Bảo Hiểm Bệnh Nặng</span><span data-lang="id">Asuransi Penyakit Kritis</span></div>
-            <div class="visual-en"><span data-lang="zh">Critical Illness Insurance</span><span data-lang="en">22 categories, lump-sum payout</span><span data-lang="vi">22 loại, thanh toán một lần</span><span data-lang="id">22 kategori, pembayaran sekaligus</span></div>
+            <div class="visual-zh"><span data-lang="zh">重大傷病險</span><span data-lang="en">Critical Illness</span><span data-lang="vi">BH Bệnh Nặng</span><span data-lang="id">Penyakit Kritis</span></div>
+            <div class="visual-en"><span data-lang="zh">22 大類，一次性給付</span><span data-lang="en">22 categories, lump-sum payout</span><span data-lang="vi">22 loại, thanh toán một lần</span><span data-lang="id">22 kategori, pembayaran sekaligus</span></div>
           </div>
           <span class="visual-check">✓</span>
         </div>
@@ -435,107 +505,132 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
       </div>
     </div>
   </div>
-</section>
 
-<!-- ── PILLARS ── -->
-<div class="pillars-bar">
-  <div class="pillars-inner">
-    <div class="pillar">
-      <div class="pillar-icon">👨‍👩‍👧</div>
-      <div class="pillar-zh"><span data-lang="zh">外籍配偶</span><span data-lang="en">Foreign Spouses</span><span data-lang="vi">Vợ/Chồng Nước Ngoài</span><span data-lang="id">Pasangan Asing</span></div>
-      <div class="pillar-en"><span data-lang="zh">Foreign Spouses</span><span data-lang="en">ARC holders & family</span><span data-lang="vi">ARC & gia đình</span><span data-lang="id">Pemegang ARC & keluarga</span></div>
-    </div>
-    <div class="pillar">
-      <div class="pillar-icon">👷</div>
-      <div class="pillar-zh"><span data-lang="zh">在台移工</span><span data-lang="en">Migrant Workers</span><span data-lang="vi">Lao Động Nước Ngoài</span><span data-lang="id">Pekerja Migran</span></div>
-      <div class="pillar-en"><span data-lang="zh">Migrant Workers</span><span data-lang="en">Blue & white collar</span><span data-lang="vi">Lao động phổ thông & văn phòng</span><span data-lang="id">Blue & white collar</span></div>
-    </div>
-    <div class="pillar">
-      <div class="pillar-icon">🎓</div>
-      <div class="pillar-zh"><span data-lang="zh">僑生族群</span><span data-lang="en">Overseas Students</span><span data-lang="vi">Du Học Sinh</span><span data-lang="id">Mahasiswa Luar Negeri</span></div>
-      <div class="pillar-en"><span data-lang="zh">Overseas Students</span><span data-lang="en">Study & residence</span><span data-lang="vi">Học tập & cư trú</span><span data-lang="id">Studi & residensi</span></div>
-    </div>
-    <div class="pillar">
-      <div class="pillar-icon">💬</div>
-      <div class="pillar-zh"><span data-lang="zh">免費諮詢</span><span data-lang="en">Free Consultation</span><span data-lang="vi">Tư Vấn Miễn Phí</span><span data-lang="id">Konsultasi Gratis</span></div>
-      <div class="pillar-en"><span data-lang="zh">LINE / Instagram</span><span data-lang="en">LINE / Instagram</span><span data-lang="vi">LINE / Instagram</span><span data-lang="id">LINE / Instagram</span></div>
+  <!-- Pillars bar -->
+  <div class="pillars-bar">
+    <div class="pillars-inner">
+      <div class="pillar" onclick="showPage('guide')">
+        <div class="pillar-icon">📖</div>
+        <div class="pillar-zh"><span data-lang="zh">保險知識</span><span data-lang="en">Insurance Guide</span><span data-lang="vi">Kiến Thức BH</span><span data-lang="id">Panduan BH</span></div>
+        <div class="pillar-en"><span data-lang="zh">3 大必備險種</span><span data-lang="en">3 essential types</span><span data-lang="vi">3 loại thiết yếu</span><span data-lang="id">3 jenis penting</span></div>
+      </div>
+      <div class="pillar" onclick="showPage('overseas')">
+        <div class="pillar-icon">🎓</div>
+        <div class="pillar-zh">僑生專區</div>
+        <div class="pillar-en">Overseas Students</div>
+      </div>
+      <div class="pillar" onclick="showPage('faq')">
+        <div class="pillar-icon">🙋</div>
+        <div class="pillar-zh">FAQ</div>
+        <div class="pillar-en"><span data-lang="zh">常見問題</span><span data-lang="en">Quick Answers</span><span data-lang="vi">Câu Hỏi</span><span data-lang="id">Pertanyaan</span></div>
+      </div>
+      <div class="pillar" onclick="showPage('about')">
+        <div class="pillar-icon">💬</div>
+        <div class="pillar-zh"><span data-lang="zh">關於我</span><span data-lang="en">About Me</span><span data-lang="vi">Về Tôi</span><span data-lang="id">Tentang</span></div>
+        <div class="pillar-en">LINE / Instagram</div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ── ARTICLES ── -->
-<section id="articles">
+  <!-- Entry cards -->
   <div class="section-wrap">
-    <div class="section-label">BLOG</div>
+    <div class="section-label">EXPLORE</div>
     <div class="section-heading">
-      <span data-lang="zh">保險知識文章</span>
-      <span data-lang="en">Insurance Articles</span>
-      <span data-lang="vi">Bài Viết Bảo Hiểm</span>
-      <span data-lang="id">Artikel Asuransi</span>
+      <span data-lang="zh">選擇你需要的資訊</span>
+      <span data-lang="en">Choose what you need</span>
+      <span data-lang="vi">Chọn thông tin bạn cần</span>
+      <span data-lang="id">Pilih informasi yang Anda butuhkan</span>
     </div>
     <div class="section-sub">
-      <span data-lang="zh">Insurance Knowledge Articles</span>
-      <span data-lang="en">In Traditional Chinese — with key terms translated</span>
-      <span data-lang="vi">Bằng tiếng Trung — có dịch thuật ngữ chính</span>
-      <span data-lang="id">Dalam bahasa Mandarin — dengan istilah kunci diterjemahkan</span>
+      <span data-lang="zh">點擊任一主題深入了解</span>
+      <span data-lang="en">Click any topic to learn more</span>
+      <span data-lang="vi">Nhấp vào chủ đề để tìm hiểu thêm</span>
+      <span data-lang="id">Klik topik untuk mempelajari lebih lanjut</span>
     </div>
 
     <div class="articles-grid">
-      <a class="article-card" href="#guide">
+      <div class="article-card" onclick="showPage('guide')">
         <div class="article-thumb" style="background:var(--navy);">
-          <div class="thumb-text"><span data-lang="zh">外籍配偶<br>必備保險</span><span data-lang="en">Foreign Spouse<br>Insurance</span><span data-lang="vi">BH Bắt Buộc<br>Vợ/Chồng Nước Ngoài</span><span data-lang="id">Asuransi Wajib<br>Pasangan Asing</span></div>
+          <div class="thumb-text"><span data-lang="zh">外籍人士<br>必備保險</span><span data-lang="en">Essential<br>Insurance</span><span data-lang="vi">BH Thiết Yếu<br>Người Nước Ngoài</span><span data-lang="id">Asuransi<br>Penting</span></div>
         </div>
         <div class="article-content">
           <div class="article-cat">GUIDE</div>
-          <div class="article-title"><span data-lang="zh">外籍配偶必備保險懶人包</span><span data-lang="en">Essential Insurance for Foreign Spouses</span><span data-lang="vi">Hướng Dẫn BH Cho Vợ/Chồng Nước Ngoài</span><span data-lang="id">Panduan BH untuk Pasangan Asing</span></div>
-          <div class="article-excerpt"><span data-lang="zh">沒有這3個，一次意外可能花掉你20萬。</span><span data-lang="en">Without these 3, one accident could cost you NT$200,000.</span><span data-lang="vi">Thiếu 3 loại này, một tai nạn có thể tốn 200,000 NTD.</span><span data-lang="id">Tanpa 3 ini, satu kecelakaan bisa menghabiskan NT$200.000.</span></div>
-          <div class="article-footer"><span class="article-read"><span data-lang="zh">閱讀 →</span><span data-lang="en">Read →</span><span data-lang="vi">Đọc →</span><span data-lang="id">Baca →</span></span></div>
+          <div class="article-title"><span data-lang="zh">外籍人士必備 3 大險種懶人包</span><span data-lang="en">3 Essential Insurance Types for Foreigners</span><span data-lang="vi">3 Loại BH Thiết Yếu cho Người Nước Ngoài</span><span data-lang="id">3 Jenis Asuransi Penting untuk Orang Asing</span></div>
+          <div class="article-excerpt"><span data-lang="zh">沒有這 3 個，一次意外可能花掉你 20 萬。</span><span data-lang="en">Without these 3, one accident could cost you NT$200,000.</span><span data-lang="vi">Thiếu 3 loại này, một tai nạn có thể tốn 200,000 NTD.</span><span data-lang="id">Tanpa 3 ini, satu kecelakaan bisa menghabiskan NT$200.000.</span></div>
+          <div class="article-footer"><span class="article-read"><span data-lang="zh">查看指南 →</span><span data-lang="en">View Guide →</span><span data-lang="vi">Xem Hướng Dẫn →</span><span data-lang="id">Lihat Panduan →</span></span></div>
         </div>
-      </a>
+      </div>
 
-      <a class="article-card" href="#faq">
+      <div class="article-card" onclick="showPage('overseas')">
+        <div class="article-thumb" style="background:var(--teal);">
+          <div class="thumb-text">僑生<br>補助懶人包</div>
+        </div>
+        <div class="article-content">
+          <div class="article-cat">僑生專區</div>
+          <div class="article-title">獎助學金・醫療・急難救助全攻略</div>
+          <div class="article-excerpt">來台就讀的你，政府幫你準備了這些保障，別錯過。</div>
+          <div class="article-footer"><span class="article-read">查看補助 →</span></div>
+        </div>
+      </div>
+
+      <div class="article-card" onclick="showPage('faq')">
         <div class="article-thumb" style="background:var(--blue);">
-          <div class="thumb-text"><span data-lang="zh">健保<br>FAQ</span><span data-lang="en">NHI<br>FAQ</span><span data-lang="vi">Bảo Hiểm<br>Y Tế FAQ</span><span data-lang="id">NHI<br>FAQ</span></div>
+          <div class="thumb-text"><span data-lang="zh">健保<br>FAQ</span><span data-lang="en">NHI<br>FAQ</span><span data-lang="vi">BH Y Tế<br>FAQ</span><span data-lang="id">NHI<br>FAQ</span></div>
         </div>
         <div class="article-content">
           <div class="article-cat">FAQ</div>
-          <div class="article-title"><span data-lang="zh">外籍人士健保常見問題 9 則</span><span data-lang="en">9 NHI FAQs for Foreigners</span><span data-lang="vi">9 Câu Hỏi Thường Gặp về NHI</span><span data-lang="id">9 FAQ NHI untuk Orang Asing</span></div>
+          <div class="article-title"><span data-lang="zh">外籍人士健保常見問題 6 則</span><span data-lang="en">6 NHI FAQs for Foreigners</span><span data-lang="vi">6 Câu Hỏi Thường Gặp về NHI</span><span data-lang="id">6 FAQ NHI untuk Orang Asing</span></div>
           <div class="article-excerpt"><span data-lang="zh">不同身份能買的保險有什麼差別？</span><span data-lang="en">How does visa status affect your insurance options?</span><span data-lang="vi">Tình trạng visa ảnh hưởng đến bảo hiểm như thế nào?</span><span data-lang="id">Bagaimana status visa mempengaruhi pilihan asuransi Anda?</span></div>
-          <div class="article-footer"><span class="article-read"><span data-lang="zh">閱讀 →</span><span data-lang="en">Read →</span><span data-lang="vi">Đọc →</span><span data-lang="id">Baca →</span></span></div>
+          <div class="article-footer"><span class="article-read"><span data-lang="zh">查看 FAQ →</span><span data-lang="en">View FAQ →</span><span data-lang="vi">Xem FAQ →</span><span data-lang="id">Lihat FAQ →</span></span></div>
         </div>
-      </a>
+      </div>
 
-      <a class="article-card" href="#about">
+      <div class="article-card" onclick="showPage('about')">
         <div class="article-thumb" style="background:#2d7a6e;">
-          <div class="thumb-text"><span data-lang="zh">保險<br>不是奢侈品</span><span data-lang="en">Insurance is<br>Not a Luxury</span><span data-lang="vi">BH Không<br>Phải Xa Xỉ</span><span data-lang="id">Asuransi<br>Bukan Kemewahan</span></div>
+          <div class="thumb-text"><span data-lang="zh">保險<br>不是奢侈品</span><span data-lang="en">Insurance<br>Not a Luxury</span><span data-lang="vi">BH Không<br>Phải Xa Xỉ</span><span data-lang="id">Asuransi<br>Bukan Kemewahan</span></div>
         </div>
         <div class="article-content">
-          <div class="article-cat">CONCEPT</div>
-          <div class="article-title"><span data-lang="zh">保險不會讓你變有錢，但防止生活不被改變</span><span data-lang="en">Insurance won't make you rich — but keeps your life unchanged</span><span data-lang="vi">Bảo hiểm không giúp bạn giàu — nhưng giữ cuộc sống ổn định</span><span data-lang="id">Asuransi tidak membuat kaya — tapi menjaga hidup tetap stabil</span></div>
-          <div class="article-excerpt"><span data-lang="zh">我們無法預測疾病或意外，但可以選擇準備好。</span><span data-lang="en">We can't predict illness or accidents — but we can prepare.</span><span data-lang="vi">Chúng ta không thể dự đoán bệnh tật hay tai nạn — nhưng có thể chuẩn bị.</span><span data-lang="id">Kita tidak bisa memprediksi — tapi bisa mempersiapkan diri.</span></div>
-          <div class="article-footer"><span class="article-read"><span data-lang="zh">閱讀 →</span><span data-lang="en">Read →</span><span data-lang="vi">Đọc →</span><span data-lang="id">Baca →</span></span></div>
+          <div class="article-cat">ABOUT</div>
+          <div class="article-title"><span data-lang="zh">關於保險好鄰居 JECKO</span><span data-lang="en">About Insurance Good Neighbor JECKO</span><span data-lang="vi">Về Bảo Hiểm Hàng Xóm Tốt JECKO</span><span data-lang="id">Tentang Tetangga Asuransi JECKO</span></div>
+          <div class="article-excerpt"><span data-lang="zh">臺菲混血，讓保險不再是陌生的東西。</span><span data-lang="en">Taiwanese-Filipino, making insurance accessible for everyone.</span><span data-lang="vi">Gốc Đài-Philippines, làm cho bảo hiểm dễ tiếp cận.</span><span data-lang="id">Latar Taiwan-Filipina, membuat asuransi mudah dipahami.</span></div>
+          <div class="article-footer"><span class="article-read"><span data-lang="zh">認識我 →</span><span data-lang="en">Learn More →</span><span data-lang="vi">Tìm Hiểu →</span><span data-lang="id">Pelajari →</span></span></div>
         </div>
-      </a>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- ── INSURANCE GUIDE ── -->
-<section id="guide" class="guide-section">
-  <div class="section-wrap">
-    <div class="section-label">INSURANCE GUIDE</div>
-    <div class="section-heading">
+  <footer>
+    <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
+    <div class="footer-meta">
+      <span data-lang="zh">以上資訊僅供參考，實際理賠條件以各保險公司保單條款為準。</span>
+      <span data-lang="en">This information is for reference only. Actual terms are subject to individual policy conditions.</span>
+      <span data-lang="vi">Thông tin chỉ mang tính tham khảo.</span>
+      <span data-lang="id">Informasi ini hanya untuk referensi.</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════
+     GUIDE PAGE (保險知識)
+═══════════════════════════════ -->
+<div id="guide" class="page">
+  <div class="inner-top">
+    <button class="back-btn" onclick="showPage('home')">← <span data-lang="zh">返回首頁</span><span data-lang="en">Back</span><span data-lang="vi">Quay lại</span><span data-lang="id">Kembali</span></button>
+    <h1>
       <span data-lang="zh">外籍人士必備 3 大險種</span>
       <span data-lang="en">3 Essential Insurance Types</span>
       <span data-lang="vi">3 Loại Bảo Hiểm Thiết Yếu</span>
       <span data-lang="id">3 Jenis Asuransi Penting</span>
-    </div>
-    <div class="section-sub">
-      <span data-lang="zh">Essential Insurance for Foreign Spouses &amp; Workers in Taiwan</span>
-      <span data-lang="en">For foreign spouses &amp; workers in Taiwan</span>
-      <span data-lang="vi">Dành cho vợ/chồng nước ngoài &amp; lao động tại Đài Loan</span>
-      <span data-lang="id">Untuk pasangan asing &amp; pekerja di Taiwan</span>
-    </div>
+    </h1>
+    <p>
+      <span data-lang="zh">每種保險的觸發條件、保障範圍、常見誤解</span>
+      <span data-lang="en">Triggers, coverage, and common misconceptions — clearly explained</span>
+      <span data-lang="vi">Điều kiện, phạm vi bảo hiểm và hiểu lầm phổ biến</span>
+      <span data-lang="id">Kondisi, cakupan, dan kesalahpahaman umum — dijelaskan dengan jelas</span>
+    </p>
+  </div>
+
+  <div class="page-body">
     <div class="guide-cards">
 
       <div class="guide-card">
@@ -543,7 +638,7 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
           <div class="guide-num">1</div>
           <div>
             <h3><span data-lang="zh">意外險</span><span data-lang="en">Accident Insurance</span><span data-lang="vi">BH Tai Nạn</span><span data-lang="id">Asuransi Kecelakaan</span></h3>
-            <div class="en">Personal Accident Insurance</div>
+            <div class="sub">Personal Accident Insurance</div>
           </div>
         </div>
         <div class="guide-body">
@@ -561,9 +656,9 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
           </ul>
           <div class="guide-note">
             <span data-lang="zh">⚠️ 不賠疾病造成的傷害（如心臟病、中風）</span>
-            <span data-lang="en">⚠️ Does NOT cover illness-related injuries (e.g. heart attack, stroke)</span>
-            <span data-lang="vi">⚠️ KHÔNG chi trả tổn thương do bệnh tật (tim mạch, đột quỵ)</span>
-            <span data-lang="id">⚠️ TIDAK menanggung cedera akibat penyakit (serangan jantung, stroke)</span>
+            <span data-lang="en">⚠️ Does NOT cover illness-related injuries (heart attack, stroke)</span>
+            <span data-lang="vi">⚠️ KHÔNG chi trả tổn thương do bệnh tật</span>
+            <span data-lang="id">⚠️ TIDAK menanggung cedera akibat penyakit</span>
           </div>
         </div>
       </div>
@@ -573,7 +668,7 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
           <div class="guide-num">2</div>
           <div>
             <h3><span data-lang="zh">醫療實支實付</span><span data-lang="en">Medical Reimbursement</span><span data-lang="vi">BH Y Tế Thực Chi</span><span data-lang="id">Reimbursmen Medis</span></h3>
-            <div class="en">Medical Reimbursement Insurance</div>
+            <div class="sub">Medical Reimbursement Insurance</div>
           </div>
         </div>
         <div class="guide-body">
@@ -603,19 +698,19 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
           <div class="guide-num">3</div>
           <div>
             <h3><span data-lang="zh">重大傷病險</span><span data-lang="en">Critical Illness</span><span data-lang="vi">BH Bệnh Nặng</span><span data-lang="id">Penyakit Kritis</span></h3>
-            <div class="en">Critical Illness Insurance</div>
+            <div class="sub">Critical Illness Insurance</div>
           </div>
         </div>
         <div class="guide-body">
           <div class="guide-trigger">
             <span data-lang="zh"><strong>啟動條件：</strong>確診衛福部重大傷病，無需住院</span>
-            <span data-lang="en"><strong>When:</strong> Diagnosed with MoHW Critical Illness (no hospitalization)</span>
+            <span data-lang="en"><strong>When:</strong> Diagnosed with MoHW Critical Illness (no hospitalization needed)</span>
             <span data-lang="vi"><strong>Điều kiện:</strong> Chẩn đoán bệnh nặng Bộ Y tế (không cần nhập viện)</span>
             <span data-lang="id"><strong>Syarat:</strong> Didiagnosis penyakit kritis MoHW (tanpa rawat inap)</span>
           </div>
           <ul class="guide-items">
             <li><div class="guide-dot"></div><div><span data-lang="zh">癌症・心肌梗塞・腦中風</span><span data-lang="en">Cancer, Heart Attack, Stroke</span><span data-lang="vi">Ung thư, Nhồi máu cơ tim, Đột quỵ</span><span data-lang="id">Kanker, Serangan Jantung, Stroke</span></div></li>
-            <li><div class="guide-dot"></div><div><span data-lang="zh">慢性腎衰竭・重大器官移植</span><span data-lang="en">Renal Failure, Organ Transplant</span><span data-lang="vi">Suy thận mãn tính, Cấy ghép nội tạng</span><span data-lang="id">Gagal Ginjal, Transplantasi Organ</span></div></li>
+            <li><div class="guide-dot"></div><div><span data-lang="zh">慢性腎衰竭・重大器官移植</span><span data-lang="en">Renal Failure, Organ Transplant</span><span data-lang="vi">Suy thận, Cấy ghép nội tạng</span><span data-lang="id">Gagal Ginjal, Transplantasi Organ</span></div></li>
             <li><div class="guide-dot"></div><div><span data-lang="zh">共 22 大類疾病</span><span data-lang="en">22 categories total</span><span data-lang="vi">Tổng cộng 22 loại</span><span data-lang="id">Total 22 kategori</span></div></li>
             <li><div class="guide-dot"></div><div><span data-lang="zh">一次性給付，用途不限</span><span data-lang="en">Lump sum, flexible use</span><span data-lang="vi">Thanh toán một lần, dùng tùy ý</span><span data-lang="id">Lump sum, penggunaan fleksibel</span></div></li>
           </ul>
@@ -628,26 +723,199 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ── FAQ ── -->
-<section id="faq">
-  <div class="section-wrap">
+    <div class="cta-strip">
+      <h2><span data-lang="zh">想知道哪個適合你？</span><span data-lang="en">Not sure which one fits you?</span><span data-lang="vi">Không chắc loại nào phù hợp?</span><span data-lang="id">Tidak yakin mana yang cocok?</span></h2>
+      <p><span data-lang="zh">不用準備什麼，直接來問就好 — 免費諮詢</span><span data-lang="en">No need to prepare — free consultation available</span><span data-lang="vi">Không cần chuẩn bị — tư vấn miễn phí</span><span data-lang="id">Tidak perlu persiapan — konsultasi gratis</span></p>
+      <div class="cta-btns">
+        <a href="https://lin.ee/6Lbn2Ba" target="_blank" class="cta-btn">💬 LINE</a>
+        <a href="https://www.instagram.com/urbxneighbor/" target="_blank" class="cta-btn outline">📷 @urbxneighbor</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
+    <div class="footer-meta"><span data-lang="zh">以上資訊僅供參考，實際理賠條件以各保險公司保單條款為準。</span><span data-lang="en">For reference only. Actual terms subject to individual policy conditions.</span><span data-lang="vi">Chỉ mang tính tham khảo.</span><span data-lang="id">Hanya untuk referensi.</span></div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════
+     OVERSEAS PAGE (僑生專區)
+═══════════════════════════════ -->
+<div id="overseas" class="page">
+  <div class="inner-top">
+    <button class="back-btn" onclick="showPage('home')">← 返回首頁</button>
+    <h1>僑生在台灣<br>這些錢政府幫你出</h1>
+    <p>獎助學金・醫療保險・急難救助・社團補助，一頁看清楚</p>
+  </div>
+
+  <div class="page-body">
+    <div class="tab-row">
+      <button class="tab-btn active" onclick="switchTab('ov-sch', this)">🎓 獎助學金</button>
+      <button class="tab-btn" onclick="switchTab('ov-med', this)">🏥 醫療保險</button>
+      <button class="tab-btn" onclick="switchTab('ov-emer', this)">🆘 急難救助</button>
+      <button class="tab-btn" onclick="switchTab('ov-club', this)">🎉 社團補助</button>
+    </div>
+
+    <!-- 獎助學金 -->
+    <div id="ov-sch" class="tab-panel active">
+      <div class="os-cards">
+        <div class="os-card">
+          <div class="os-card-tag">高中職｜五專前3年</div>
+          <h3>清寒助學金 & 工讀金</h3>
+          <ul>
+            <li>清寒助學金：每月 <span class="os-amt">$3,000</span>（2 年級以上，成績及格）</li>
+            <li>工讀金 / 學習扶助：每月約 <span class="os-amt">$2,500</span></li>
+          </ul>
+        </div>
+        <div class="os-card">
+          <div class="os-card-tag">大專院校</div>
+          <h3>清寒助學金 & 工讀金</h3>
+          <ul>
+            <li>清寒助學金：每月 <span class="os-amt">$3,000</span></li>
+            <li>工讀金 / 學習扶助：每月約 <span class="os-amt">$2,500</span></li>
+            <li>捐贈獎助學金：<span class="os-amt">$5,000 ～ $25,000</span>（成績 75 分以上）</li>
+          </ul>
+        </div>
+        <div class="os-card">
+          <div class="os-card-tag">研究所</div>
+          <h3>研究所優秀僑生獎學金</h3>
+          <ul>
+            <li>每月 <span class="os-amt">$10,000 起</span></li>
+            <li>捐贈獎助學金：<span class="os-amt">$5,000 ～ $25,000</span></li>
+            <li>具體金額依各校規定為準</li>
+          </ul>
+        </div>
+        <div class="os-card highlight full">
+          <div class="os-card-tag">大專｜頂尖 & 傑出獎學金（每學年）</div>
+          <h3>成績優秀，獎勵更多</h3>
+          <div class="os-amt-row">
+            <div class="os-amt-block"><div class="lbl">頂尖僑生｜前 5%，88 分以上</div><div class="num">$260,000</div></div>
+            <div class="os-amt-block"><div class="lbl">傑出僑生｜前 10%，85 分以上</div><div class="num">$100,000</div></div>
+          </div>
+        </div>
+        <div class="os-card full">
+          <div class="os-card-tag">大專｜海外優秀僑生獎學金（每月）</div>
+          <h3>優秀 & 菁英僑生</h3>
+          <div class="os-amt-row">
+            <div class="os-amt-block"><div class="lbl">優秀僑生</div><div class="num">$12,500 <span style="font-size:13px;color:var(--muted);">/ 月</span></div></div>
+            <div class="os-amt-block"><div class="lbl">菁英僑生</div><div class="num">$25,000 <span style="font-size:13px;color:var(--muted);">/ 月</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="os-note">📌 大部分獎助學金需在開學後 2 週～1 個月內申請。同性質補助只能擇一，實際金額以學校公告為準。</div>
+    </div>
+
+    <!-- 醫療保險 -->
+    <div id="ov-med" class="tab-panel">
+      <div class="os-cards">
+        <div class="os-card">
+          <div class="os-card-tag">居留未滿 6 個月</div>
+          <h3>僑生傷病醫療保險</h3>
+          <p>尚無法加入全民健保時，政府補助保費 <span class="os-amt">50%</span>，僑生自付另外 50%。自付金額依各校規定，每學期由學校代收。</p>
+        </div>
+        <div class="os-card highlight">
+          <div class="os-card-tag">居留滿 6 個月</div>
+          <h3>全民健康保險</h3>
+          <ul>
+            <li>一般自付額：<span class="os-amt">$826 元</span> / 月</li>
+            <li>清寒僑生：可申請僑委會補助，自付金額減半（實際金額以僑委會當年公告為準）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="os-note">💡 剛到台灣還在等居留證的階段，先投保傷病醫療保險是最重要的一步。</div>
+    </div>
+
+    <!-- 急難救助 -->
+    <div id="ov-emer" class="tab-panel">
+      <div class="os-cards">
+        <div class="os-card">
+          <h3>🏥 傷病住院慰問金</h3>
+          <ul>
+            <li>自付醫療費 10 萬以下：<span class="os-amt">$1,000 ～ $5,000</span></li>
+            <li>自付醫療費超過 10 萬：<span class="os-amt">$5,000 ～ $50,000</span></li>
+          </ul>
+        </div>
+        <div class="os-card">
+          <h3>⛈️ 天災或家庭變故</h3>
+          <p>遭遇天然災害或家庭突發重大變故：</p>
+          <p style="margin-top:10px;font-size:20px;font-weight:700;color:var(--navy);">$1,000 ～ $10,000</p>
+        </div>
+        <div class="os-card">
+          <h3>🕯️ 喪葬慰問金</h3>
+          <p>不幸身故時，家屬可申請：</p>
+          <p style="margin-top:10px;font-size:20px;font-weight:700;color:var(--navy);">$10,000</p>
+        </div>
+      </div>
+      <div class="os-note">📋 均屬「僑生醫療急難及喪葬慰問金」，向就讀學校提出申請。</div>
+    </div>
+
+    <!-- 社團補助 -->
+    <div id="ov-club" class="tab-panel">
+      <div class="os-cards">
+        <div class="os-card highlight">
+          <h3>🎊 社團舉辦活動</h3>
+          <p>依社團僑生人數及活動意義，每次活動補助：</p>
+          <p style="margin-top:12px;font-size:22px;font-weight:700;color:var(--navy);">$2,000 ～ $10,000</p>
+          <p style="font-size:12px;color:var(--muted);margin-top:6px;">於舉辦活動 10 日前向僑委會申請</p>
+        </div>
+        <div class="os-card">
+          <h3>📰 社團發行刊物</h3>
+          <ul>
+            <li>一般性刊物：<span class="os-amt">$10,000</span> 以下</li>
+            <li>具紀念性特刊：<span class="os-amt">$20,000</span> 以下</li>
+          </ul>
+          <p style="margin-top:10px;font-size:12px;color:var(--muted);">於發行刊物 15 日前申請</p>
+        </div>
+      </div>
+      <div class="os-note">📌 社團需向學校或僑委會登記才符合申請資格。</div>
+    </div>
+
+    <div class="cta-strip">
+      <h2>不確定自己能申請什麼？</h2>
+      <p>每個人的狀況不一樣，歡迎直接來聊<br>我們一起確認你現在適合哪些保障</p>
+      <div class="cta-btns">
+        <a href="https://lin.ee/6Lbn2Ba" target="_blank" class="cta-btn">💬 LINE</a>
+        <a href="https://www.instagram.com/urbxneighbor/" target="_blank" class="cta-btn outline">📷 @urbxneighbor</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
+    <div class="footer-meta">資料來源：教育部、僑務委員會相關法規。實際補助金額以就讀學校及僑委會當年度公告為準，本頁資訊僅供參考。</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════
+     FAQ PAGE
+═══════════════════════════════ -->
+<div id="faq" class="page">
+  <div class="inner-top">
+    <button class="back-btn" onclick="showPage('home')">← <span data-lang="zh">返回首頁</span><span data-lang="en">Back</span><span data-lang="vi">Quay lại</span><span data-lang="id">Kembali</span></button>
+    <h1>
+      <span data-lang="zh">常見問題解答</span>
+      <span data-lang="en">Frequently Asked Questions</span>
+      <span data-lang="vi">Câu Hỏi Thường Gặp</span>
+      <span data-lang="id">Pertanyaan yang Sering Ditanyakan</span>
+    </h1>
+    <p>
+      <span data-lang="zh">外籍人士在台灣投保時最常遇到的問題</span>
+      <span data-lang="en">Common questions foreigners have about insurance in Taiwan</span>
+      <span data-lang="vi">Câu hỏi phổ biến về bảo hiểm tại Đài Loan</span>
+      <span data-lang="id">Pertanyaan umum tentang asuransi di Taiwan</span>
+    </p>
+  </div>
+
+  <div class="page-body">
     <div class="faq-cols">
       <div class="faq-sidebar">
-        <div class="section-label">FAQ</div>
-        <h2>
-          <span data-lang="zh">常見<br>問題解答</span>
-          <span data-lang="en">Frequently<br>Asked Questions</span>
-          <span data-lang="vi">Câu Hỏi<br>Thường Gặp</span>
-          <span data-lang="id">Pertanyaan<br>yang Sering Ditanyakan</span>
-        </h2>
         <p>
           <span data-lang="zh">整理外籍人士在台灣投保時最常遇到的問題，直接給你清楚的答案。</span>
           <span data-lang="en">Common questions foreigners have about insurance in Taiwan — answered clearly.</span>
-          <span data-lang="vi">Các câu hỏi thường gặp về bảo hiểm tại Đài Loan — được trả lời rõ ràng.</span>
-          <span data-lang="id">Pertanyaan umum tentang asuransi di Taiwan — dijawab dengan jelas.</span>
+          <span data-lang="vi">Các câu hỏi thường gặp — được trả lời rõ ràng.</span>
+          <span data-lang="id">Pertanyaan umum — dijawab dengan jelas.</span>
         </p>
         <div class="lang-note">
           <span data-lang="zh">🌐 本站支援 <strong>4 種語言</strong><br>中文・English・Tiếng Việt・Bahasa Indonesia</span>
@@ -669,8 +937,8 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
           <div class="faq-a">
             <span data-lang="zh">取得<strong>居留證（ARC）</strong>並完成戶籍登記後，可以眷屬身份加入配偶健保，或以個人身份投保。合法居留滿 6 個月也可單獨申請。所需文件：居留證、結婚登記證明、配偶健保卡。</span>
             <span data-lang="en">Yes. Once a foreign spouse obtains an <strong>ARC</strong> and completes household registration, they can join NHI as a dependant or individually. Foreigners who have legally resided for 6+ months may also apply independently. Documents needed: ARC, marriage certificate, spouse's NHI card.</span>
-            <span data-lang="vi">Có. Sau khi có <strong>ARC</strong> và hoàn tất đăng ký hộ khẩu, có thể tham gia NHI với tư cách người phụ thuộc hoặc cá nhân. Cư trú hợp pháp 6 tháng+ có thể đăng ký độc lập. Cần: ARC, giấy đăng ký kết hôn, thẻ NHI của vợ/chồng.</span>
-            <span data-lang="id">Ya. Setelah mendapat <strong>ARC</strong> dan mendaftar kependudukan, bisa bergabung NHI sebagai tanggungan atau mandiri. Tinggal legal 6+ bulan juga bisa mendaftar mandiri. Dokumen: ARC, akta nikah, kartu NHI pasangan.</span>
+            <span data-lang="vi">Có. Sau khi có <strong>ARC</strong> và hoàn tất đăng ký hộ khẩu, có thể tham gia NHI với tư cách người phụ thuộc hoặc cá nhân. Cư trú hợp pháp 6 tháng+ có thể đăng ký độc lập.</span>
+            <span data-lang="id">Ya. Setelah mendapat <strong>ARC</strong> dan mendaftar kependudukan, bisa bergabung NHI sebagai tanggungan atau mandiri. Tinggal legal 6+ bulan juga bisa mendaftar mandiri.</span>
           </div>
         </div>
 
@@ -683,18 +951,10 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
             <span class="arr">▼</span>
           </button>
           <div class="faq-a">
-            <span data-lang="zh">
-              健保<strong>不包含</strong>：住院病房升等差額、特殊材料與自費藥品、牙科自費項目（矯正、植牙）、健檢、美容手術、長期看護費用。這些正是商業保險可以補充的部分。
-            </span>
-            <span data-lang="en">
-              NHI does <strong>NOT cover</strong>: private room upgrade fees, special materials &amp; self-pay medications, cosmetic dentistry (braces, implants), health check-ups, cosmetic surgery, long-term care. This is where private insurance fills the gap.
-            </span>
-            <span data-lang="vi">
-              NHI <strong>không bao gồm</strong>: phí nâng cấp phòng, vật liệu đặc biệt &amp; thuốc tự trả, nha khoa thẩm mỹ (niềng răng, implant), kiểm tra sức khỏe, phẫu thuật thẩm mỹ, chăm sóc dài hạn.
-            </span>
-            <span data-lang="id">
-              NHI <strong>tidak mencakup</strong>: upgrade kamar, bahan khusus &amp; obat mandiri, perawatan gigi estetik (kawat, implan), medical check-up, bedah kosmetik, perawatan jangka panjang.
-            </span>
+            <span data-lang="zh">健保<strong>不包含</strong>：住院病房升等差額、特殊材料與自費藥品、牙科自費項目（矯正、植牙）、健檢、美容手術、長期看護費用。這些正是商業保險可以補充的部分。</span>
+            <span data-lang="en">NHI does <strong>NOT cover</strong>: private room upgrade fees, special materials &amp; self-pay medications, cosmetic dentistry (braces, implants), health check-ups, cosmetic surgery, long-term care. This is where private insurance fills the gap.</span>
+            <span data-lang="vi">NHI <strong>không bao gồm</strong>: phí nâng cấp phòng, vật liệu đặc biệt &amp; thuốc tự trả, nha khoa thẩm mỹ, kiểm tra sức khỏe, phẫu thuật thẩm mỹ, chăm sóc dài hạn.</span>
+            <span data-lang="id">NHI <strong>tidak mencakup</strong>: upgrade kamar, bahan khusus &amp; obat mandiri, perawatan gigi estetik, medical check-up, bedah kosmetik, perawatan jangka panjang.</span>
           </div>
         </div>
 
@@ -709,8 +969,8 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
           <div class="faq-a">
             <span data-lang="zh">可以。持有合法居留證（ARC）的外籍人士，可向大多數台灣保險公司投保意外險。建議攜帶：居留證、護照、在台地址證明。</span>
             <span data-lang="en">Yes. Foreigners holding a valid ARC can purchase accident insurance from most Taiwanese insurers. Bring: ARC, passport, proof of Taiwan address.</span>
-            <span data-lang="vi">Có. Người nước ngoài có ARC hợp lệ có thể mua BH tai nạn từ hầu hết công ty bảo hiểm Đài Loan. Cần: ARC, hộ chiếu, bằng chứng địa chỉ tại Đài Loan.</span>
-            <span data-lang="id">Bisa. Orang asing dengan ARC valid dapat membeli asuransi kecelakaan dari sebagian besar perusahaan asuransi Taiwan. Bawa: ARC, paspor, bukti alamat di Taiwan.</span>
+            <span data-lang="vi">Có. Người nước ngoài có ARC hợp lệ có thể mua BH tai nạn từ hầu hết công ty bảo hiểm Đài Loan. Cần: ARC, hộ chiếu, địa chỉ tại Đài Loan.</span>
+            <span data-lang="id">Bisa. Orang asing dengan ARC valid dapat membeli asuransi kecelakaan. Bawa: ARC, paspor, bukti alamat di Taiwan.</span>
           </div>
         </div>
 
@@ -760,91 +1020,106 @@ footer { background: #0e3f4b; padding: 28px 32px; text-align: center; }
           </button>
           <div class="faq-a">
             <span data-lang="zh">健保等待期最長 4 個月。建議投保<strong>短期意外險</strong>或<strong>旅遊醫療險</strong>作為過渡保障，或詢問雇主是否提供團體保險。空窗期就醫需自費，費用可能很高，提早準備最安心。</span>
-            <span data-lang="en">NHI waiting period can be up to 4 months. Purchase a <strong>short-term accident</strong> or <strong>travel medical insurance</strong> as a bridge, or check if your employer provides group insurance. Medical costs without NHI can be very high.</span>
-            <span data-lang="vi">Thời gian chờ NHI có thể lên đến 4 tháng. Hãy mua <strong>BH tai nạn ngắn hạn</strong> hoặc <strong>BH y tế du lịch</strong> làm cầu nối, hoặc hỏi chủ lao động về bảo hiểm nhóm. Chi phí y tế không có NHI rất cao.</span>
-            <span data-lang="id">Masa tunggu NHI bisa sampai 4 bulan. Beli <strong>asuransi kecelakaan jangka pendek</strong> atau <strong>asuransi medis perjalanan</strong> sebagai jembatan, atau tanya pemberi kerja tentang asuransi kelompok.</span>
+            <span data-lang="en">NHI waiting period can be up to 4 months. Purchase a <strong>short-term accident</strong> or <strong>travel medical insurance</strong> as a bridge, or check if your employer provides group insurance.</span>
+            <span data-lang="vi">Thời gian chờ NHI có thể lên đến 4 tháng. Hãy mua <strong>BH tai nạn ngắn hạn</strong> hoặc <strong>BH y tế du lịch</strong> làm cầu nối.</span>
+            <span data-lang="id">Masa tunggu NHI bisa sampai 4 bulan. Beli <strong>asuransi kecelakaan jangka pendek</strong> atau <strong>asuransi medis perjalanan</strong> sebagai jembatan.</span>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            僑生可以買商業保險嗎？
+            <span class="arr">▼</span>
+          </button>
+          <div class="faq-a">
+            居留未滿 6 個月的僑生，建議先投保學校安排的<strong>僑生傷病醫療保險</strong>（政府補助 50%）。居留滿 6 個月後加入健保，之後即可與一般外籍人士相同方式申請商業保險。
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ── ABOUT ── -->
-<section id="about" class="about-section">
-  <div class="about-inner">
-    <img class="about-photo" src="photo/IMG_3499.PNG" alt="Jecko 保險好鄰居"
-         onerror="this.style.background='rgba(255,255,255,0.08)'">
-    <div class="about-content">
-      <div class="about-label">ABOUT ME</div>
-      <h2>
-        <span data-lang="zh">我是 JECKO<br>你的保險好鄰居</span>
-        <span data-lang="en">I'm JECKO<br>Your Insurance Good Neighbor</span>
-        <span data-lang="vi">Tôi là JECKO<br>Người Hàng Xóm Bảo Hiểm của bạn</span>
-        <span data-lang="id">Saya JECKO<br>Tetangga Asuransi Anda</span>
-      </h2>
-      <p>
-        <span data-lang="zh">臺菲混血，從小在兩種文化之間長大，深刻理解外籍人士在台灣面對的困惑。我的使命是讓每一位在台的外籍人士，都能用自己聽得懂的語言了解保險。</span>
-        <span data-lang="en">Taiwanese-Filipino background, I grew up between two cultures and deeply understand the challenges foreigners face in Taiwan. My mission: help every foreigner understand insurance in their own language.</span>
-        <span data-lang="vi">Gốc Đài-Philippines, tôi lớn lên giữa hai nền văn hóa và hiểu rõ khó khăn của người nước ngoài tại Đài Loan. Sứ mệnh của tôi: giúp mọi người hiểu bảo hiểm bằng ngôn ngữ của họ.</span>
-        <span data-lang="id">Latar belakang Taiwan-Filipina, saya besar di antara dua budaya dan memahami tantangan orang asing di Taiwan. Misi saya: membantu setiap orang asing memahami asuransi dalam bahasa mereka sendiri.</span>
-      </p>
-      <div class="about-badges">
-        <span class="about-badge">🇹🇼🇵🇭 <span data-lang="zh">臺菲混血</span><span data-lang="en">Taiwanese-Filipino</span><span data-lang="vi">Gốc Đài-Philippines</span><span data-lang="id">Latar Taiwan-Filipina</span></span>
-        <span class="about-badge">🎓 <span data-lang="zh">曾受邀大學演講</span><span data-lang="en">University Speaker</span><span data-lang="vi">Diễn giả đại học</span><span data-lang="id">Pembicara Universitas</span></span>
-        <span class="about-badge">🌍 <span data-lang="zh">外籍人士專屬服務</span><span data-lang="en">International Clients</span><span data-lang="vi">Phục vụ người nước ngoài</span><span data-lang="id">Klien Internasional</span></span>
-      </div>
-      <div class="about-btns">
-        <a href="https://lin.ee/6Lbn2Ba" target="_blank" class="about-btn">💬 LINE</a>
-        <a href="https://www.instagram.com/urbxneighbor/" target="_blank" class="about-btn outline">📷 @urbxneighbor</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CTA ── -->
-<section>
-  <div class="cta-section">
-    <div class="cta-card">
-      <h2>
-        <span data-lang="zh">還有問題？歡迎找我</span>
-        <span data-lang="en">Have questions? Feel free to reach out</span>
-        <span data-lang="vi">Còn câu hỏi? Hãy liên hệ với tôi</span>
-        <span data-lang="id">Ada pertanyaan? Silakan hubungi saya</span>
-      </h2>
-      <p>
-        <span data-lang="zh">不用準備什麼，直接來問就好 — 免費諮詢</span>
-        <span data-lang="en">No need to prepare anything — free consultation available</span>
-        <span data-lang="vi">Không cần chuẩn bị gì — tư vấn miễn phí</span>
-        <span data-lang="id">Tidak perlu persiapan apapun — konsultasi gratis</span>
-      </p>
+    <div class="cta-strip">
+      <h2><span data-lang="zh">還有問題？歡迎找我</span><span data-lang="en">Have questions? Feel free to reach out</span><span data-lang="vi">Còn câu hỏi? Hãy liên hệ</span><span data-lang="id">Ada pertanyaan? Hubungi saya</span></h2>
+      <p><span data-lang="zh">不用準備什麼，直接來問就好 — 免費諮詢</span><span data-lang="en">No need to prepare anything — free consultation available</span><span data-lang="vi">Không cần chuẩn bị — tư vấn miễn phí</span><span data-lang="id">Tidak perlu persiapan — konsultasi gratis</span></p>
       <div class="cta-btns">
         <a href="https://lin.ee/6Lbn2Ba" target="_blank" class="cta-btn">💬 LINE</a>
         <a href="https://www.instagram.com/urbxneighbor/" target="_blank" class="cta-btn outline">📷 @urbxneighbor</a>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
-  <div class="footer-meta">
-    <span data-lang="zh">以上資訊僅供參考，實際理賠條件以各保險公司保單條款為準。</span>
-    <span data-lang="en">This information is for reference only. Actual terms are subject to individual policy conditions.</span>
-    <span data-lang="vi">Thông tin chỉ mang tính tham khảo. Điều khoản thực tế theo từng hợp đồng bảo hiểm.</span>
-    <span data-lang="id">Informasi ini hanya untuk referensi. Ketentuan aktual sesuai masing-masing polis asuransi.</span>
+  <footer>
+    <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
+    <div class="footer-meta"><span data-lang="zh">以上資訊僅供參考，實際理賠條件以各保險公司保單條款為準。</span><span data-lang="en">For reference only. Actual terms subject to individual policy conditions.</span><span data-lang="vi">Chỉ mang tính tham khảo.</span><span data-lang="id">Hanya untuk referensi.</span></div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════
+     ABOUT PAGE (關於我)
+═══════════════════════════════ -->
+<div id="about" class="page">
+  <div class="inner-top">
+    <button class="back-btn" onclick="showPage('home')">← <span data-lang="zh">返回首頁</span><span data-lang="en">Back</span><span data-lang="vi">Quay lại</span><span data-lang="id">Kembali</span></button>
+    <h1>
+      <span data-lang="zh">關於保險好鄰居</span>
+      <span data-lang="en">About Insurance Good Neighbor</span>
+      <span data-lang="vi">Về Bảo Hiểm Hàng Xóm Tốt</span>
+      <span data-lang="id">Tentang Tetangga Asuransi</span>
+    </h1>
+    <p>
+      <span data-lang="zh">不是要賣你保險，是要幫你找到真正適合的保障</span>
+      <span data-lang="en">Not here to sell — here to help you find the right protection</span>
+      <span data-lang="vi">Không phải để bán — mà để giúp bạn tìm bảo vệ phù hợp</span>
+      <span data-lang="id">Bukan untuk menjual — tapi membantu Anda menemukan perlindungan yang tepat</span>
+    </p>
   </div>
-</footer>
+
+  <div class="page-body">
+    <div class="about-grid">
+      <img class="about-photo" src="photo/IMG_3499.PNG" alt="Jecko 保險好鄰居"
+           onerror="this.style.background='rgba(18,81,95,0.08)'">
+      <div class="about-content">
+        <div class="about-label">ABOUT ME</div>
+        <h2>
+          <span data-lang="zh">我是 JECKO<br>你的保險好鄰居</span>
+          <span data-lang="en">I'm JECKO<br>Your Insurance Good Neighbor</span>
+          <span data-lang="vi">Tôi là JECKO<br>Người Hàng Xóm Bảo Hiểm của bạn</span>
+          <span data-lang="id">Saya JECKO<br>Tetangga Asuransi Anda</span>
+        </h2>
+        <p>
+          <span data-lang="zh">臺菲混血，從小在兩種文化之間長大，深刻理解外籍人士在台灣面對的困惑。我的使命是讓每一位在台的外籍人士，都能用自己聽得懂的語言了解保險。</span>
+          <span data-lang="en">Taiwanese-Filipino background, I grew up between two cultures and deeply understand the challenges foreigners face in Taiwan. My mission: help every foreigner understand insurance in their own language.</span>
+          <span data-lang="vi">Gốc Đài-Philippines, tôi lớn lên giữa hai nền văn hóa và hiểu rõ khó khăn của người nước ngoài tại Đài Loan. Sứ mệnh: giúp mọi người hiểu bảo hiểm bằng ngôn ngữ của họ.</span>
+          <span data-lang="id">Latar belakang Taiwan-Filipina, saya besar di antara dua budaya. Misi saya: membantu setiap orang asing memahami asuransi dalam bahasa mereka sendiri.</span>
+        </p>
+        <div class="about-badges">
+          <span class="about-badge">🇹🇼🇵🇭 <span data-lang="zh">臺菲混血</span><span data-lang="en">Taiwanese-Filipino</span><span data-lang="vi">Gốc Đài-Philippines</span><span data-lang="id">Latar Taiwan-Filipina</span></span>
+          <span class="about-badge">🎓 <span data-lang="zh">曾受邀大學演講</span><span data-lang="en">University Speaker</span><span data-lang="vi">Diễn giả đại học</span><span data-lang="id">Pembicara Universitas</span></span>
+          <span class="about-badge">🌍 <span data-lang="zh">外籍人士專屬服務</span><span data-lang="en">International Clients</span><span data-lang="vi">Phục vụ người nước ngoài</span><span data-lang="id">Klien Internasional</span></span>
+          <span class="about-badge">🐱 <span data-lang="zh">有養一隻貓</span><span data-lang="en">Cat owner</span><span data-lang="vi">Nuôi một con mèo</span><span data-lang="id">Punya seekor kucing</span></span>
+        </div>
+        <div class="about-btns">
+          <a href="https://lin.ee/6Lbn2Ba" target="_blank" class="about-btn">💬 LINE</a>
+          <a href="https://www.instagram.com/urbxneighbor/" target="_blank" class="about-btn outline">📷 @urbxneighbor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
+    <div class="footer-meta"><span data-lang="zh">以上資訊僅供參考，實際理賠條件以各保險公司保單條款為準。</span><span data-lang="en">For reference only. Actual terms subject to individual policy conditions.</span><span data-lang="vi">Chỉ mang tính tham khảo.</span><span data-lang="id">Hanya untuk referensi.</span></div>
+  </footer>
+</div>
 
 <script>
+/* ── Language ── */
 const LANGS = {
   zh: { label: '語言', html: 'zh-TW' },
   en: { label: 'Language', html: 'en' },
   vi: { label: 'Ngôn ngữ', html: 'vi' },
   id: { label: 'Bahasa', html: 'id' },
 };
-
 function setLang(lang) {
   document.body.classList.remove('en','vi','id');
   if (lang !== 'zh') document.body.classList.add(lang);
@@ -856,26 +1131,36 @@ function setLang(lang) {
     btn.querySelector('.lang-check').textContent = l === lang ? '✓' : ' ';
   });
   closeMenu();
-  document.querySelectorAll('.faq-q.open').forEach(q => {
-    q.classList.remove('open');
-    q.nextElementSibling.classList.remove('show');
-  });
 }
-
-function toggleMenu(e) {
-  e.stopPropagation();
-  document.getElementById('langWrap').classList.toggle('open');
-}
+function toggleMenu(e) { e.stopPropagation(); document.getElementById('langWrap').classList.toggle('open'); }
 function closeMenu() { document.getElementById('langWrap').classList.remove('open'); }
 document.addEventListener('click', closeMenu);
 
+/* ── Page switching ── */
+const NAV_MAP = { home:'nav-home', guide:'nav-guide', overseas:'nav-overseas', faq:'nav-faq', about:'nav-about' };
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  Object.values(NAV_MAP).forEach(nid => document.getElementById(nid).classList.remove('active'));
+  if (NAV_MAP[id]) document.getElementById(NAV_MAP[id]).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelectorAll('.faq-q.open').forEach(q => { q.classList.remove('open'); q.nextElementSibling.classList.remove('show'); });
+}
+
+/* ── Tabs (overseas) ── */
+function switchTab(id, btn) {
+  const wrap = btn.closest('.page-body');
+  wrap.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.closest('.tab-row').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+/* ── FAQ accordion ── */
 function toggleFaq(btn) {
   const ans = btn.nextElementSibling;
   const isOpen = btn.classList.contains('open');
-  document.querySelectorAll('.faq-q.open').forEach(q => {
-    q.classList.remove('open');
-    q.nextElementSibling.classList.remove('show');
-  });
+  document.querySelectorAll('.faq-q.open').forEach(q => { q.classList.remove('open'); q.nextElementSibling.classList.remove('show'); });
   if (!isOpen) { btn.classList.add('open'); ans.classList.add('show'); }
 }
 </script>
