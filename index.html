@@ -638,13 +638,13 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
 
       <div class="article-card" onclick="showPage('overseas')">
         <div class="article-thumb" style="background:var(--teal);">
-          <div class="thumb-text">僑生<br>補助懶人包</div>
+          <div class="thumb-text"><span data-lang="zh">僑生<br>補助懶人包</span><span data-lang="en">Overseas Student<br>Benefits Guide</span><span data-lang="vi">Hướng Dẫn<br>Phúc Lợi Sinh Viên</span><span data-lang="id">Panduan<br>Tunjangan Mahasiswa</span></div>
         </div>
         <div class="article-content">
-          <div class="article-cat">僑生專區</div>
-          <div class="article-title">獎助學金・醫療・急難救助全攻略</div>
-          <div class="article-excerpt">來台就讀的你，政府幫你準備了這些保障，別錯過。</div>
-          <div class="article-footer"><span class="article-read">查看補助 →</span></div>
+          <div class="article-cat"><span data-lang="zh">僑生專區</span><span data-lang="en">Overseas Students</span><span data-lang="vi">Sinh Viên Hải Ngoại</span><span data-lang="id">Mahasiswa Perantau</span></div>
+          <div class="article-title"><span data-lang="zh">獎助學金・醫療・急難救助全攻略</span><span data-lang="en">Scholarships · Healthcare · Emergency Aid — Full Guide</span><span data-lang="vi">Học bổng · Y tế · Hỗ trợ khẩn cấp — Hướng dẫn đầy đủ</span><span data-lang="id">Beasiswa · Kesehatan · Bantuan Darurat — Panduan Lengkap</span></div>
+          <div class="article-excerpt"><span data-lang="zh">來台就讀的你，政府幫你準備了這些保障，別錯過。</span><span data-lang="en">If you're studying in Taiwan, the government has prepared these benefits for you — don't miss out.</span><span data-lang="vi">Nếu bạn đang học tại Đài Loan, chính phủ đã chuẩn bị những phúc lợi này cho bạn.</span><span data-lang="id">Jika Anda belajar di Taiwan, pemerintah telah menyiapkan tunjangan ini untuk Anda.</span></div>
+          <div class="article-footer"><span class="article-read"><span data-lang="zh">查看補助 →</span><span data-lang="en">View Benefits →</span><span data-lang="vi">Xem Phúc Lợi →</span><span data-lang="id">Lihat Tunjangan →</span></span></div>
         </div>
       </div>
 
@@ -856,17 +856,27 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
 ═══════════════════════════════ -->
 <div id="overseas" class="page">
   <div class="inner-top">
-    <button class="back-btn" onclick="showPage('home')">← 返回首頁</button>
-    <h1>僑生在台灣<br>這些錢政府幫你出</h1>
-    <p>獎助學金・醫療保險・急難救助・社團補助，一頁看清楚</p>
+    <button class="back-btn" onclick="showPage('home')">← <span data-lang="zh">返回首頁</span><span data-lang="en">Back</span><span data-lang="vi">Quay lại</span><span data-lang="id">Kembali</span></button>
+    <h1>
+      <span data-lang="zh">僑生在台灣<br>這些錢政府幫你出</span>
+      <span data-lang="en">Overseas Students in Taiwan<br>Government Benefits You Shouldn't Miss</span>
+      <span data-lang="vi">Sinh Viên Hải Ngoại tại Đài Loan<br>Phúc Lợi Chính Phủ Bạn Không Nên Bỏ Lỡ</span>
+      <span data-lang="id">Mahasiswa Perantau di Taiwan<br>Tunjangan Pemerintah yang Jangan Sampai Terlewat</span>
+    </h1>
+    <p>
+      <span data-lang="zh">獎助學金・醫療保險・急難救助・社團補助，一頁看清楚</span>
+      <span data-lang="en">Scholarships · Health Insurance · Emergency Aid · Club Funding — all in one page</span>
+      <span data-lang="vi">Học bổng · Bảo hiểm y tế · Hỗ trợ khẩn cấp · Hỗ trợ câu lạc bộ — tất cả trong một trang</span>
+      <span data-lang="id">Beasiswa · Asuransi Kesehatan · Bantuan Darurat · Dana Klub — semua dalam satu halaman</span>
+    </p>
   </div>
 
   <div class="page-body">
     <div class="tab-row">
-      <button class="tab-btn active" onclick="switchTab('ov-sch', this)">🎓 獎助學金</button>
-      <button class="tab-btn" onclick="switchTab('ov-med', this)">🏥 醫療保險</button>
-      <button class="tab-btn" onclick="switchTab('ov-emer', this)">🆘 急難救助</button>
-      <button class="tab-btn" onclick="switchTab('ov-club', this)">🎉 社團補助</button>
+      <button class="tab-btn active" onclick="switchTab('ov-sch', this)">🎓 <span data-lang="zh">獎助學金</span><span data-lang="en">Scholarships</span><span data-lang="vi">Học Bổng</span><span data-lang="id">Beasiswa</span></button>
+      <button class="tab-btn" onclick="switchTab('ov-med', this)">🏥 <span data-lang="zh">醫療保險</span><span data-lang="en">Health Insurance</span><span data-lang="vi">Bảo Hiểm Y Tế</span><span data-lang="id">Asuransi Kesehatan</span></button>
+      <button class="tab-btn" onclick="switchTab('ov-emer', this)">🆘 <span data-lang="zh">急難救助</span><span data-lang="en">Emergency Aid</span><span data-lang="vi">Hỗ Trợ Khẩn Cấp</span><span data-lang="id">Bantuan Darurat</span></button>
+      <button class="tab-btn" onclick="switchTab('ov-club', this)">🎉 <span data-lang="zh">社團補助</span><span data-lang="en">Club Funding</span><span data-lang="vi">Hỗ Trợ Câu Lạc Bộ</span><span data-lang="id">Dana Klub</span></button>
     </div>
 
     <!-- 獎助學金 -->
@@ -984,8 +994,18 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
     </div>
 
     <div class="cta-strip">
-      <h2>不確定自己能申請什麼？</h2>
-      <p>每個人的狀況不一樣，歡迎直接來聊<br>我們一起確認你現在適合哪些保障</p>
+      <h2>
+        <span data-lang="zh">不確定自己能申請什麼？</span>
+        <span data-lang="en">Not Sure What You Can Apply For?</span>
+        <span data-lang="vi">Không Chắc Mình Có Thể Xin Gì?</span>
+        <span data-lang="id">Tidak Yakin Apa yang Bisa Anda Daftarkan?</span>
+      </h2>
+      <p>
+        <span data-lang="zh">每個人的狀況不一樣，歡迎直接來聊<br>我們一起確認你現在適合哪些保障</span>
+        <span data-lang="en">Everyone's situation is different — feel free to reach out<br>Let's figure out together what benefits apply to you</span>
+        <span data-lang="vi">Mỗi người có hoàn cảnh khác nhau — hãy liên hệ trực tiếp<br>Hãy cùng xác định những phúc lợi nào phù hợp với bạn</span>
+        <span data-lang="id">Setiap orang berbeda — jangan ragu untuk menghubungi<br>Mari kita cari tahu bersama tunjangan apa yang berlaku untuk Anda</span>
+      </p>
       <div class="cta-btns">
         <a href="https://lin.ee/6Lbn2Ba" target="_blank" class="cta-btn">💬 LINE</a>
         <a href="https://www.instagram.com/urbxneighbor/" target="_blank" class="cta-btn outline">📷 @urbxneighbor</a>
@@ -995,7 +1015,12 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
 
   <footer>
     <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
-    <div class="footer-meta">資料來源：教育部、僑務委員會相關法規。實際補助金額以就讀學校及僑委會當年度公告為準，本頁資訊僅供參考。</div>
+    <div class="footer-meta">
+      <span data-lang="zh">資料來源：教育部、僑務委員會相關法規。實際補助金額以就讀學校及僑委會當年度公告為準，本頁資訊僅供參考。</span>
+      <span data-lang="en">Source: Ministry of Education and Overseas Community Affairs Council regulations. Actual amounts subject to school and OCAC annual announcements. For reference only.</span>
+      <span data-lang="vi">Nguồn: Quy định của Bộ Giáo dục và Ủy ban Hoa kiều. Số tiền thực tế theo thông báo hàng năm. Chỉ mang tính tham khảo.</span>
+      <span data-lang="id">Sumber: Peraturan Kemendikbud dan OCAC. Jumlah aktual sesuai pengumuman tahunan. Hanya untuk referensi.</span>
+    </div>
   </footer>
 </div>
 
@@ -1173,9 +1198,19 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
 ═══════════════════════════════ -->
 <div id="travel" class="page">
   <div class="inner-top">
-    <button class="back-btn" onclick="showPage('home')">← 返回首頁</button>
-    <h1>旅平險完整指南</h1>
-    <p>出發前你需要知道的事，一頁看清楚</p>
+    <button class="back-btn" onclick="showPage('home')">← <span data-lang="zh">返回首頁</span><span data-lang="en">Back</span><span data-lang="vi">Quay lại</span><span data-lang="id">Kembali</span></button>
+    <h1>
+      <span data-lang="zh">旅平險完整指南</span>
+      <span data-lang="en">Travel Insurance Guide</span>
+      <span data-lang="vi">Hướng Dẫn Bảo Hiểm Du Lịch</span>
+      <span data-lang="id">Panduan Asuransi Perjalanan</span>
+    </h1>
+    <p>
+      <span data-lang="zh">出發前你需要知道的事，一頁看清楚</span>
+      <span data-lang="en">Everything you need to know before departure</span>
+      <span data-lang="vi">Mọi thứ bạn cần biết trước khi khởi hành</span>
+      <span data-lang="id">Semua yang perlu Anda ketahui sebelum berangkat</span>
+    </p>
   </div>
 
   <div class="page-body">
@@ -1186,36 +1221,39 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
         <div class="t-card-header">
           <div class="t-card-icon">🛡️</div>
           <div class="t-card-titles">
-            <h3>常見的保障內容</h3>
-            <div class="t-sub">旅平險 vs 旅遊不便險</div>
+            <h3><span data-lang="zh">常見的保障內容</span><span data-lang="en">Common Coverage Types</span><span data-lang="vi">Các Loại Bảo Hiểm Phổ Biến</span><span data-lang="id">Jenis Perlindungan Umum</span></h3>
+            <div class="t-sub"><span data-lang="zh">旅平險 vs 旅遊不便險</span><span data-lang="en">Travel Accident Insurance vs Travel Inconvenience Insurance</span><span data-lang="vi">BH Tai Nạn Du Lịch vs BH Bất Tiện Du Lịch</span><span data-lang="id">Asuransi Kecelakaan Perjalanan vs Asuransi Ketidaknyamanan</span></div>
           </div>
         </div>
         <div class="t-card-body">
           <div class="t-cov-grid">
             <div class="t-cov-col">
-              <div class="t-cov-title">旅平險</div>
+              <div class="t-cov-title"><span data-lang="zh">旅平險</span><span data-lang="en">Travel Accident Insurance</span><span data-lang="vi">BH Tai Nạn Du Lịch</span><span data-lang="id">Asuransi Kecelakaan</span></div>
               <ul class="t-cov-list">
-                <li>意外身故失能</li>
-                <li class="t-gold">意外實支實付</li>
-                <li class="t-gold">海外突發疾病</li>
-                <li>重大燒燙傷</li>
-                <li>食物中毒</li>
+                <li><span data-lang="zh">意外身故失能</span><span data-lang="en">Accidental Death & Disability</span><span data-lang="vi">Tử vong & Tàn tật do tai nạn</span><span data-lang="id">Kematian & Kecacatan Kecelakaan</span></li>
+                <li class="t-gold"><span data-lang="zh">意外實支實付</span><span data-lang="en">Accident Medical Reimbursement</span><span data-lang="vi">Hoàn trả y tế tai nạn</span><span data-lang="id">Reimbursmen Medis Kecelakaan</span></li>
+                <li class="t-gold"><span data-lang="zh">海外突發疾病</span><span data-lang="en">Overseas Sudden Illness</span><span data-lang="vi">Bệnh đột ngột ở nước ngoài</span><span data-lang="id">Penyakit Mendadak di Luar Negeri</span></li>
+                <li><span data-lang="zh">重大燒燙傷</span><span data-lang="en">Major Burns</span><span data-lang="vi">Bỏng nặng</span><span data-lang="id">Luka Bakar Serius</span></li>
+                <li><span data-lang="zh">食物中毒</span><span data-lang="en">Food Poisoning</span><span data-lang="vi">Ngộ độc thực phẩm</span><span data-lang="id">Keracunan Makanan</span></li>
               </ul>
             </div>
             <div class="t-cov-col">
-              <div class="t-cov-title">旅遊不便險</div>
+              <div class="t-cov-title"><span data-lang="zh">旅遊不便險</span><span data-lang="en">Travel Inconvenience Insurance</span><span data-lang="vi">BH Bất Tiện Du Lịch</span><span data-lang="id">Asuransi Ketidaknyamanan</span></div>
               <ul class="t-cov-list">
-                <li class="t-gold">班機延誤</li>
-                <li>旅程取消</li>
-                <li>行李損失</li>
-                <li>信用卡盜刷</li>
-                <li>文件損失</li>
+                <li class="t-gold"><span data-lang="zh">班機延誤</span><span data-lang="en">Flight Delay</span><span data-lang="vi">Chậm chuyến bay</span><span data-lang="id">Penundaan Penerbangan</span></li>
+                <li><span data-lang="zh">旅程取消</span><span data-lang="en">Trip Cancellation</span><span data-lang="vi">Hủy chuyến</span><span data-lang="id">Pembatalan Perjalanan</span></li>
+                <li><span data-lang="zh">行李損失</span><span data-lang="en">Baggage Loss</span><span data-lang="vi">Mất hành lý</span><span data-lang="id">Kehilangan Bagasi</span></li>
+                <li><span data-lang="zh">信用卡盜刷</span><span data-lang="en">Credit Card Fraud</span><span data-lang="vi">Gian lận thẻ tín dụng</span><span data-lang="id">Penipuan Kartu Kredit</span></li>
+                <li><span data-lang="zh">文件損失</span><span data-lang="en">Document Loss</span><span data-lang="vi">Mất giấy tờ</span><span data-lang="id">Kehilangan Dokumen</span></li>
               </ul>
             </div>
           </div>
           <div class="t-note">
-            <strong>⚠️ 注意</strong>
-            旅平險和旅遊不便險是兩種不同的產品，保障範圍不重疊。出國前可以視需求搭配投保，不是只能選一個。
+            <strong><span data-lang="zh">⚠️ 注意</span><span data-lang="en">⚠️ Note</span><span data-lang="vi">⚠️ Lưu ý</span><span data-lang="id">⚠️ Perhatian</span></strong>
+            <span data-lang="zh">旅平險和旅遊不便險是兩種不同的產品，保障範圍不重疊。出國前可以視需求搭配投保，不是只能選一個。</span>
+            <span data-lang="en">Travel accident insurance and travel inconvenience insurance are two separate products with non-overlapping coverage. You can purchase both based on your needs.</span>
+            <span data-lang="vi">BH tai nạn du lịch và BH bất tiện du lịch là hai sản phẩm riêng biệt, phạm vi không trùng lặp. Bạn có thể mua cả hai tùy nhu cầu.</span>
+            <span data-lang="id">Asuransi kecelakaan dan asuransi ketidaknyamanan adalah dua produk terpisah dengan cakupan berbeda. Anda bisa membeli keduanya sesuai kebutuhan.</span>
           </div>
         </div>
       </div>
@@ -1225,47 +1263,47 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
         <div class="t-card-header">
           <div class="t-card-icon">✈️</div>
           <div class="t-card-titles">
-            <h3>買旅平險之前，需要知道的事</h3>
-            <div class="t-sub">出發前請務必預留時間</div>
+            <h3><span data-lang="zh">買旅平險之前，需要知道的事</span><span data-lang="en">What You Need to Know Before Buying</span><span data-lang="vi">Những Điều Cần Biết Trước Khi Mua</span><span data-lang="id">Yang Perlu Diketahui Sebelum Membeli</span></h3>
+            <div class="t-sub"><span data-lang="zh">出發前請務必預留時間</span><span data-lang="en">Please allow enough lead time before departure</span><span data-lang="vi">Hãy dành đủ thời gian trước khi khởi hành</span><span data-lang="id">Pastikan ada cukup waktu sebelum berangkat</span></div>
           </div>
         </div>
         <div class="t-card-body">
           <div class="t-highlight">
             <div class="t-big-num">7</div>
             <div class="t-big-text">
-              <div class="t-main">出發前至少提前 7 天<br>才能報價</div>
-              <div class="t-sub">低於 7 天，我們也幫不上忙的原因如下</div>
+              <div class="t-main"><span data-lang="zh">出發前至少提前 7 天<br>才能報價</span><span data-lang="en">Get a quote at least<br>7 days before departure</span><span data-lang="vi">Nhận báo giá ít nhất<br>7 ngày trước khi đi</span><span data-lang="id">Dapatkan penawaran setidaknya<br>7 hari sebelum berangkat</span></div>
+              <div class="t-sub"><span data-lang="zh">低於 7 天，我們也幫不上忙的原因如下</span><span data-lang="en">Here's why we can't help if it's less than 7 days</span><span data-lang="vi">Lý do chúng tôi không thể hỗ trợ nếu dưới 7 ngày</span><span data-lang="id">Mengapa kami tidak bisa membantu jika kurang dari 7 hari</span></div>
             </div>
           </div>
-          <div class="t-label">為什麼不能太晚？</div>
+          <div class="t-label"><span data-lang="zh">為什麼不能太晚？</span><span data-lang="en">Why Can't You Wait Too Long?</span><span data-lang="vi">Tại Sao Không Thể Chờ Quá Lâu?</span><span data-lang="id">Mengapa Tidak Boleh Menunggu Terlalu Lama?</span></div>
           <div class="t-reason-grid">
             <div class="t-reason-card">
-              <h4>審核需要時間</h4>
-              <p>不是投保完就生效，保險公司也是需要先審核才能確認</p>
+              <h4><span data-lang="zh">審核需要時間</span><span data-lang="en">Underwriting Takes Time</span><span data-lang="vi">Cần Thời Gian Thẩm Định</span><span data-lang="id">Proses Penjaminan Butuh Waktu</span></h4>
+              <p><span data-lang="zh">不是投保完就生效，保險公司也是需要先審核才能確認</span><span data-lang="en">Coverage doesn't start immediately — the insurer needs time to review and confirm</span><span data-lang="vi">Không phải mua là có hiệu lực ngay — công ty bảo hiểm cần thời gian xem xét</span><span data-lang="id">Pertanggungan tidak langsung aktif — pihak asuransi perlu waktu untuk meninjau</span></p>
             </div>
             <div class="t-reason-card">
-              <h4>業務端的作業流程</h4>
-              <p>投保完之後，會需要將文件送出到保險公司，這個流程也需要時間</p>
+              <h4><span data-lang="zh">業務端的作業流程</span><span data-lang="en">Agent Processing Time</span><span data-lang="vi">Quy Trình Xử Lý Của Đại Lý</span><span data-lang="id">Waktu Proses Agen</span></h4>
+              <p><span data-lang="zh">投保完之後，會需要將文件送出到保險公司，這個流程也需要時間</span><span data-lang="en">After applying, documents must be submitted to the insurer — this takes additional time</span><span data-lang="vi">Sau khi đăng ký, hồ sơ phải được gửi đến công ty bảo hiểm — việc này cũng mất thêm thời gian</span><span data-lang="id">Setelah mendaftar, dokumen harus dikirim ke perusahaan asuransi — ini membutuhkan waktu tambahan</span></p>
             </div>
           </div>
-          <div class="t-label">時間軸說明</div>
+          <div class="t-label"><span data-lang="zh">時間軸說明</span><span data-lang="en">Timeline</span><span data-lang="vi">Dòng Thời Gian</span><span data-lang="id">Garis Waktu</span></div>
           <div class="t-timeline-wrap">
             <div class="t-timeline-line"></div>
             <div class="t-timeline">
               <div class="t-tl-item">
                 <div class="t-dot green"></div>
-                <div class="t-tl-label">出發前 7–14 天</div>
-                <div class="t-tl-desc">時間上最從容，建議最佳時機</div>
+                <div class="t-tl-label"><span data-lang="zh">出發前 7–14 天</span><span data-lang="en">7–14 Days Before</span><span data-lang="vi">7–14 Ngày Trước</span><span data-lang="id">7–14 Hari Sebelum</span></div>
+                <div class="t-tl-desc"><span data-lang="zh">時間上最從容，建議最佳時機</span><span data-lang="en">Most ideal — highly recommended</span><span data-lang="vi">Lý tưởng nhất — được khuyến nghị</span><span data-lang="id">Paling ideal — sangat direkomendasikan</span></div>
               </div>
               <div class="t-tl-item">
                 <div class="t-dot orange"></div>
-                <div class="t-tl-label orange">出發前 3 天</div>
-                <div class="t-tl-desc">作業系統已無法出單</div>
+                <div class="t-tl-label orange"><span data-lang="zh">出發前 3 天</span><span data-lang="en">3 Days Before</span><span data-lang="vi">3 Ngày Trước</span><span data-lang="id">3 Hari Sebelum</span></div>
+                <div class="t-tl-desc"><span data-lang="zh">作業系統已無法出單</span><span data-lang="en">System cannot process new policies</span><span data-lang="vi">Hệ thống không thể tạo đơn mới</span><span data-lang="id">Sistem tidak bisa proses polis baru</span></div>
               </div>
               <div class="t-tl-item">
                 <div class="t-dot red"></div>
-                <div class="t-tl-label red">出發當天</div>
-                <div class="t-tl-desc">可利用網路或臨櫃投保</div>
+                <div class="t-tl-label red"><span data-lang="zh">出發當天</span><span data-lang="en">Departure Day</span><span data-lang="vi">Ngày Khởi Hành</span><span data-lang="id">Hari Keberangkatan</span></div>
+                <div class="t-tl-desc"><span data-lang="zh">可利用網路或臨櫃投保</span><span data-lang="en">Online or in-person purchase only</span><span data-lang="vi">Chỉ có thể mua online hoặc tại quầy</span><span data-lang="id">Hanya bisa beli online atau langsung</span></div>
               </div>
             </div>
           </div>
@@ -1277,22 +1315,22 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
         <div class="t-card-header">
           <div class="t-card-icon">📋</div>
           <div class="t-card-titles">
-            <h3>為什麼投保旅平險<br>業務會建議做保單檢視</h3>
+            <h3><span data-lang="zh">為什麼投保旅平險<br>業務會建議做保單檢視</span><span data-lang="en">Why Your Agent Recommends<br>a Policy Review</span><span data-lang="vi">Tại Sao Đại Lý Khuyến Nghị<br>Kiểm Tra Hợp Đồng</span><span data-lang="id">Mengapa Agen Merekomendasikan<br>Tinjauan Polis</span></h3>
           </div>
         </div>
         <div class="t-card-body">
           <div class="t-num-row">
             <div class="t-num-badge">1</div>
             <div class="t-num-content">
-              <h4>避免後續無法加保</h4>
-              <p>保險需要在身體健康的時候投保。若在國外真的不小心發生什麼狀況，回國後可能就無法加保個人的商業保險。</p>
+              <h4><span data-lang="zh">避免後續無法加保</span><span data-lang="en">Prevent Future Coverage Issues</span><span data-lang="vi">Tránh Không Thể Mua Thêm Sau Này</span><span data-lang="id">Mencegah Masalah Asuransi di Masa Depan</span></h4>
+              <p><span data-lang="zh">保險需要在身體健康的時候投保。若在國外真的不小心發生什麼狀況，回國後可能就無法加保個人的商業保險。</span><span data-lang="en">Insurance must be purchased while healthy. If something happens abroad, you may be unable to buy personal insurance after returning home.</span><span data-lang="vi">Bảo hiểm phải mua khi còn khỏe mạnh. Nếu có chuyện xảy ra ở nước ngoài, bạn có thể không thể mua thêm sau khi về nước.</span><span data-lang="id">Asuransi harus dibeli saat masih sehat. Jika terjadi sesuatu di luar negeri, Anda mungkin tidak bisa membeli asuransi pribadi setelah kembali.</span></p>
             </div>
           </div>
           <div class="t-num-row">
             <div class="t-num-badge">2</div>
             <div class="t-num-content">
-              <h4>申請理賠確認需要文件</h4>
-              <p>除了旅平險可以申請理賠之外，個人保險也可以申請。先了解保障內容，我們會比較清楚該申請幾分證明／收據。</p>
+              <h4><span data-lang="zh">申請理賠確認需要文件</span><span data-lang="en">Claims Require the Right Documents</span><span data-lang="vi">Yêu Cầu Bồi Thường Cần Đúng Tài Liệu</span><span data-lang="id">Klaim Memerlukan Dokumen yang Tepat</span></h4>
+              <p><span data-lang="zh">除了旅平險可以申請理賠之外，個人保險也可以申請。先了解保障內容，我們會比較清楚該申請幾分證明／收據。</span><span data-lang="en">Besides travel insurance, your personal policies may also cover you. Knowing your coverage helps determine how many receipts and certificates you'll need.</span><span data-lang="vi">Ngoài bảo hiểm du lịch, các bảo hiểm cá nhân cũng có thể yêu cầu bồi thường. Biết rõ bảo hiểm giúp xác định số lượng biên lai/giấy tờ cần thiết.</span><span data-lang="id">Selain asuransi perjalanan, polis pribadi Anda juga bisa mengajukan klaim. Mengetahui cakupan Anda membantu menentukan berapa banyak kwitansi/sertifikat yang dibutuhkan.</span></p>
             </div>
           </div>
         </div>
@@ -1303,37 +1341,40 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
         <div class="t-card-header">
           <div class="t-card-icon">⚖️</div>
           <div class="t-card-titles">
-            <h3>網路投保 VS. 業務規劃</h3>
-            <div class="t-sub">旅平險應該怎麼投保比較好？</div>
+            <h3><span data-lang="zh">網路投保 VS. 業務規劃</span><span data-lang="en">Online Purchase VS. Agent Planning</span><span data-lang="vi">Mua Online VS. Qua Đại Lý</span><span data-lang="id">Beli Online VS. Melalui Agen</span></h3>
+            <div class="t-sub"><span data-lang="zh">旅平險應該怎麼投保比較好？</span><span data-lang="en">Which way is better for travel insurance?</span><span data-lang="vi">Cách nào tốt hơn để mua bảo hiểm du lịch?</span><span data-lang="id">Cara mana yang lebih baik untuk asuransi perjalanan?</span></div>
           </div>
         </div>
         <div class="t-card-body">
           <div class="t-vs-wrap">
             <div class="t-vs-col">
-              <div class="t-vs-title">網路投保</div>
+              <div class="t-vs-title"><span data-lang="zh">網路投保</span><span data-lang="en">Online Purchase</span><span data-lang="vi">Mua Online</span><span data-lang="id">Beli Online</span></div>
               <ul class="t-vs-list">
-                <li>投保快速、操作方便</li>
-                <li>保費較便宜</li>
-                <li>來不及找業務投保時適用</li>
-                <li>須自行申請理賠</li>
+                <li><span data-lang="zh">投保快速、操作方便</span><span data-lang="en">Fast and easy to use</span><span data-lang="vi">Nhanh và dễ sử dụng</span><span data-lang="id">Cepat dan mudah digunakan</span></li>
+                <li><span data-lang="zh">保費較便宜</span><span data-lang="en">Lower premium</span><span data-lang="vi">Phí bảo hiểm thấp hơn</span><span data-lang="id">Premi lebih murah</span></li>
+                <li><span data-lang="zh">來不及找業務投保時適用</span><span data-lang="en">Good when there's no time to find an agent</span><span data-lang="vi">Phù hợp khi không có thời gian tìm đại lý</span><span data-lang="id">Cocok saat tidak sempat mencari agen</span></li>
+                <li><span data-lang="zh">須自行申請理賠</span><span data-lang="en">Must file claims yourself</span><span data-lang="vi">Phải tự nộp hồ sơ bồi thường</span><span data-lang="id">Harus mengajukan klaim sendiri</span></li>
               </ul>
             </div>
             <div class="t-vs-divider">
               <div class="t-vs-badge">VS</div>
             </div>
             <div class="t-vs-col">
-              <div class="t-vs-title">業務規劃</div>
+              <div class="t-vs-title"><span data-lang="zh">業務規劃</span><span data-lang="en">Agent Planning</span><span data-lang="vi">Qua Đại Lý</span><span data-lang="id">Melalui Agen</span></div>
               <ul class="t-vs-list">
-                <li>依需求客製化建議</li>
-                <li>協助說明條款與細節</li>
-                <li>事故發生時有人能問</li>
-                <li>協助理賠、文件處理</li>
+                <li><span data-lang="zh">依需求客製化建議</span><span data-lang="en">Customized recommendations</span><span data-lang="vi">Tư vấn cá nhân hóa</span><span data-lang="id">Saran yang disesuaikan</span></li>
+                <li><span data-lang="zh">協助說明條款與細節</span><span data-lang="en">Explains terms and details</span><span data-lang="vi">Giải thích điều khoản và chi tiết</span><span data-lang="id">Menjelaskan syarat dan detail</span></li>
+                <li><span data-lang="zh">事故發生時有人能問</span><span data-lang="en">Someone to contact when an incident occurs</span><span data-lang="vi">Có người hỗ trợ khi xảy ra sự cố</span><span data-lang="id">Ada yang bisa dihubungi saat insiden</span></li>
+                <li><span data-lang="zh">協助理賠、文件處理</span><span data-lang="en">Helps with claims and paperwork</span><span data-lang="vi">Hỗ trợ bồi thường và xử lý giấy tờ</span><span data-lang="id">Membantu klaim dan pengurusan dokumen</span></li>
               </ul>
             </div>
           </div>
           <div class="t-note">
-            <strong>💡 小提醒</strong>
-            緊急出發來不及找業務的話，先用網路投保沒問題。但如果時間允許，透過業務規劃能在事故發生時多一個人幫你處理。
+            <strong><span data-lang="zh">💡 小提醒</span><span data-lang="en">💡 Quick Tip</span><span data-lang="vi">💡 Lưu Ý Nhanh</span><span data-lang="id">💡 Tips Cepat</span></strong>
+            <span data-lang="zh">緊急出發來不及找業務的話，先用網路投保沒問題。但如果時間允許，透過業務規劃能在事故發生時多一個人幫你處理。</span>
+            <span data-lang="en">If you're in a rush and can't reach an agent, buying online is fine. But if time allows, having an agent means someone is there to help when an incident happens.</span>
+            <span data-lang="vi">Nếu vội và không liên lạc được đại lý, mua online là ổn. Nhưng nếu có thời gian, có đại lý giúp xử lý khi xảy ra sự cố.</span>
+            <span data-lang="id">Jika terburu-buru dan tidak bisa menghubungi agen, beli online tidak masalah. Tapi jika ada waktu, punya agen berarti ada yang membantu saat terjadi insiden.</span>
           </div>
         </div>
       </div>
