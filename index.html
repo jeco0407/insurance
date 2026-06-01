@@ -400,7 +400,65 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
   .section-wrap { padding: 40px 20px; }
   .os-amt-row { flex-direction: column; gap: 12px; }
   .inner-top { padding: 36px 20px 36px; }
+  .t-cov-grid, .t-reason-grid { grid-template-columns: 1fr; }
+  .t-vs-wrap { grid-template-columns: 1fr; }
+  .t-vs-divider { display: none; }
+  .t-highlight { flex-direction: column; text-align: center; }
+  .t-big-num { font-size: 52px; }
 }
+
+/* ── TRAVEL PAGE ── */
+.t-sections { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+.t-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(18,81,95,0.08); }
+.t-card-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 14px; }
+.t-card-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: white; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.t-card-titles h3 { font-family: 'Noto Serif TC', serif; font-size: 19px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.t-card-titles .t-sub { font-size: 12px; color: var(--muted); }
+.t-card-body { padding: 22px 24px 28px; }
+.t-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 12px; }
+.t-cov-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.t-cov-col { background: var(--navy); border-radius: 14px; padding: 20px 18px; }
+.t-cov-title { background: rgba(255,255,255,0.15); color: white; font-size: 15px; font-weight: 700; text-align: center; padding: 8px 14px; border-radius: 20px; margin-bottom: 16px; }
+.t-cov-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.t-cov-list li { font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.5; padding-left: 14px; position: relative; }
+.t-cov-list li::before { content: '•'; position: absolute; left: 0; color: rgba(255,255,255,0.45); }
+.t-cov-list li.t-gold { color: #c8922a; font-weight: 600; }
+.t-cov-list li.t-gold::before { color: #c8922a; }
+.t-highlight { background: #f5ede6; border-radius: 12px; padding: 20px 22px; margin-bottom: 18px; display: flex; align-items: center; gap: 16px; }
+.t-big-num { font-family: 'Noto Serif TC', serif; font-size: 72px; font-weight: 700; color: #c8922a; line-height: 1; flex-shrink: 0; }
+.t-big-text .t-main { font-size: 19px; font-weight: 700; color: var(--navy); line-height: 1.4; }
+.t-big-text .t-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.t-reason-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+.t-reason-card { background: #f5ede6; border-radius: 10px; padding: 14px 16px; }
+.t-reason-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.t-reason-card p { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+.t-timeline-wrap { position: relative; padding: 0 10px; }
+.t-timeline-line { position: absolute; top: 10px; left: 46px; right: 46px; height: 2px; background: rgba(18,81,95,0.15); z-index: 0; }
+.t-timeline { display: flex; align-items: flex-start; }
+.t-tl-item { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 1; }
+.t-dot { width: 20px; height: 20px; border-radius: 50%; margin-bottom: 10px; flex-shrink: 0; }
+.t-dot.green { background: var(--navy); }
+.t-dot.orange { background: #c8922a; }
+.t-dot.red { background: var(--red); }
+.t-tl-label { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+.t-tl-label.orange { color: #c8922a; }
+.t-tl-label.red { color: var(--red); }
+.t-tl-desc { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+.t-num-row { display: flex; align-items: flex-start; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.t-num-row:last-child { border-bottom: none; }
+.t-num-badge { width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: white; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.t-num-content h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.t-num-content p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+.t-vs-wrap { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: start; }
+.t-vs-col { background: var(--navy); border-radius: 14px; padding: 20px 18px; }
+.t-vs-title { background: rgba(255,255,255,0.15); color: white; font-size: 15px; font-weight: 700; text-align: center; padding: 8px 16px; border-radius: 20px; margin-bottom: 16px; }
+.t-vs-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.t-vs-list li { font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.55; padding-left: 14px; position: relative; }
+.t-vs-list li::before { content: '•'; position: absolute; left: 0; color: rgba(255,255,255,0.5); }
+.t-vs-divider { display: flex; align-items: center; justify-content: center; }
+.t-vs-badge { width: 40px; height: 40px; border-radius: 50%; background: #f5ede6; color: var(--navy); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 2px solid var(--border); }
+.t-note { background: #fdf3f3; border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 16px; font-size: 13px; color: var(--text); line-height: 1.7; }
+.t-note strong { font-weight: 700; color: var(--red); display: block; margin-bottom: 2px; }
 </style>
 </head>
 <body>
@@ -417,6 +475,7 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
       <span data-lang="zh">保險知識</span><span data-lang="en">Insurance</span><span data-lang="vi">Kiến Thức</span><span data-lang="id">Panduan</span>
     </button></li>
     <li><button class="nav-btn" id="nav-overseas" onclick="showPage('overseas')">僑生專區</button></li>
+    <li><button class="nav-btn" id="nav-travel"   onclick="showPage('travel')">旅遊險</button></li>
     <li><button class="nav-btn" id="nav-faq"      onclick="showPage('faq')">FAQ</button></li>
     <li><button class="nav-btn" id="nav-about"    onclick="showPage('about')">
       <span data-lang="zh">關於我</span><span data-lang="en">About</span><span data-lang="vi">Về Tôi</span><span data-lang="id">Tentang</span>
@@ -1109,6 +1168,180 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
 <!-- ═══════════════════════════════
      ABOUT PAGE (關於我)
 ═══════════════════════════════ -->
+<!-- ═══════════════════════════════
+     TRAVEL PAGE (旅遊險)
+═══════════════════════════════ -->
+<div id="travel" class="page">
+  <div class="inner-top">
+    <button class="back-btn" onclick="showPage('home')">← 返回首頁</button>
+    <h1>旅平險完整指南</h1>
+    <p>出發前你需要知道的事，一頁看清楚</p>
+  </div>
+
+  <div class="page-body">
+    <div class="t-sections">
+
+      <!-- 1. 保障內容（放最前） -->
+      <div class="t-card">
+        <div class="t-card-header">
+          <div class="t-card-icon">🛡️</div>
+          <div class="t-card-titles">
+            <h3>常見的保障內容</h3>
+            <div class="t-sub">旅平險 vs 旅遊不便險</div>
+          </div>
+        </div>
+        <div class="t-card-body">
+          <div class="t-cov-grid">
+            <div class="t-cov-col">
+              <div class="t-cov-title">旅平險</div>
+              <ul class="t-cov-list">
+                <li>意外身故失能</li>
+                <li class="t-gold">意外實支實付</li>
+                <li class="t-gold">海外突發疾病</li>
+                <li>重大燒燙傷</li>
+                <li>食物中毒</li>
+              </ul>
+            </div>
+            <div class="t-cov-col">
+              <div class="t-cov-title">旅遊不便險</div>
+              <ul class="t-cov-list">
+                <li class="t-gold">班機延誤</li>
+                <li>旅程取消</li>
+                <li>行李損失</li>
+                <li>信用卡盜刷</li>
+                <li>文件損失</li>
+              </ul>
+            </div>
+          </div>
+          <div class="t-note">
+            <strong>⚠️ 注意</strong>
+            旅平險和旅遊不便險是兩種不同的產品，保障範圍不重疊。出國前可以視需求搭配投保，不是只能選一個。
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. 出發前至少 7 天 -->
+      <div class="t-card">
+        <div class="t-card-header">
+          <div class="t-card-icon">✈️</div>
+          <div class="t-card-titles">
+            <h3>買旅平險之前，需要知道的事</h3>
+            <div class="t-sub">出發前請務必預留時間</div>
+          </div>
+        </div>
+        <div class="t-card-body">
+          <div class="t-highlight">
+            <div class="t-big-num">7</div>
+            <div class="t-big-text">
+              <div class="t-main">出發前至少提前 7 天<br>才能報價</div>
+              <div class="t-sub">低於 7 天，我們也幫不上忙的原因如下</div>
+            </div>
+          </div>
+          <div class="t-label">為什麼不能太晚？</div>
+          <div class="t-reason-grid">
+            <div class="t-reason-card">
+              <h4>審核需要時間</h4>
+              <p>不是投保完就生效，保險公司也是需要先審核才能確認</p>
+            </div>
+            <div class="t-reason-card">
+              <h4>業務端的作業流程</h4>
+              <p>投保完之後，會需要將文件送出到保險公司，這個流程也需要時間</p>
+            </div>
+          </div>
+          <div class="t-label">時間軸說明</div>
+          <div class="t-timeline-wrap">
+            <div class="t-timeline-line"></div>
+            <div class="t-timeline">
+              <div class="t-tl-item">
+                <div class="t-dot green"></div>
+                <div class="t-tl-label">出發前 7–14 天</div>
+                <div class="t-tl-desc">時間上最從容，建議最佳時機</div>
+              </div>
+              <div class="t-tl-item">
+                <div class="t-dot orange"></div>
+                <div class="t-tl-label orange">出發前 3 天</div>
+                <div class="t-tl-desc">作業系統已無法出單</div>
+              </div>
+              <div class="t-tl-item">
+                <div class="t-dot red"></div>
+                <div class="t-tl-label red">出發當天</div>
+                <div class="t-tl-desc">可利用網路或臨櫃投保</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 為什麼業務建議做保單檢視 -->
+      <div class="t-card">
+        <div class="t-card-header">
+          <div class="t-card-icon">📋</div>
+          <div class="t-card-titles">
+            <h3>為什麼投保旅平險<br>業務會建議做保單檢視</h3>
+          </div>
+        </div>
+        <div class="t-card-body">
+          <div class="t-num-row">
+            <div class="t-num-badge">1</div>
+            <div class="t-num-content">
+              <h4>避免後續無法加保</h4>
+              <p>保險需要在身體健康的時候投保。若在國外真的不小心發生什麼狀況，回國後可能就無法加保個人的商業保險。</p>
+            </div>
+          </div>
+          <div class="t-num-row">
+            <div class="t-num-badge">2</div>
+            <div class="t-num-content">
+              <h4>申請理賠確認需要文件</h4>
+              <p>除了旅平險可以申請理賠之外，個人保險也可以申請。先了解保障內容，我們會比較清楚該申請幾分證明／收據。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. 網路投保 vs 業務規劃 -->
+      <div class="t-card">
+        <div class="t-card-header">
+          <div class="t-card-icon">⚖️</div>
+          <div class="t-card-titles">
+            <h3>網路投保 VS. 業務規劃</h3>
+            <div class="t-sub">旅平險應該怎麼投保比較好？</div>
+          </div>
+        </div>
+        <div class="t-card-body">
+          <div class="t-vs-wrap">
+            <div class="t-vs-col">
+              <div class="t-vs-title">網路投保</div>
+              <ul class="t-vs-list">
+                <li>投保快速、操作方便</li>
+                <li>保費較便宜</li>
+                <li>來不及找業務投保時適用</li>
+                <li>須自行申請理賠</li>
+              </ul>
+            </div>
+            <div class="t-vs-divider">
+              <div class="t-vs-badge">VS</div>
+            </div>
+            <div class="t-vs-col">
+              <div class="t-vs-title">業務規劃</div>
+              <ul class="t-vs-list">
+                <li>依需求客製化建議</li>
+                <li>協助說明條款與細節</li>
+                <li>事故發生時有人能問</li>
+                <li>協助理賠、文件處理</li>
+              </ul>
+            </div>
+          </div>
+          <div class="t-note">
+            <strong>💡 小提醒</strong>
+            緊急出發來不及找業務的話，先用網路投保沒問題。但如果時間允許，透過業務規劃能在事故發生時多一個人幫你處理。
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <div id="about" class="page">
   <div class="inner-top">
     <button class="back-btn" onclick="showPage('home')">← <span data-lang="zh">返回首頁</span><span data-lang="en">Back</span><span data-lang="vi">Quay lại</span><span data-lang="id">Kembali</span></button>
@@ -1189,7 +1422,7 @@ function closeMenu() { document.getElementById('langWrap').classList.remove('ope
 document.addEventListener('click', closeMenu);
 
 /* ── Page switching ── */
-const NAV_MAP = { home:'nav-home', guide:'nav-guide', overseas:'nav-overseas', faq:'nav-faq', about:'nav-about' };
+const NAV_MAP = { home:'nav-home', guide:'nav-guide', overseas:'nav-overseas', travel:'nav-travel', faq:'nav-faq', about:'nav-about' };
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
