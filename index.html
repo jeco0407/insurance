@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>保險好鄰居 | 外籍人士保險知識平台</title>
+<title>保險好鄰居 | 台灣保險知識平台</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -277,7 +277,9 @@ nav {
 .guide-items { list-style: none; }
 .guide-items li { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.6; }
 .guide-items li:last-child { border-bottom: none; }
-.guide-dot { width: 6px; height: 6px; background: var(--navy); border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+.guide-dot { width: 6px; height: 6px; background: var(--navy); border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
+.guide-item-name { font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.4; }
+.guide-item-desc { font-size: 11.5px; color: var(--muted); line-height: 1.55; margin-top: 2px; }
 .guide-note { margin-top: 14px; background: #fdf3f3; border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 12px; color: var(--blue); line-height: 1.7; }
 /* Foreigners tabs */
 .tab-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
@@ -451,10 +453,10 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
       </div>
 
       <h1>
-        <span data-lang="zh">外籍人士保險<br>你的<em>好鄰居</em>在這</span>
-        <span data-lang="en">Insurance in Taiwan<br>Your <em>Good Neighbor</em></span>
-        <span data-lang="vi">Bảo Hiểm tại Đài Loan<br><em>Người Hàng Xóm Tốt</em> của bạn</span>
-        <span data-lang="id">Asuransi di Taiwan<br><em>Tetangga Baik</em> Anda</span>
+        <span data-lang="zh">保險看不懂？<br>你的<em>好鄰居</em>在這</span>
+        <span data-lang="en">Confused about insurance?<br>Your <em>Good Neighbor</em> is here</span>
+        <span data-lang="vi">Không hiểu bảo hiểm?<br><em>Người Hàng Xóm Tốt</em> của bạn đây</span>
+        <span data-lang="id">Bingung soal asuransi?<br><em>Tetangga Baik</em> Anda siap membantu</span>
       </h1>
 
       <div class="hero-sub">
@@ -631,7 +633,7 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
   <div class="inner-top">
     <button class="back-btn" onclick="showPage('home')">← <span data-lang="zh">返回首頁</span><span data-lang="en">Back</span><span data-lang="vi">Quay lại</span><span data-lang="id">Kembali</span></button>
     <h1>
-      <span data-lang="zh">外籍人士必備 3 大險種</span>
+      <span data-lang="zh">你一定要懂的 3 大險種</span>
       <span data-lang="en">3 Essential Insurance Types</span>
       <span data-lang="vi">3 Loại Bảo Hiểm Thiết Yếu</span>
       <span data-lang="id">3 Jenis Asuransi Penting</span>
@@ -663,10 +665,22 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
             <span data-lang="id"><strong>Syarat:</strong> Eksternal + Mendadak + Bukan penyakit (ketiganya)</span>
           </div>
           <ul class="guide-items">
-            <li><div class="guide-dot"></div><div><span data-lang="zh">身故保險金</span><span data-lang="en">Death Benefit</span><span data-lang="vi">Quyền lợi tử vong</span><span data-lang="id">Manfaat Kematian</span></div></li>
-            <li><div class="guide-dot"></div><div><span data-lang="zh">失能保險金</span><span data-lang="en">Disability Benefit</span><span data-lang="vi">Quyền lợi tàn tật</span><span data-lang="id">Manfaat Kecacatan</span></div></li>
-            <li><div class="guide-dot"></div><div><span data-lang="zh">意外住院日額</span><span data-lang="en">Hospitalization Daily Benefit</span><span data-lang="vi">Trợ cấp nhập viện hàng ngày</span><span data-lang="id">Tunjangan Rawat Inap Harian</span></div></li>
-            <li><div class="guide-dot"></div><div><span data-lang="zh">意外實支實付</span><span data-lang="en">Medical Reimbursement</span><span data-lang="vi">Hoàn trả chi phí y tế</span><span data-lang="id">Penggantian Biaya Medis</span></div></li>
+            <li><div class="guide-dot"></div><div>
+              <div class="guide-item-name"><span data-lang="zh">身故保險金</span><span data-lang="en">Death Benefit</span><span data-lang="vi">Quyền lợi tử vong</span><span data-lang="id">Manfaat Kematian</span></div>
+              <div class="guide-item-desc"><span data-lang="zh">因意外死亡，保險公司一次性給付給受益人（通常是家人）</span><span data-lang="en">Lump-sum payout to beneficiary if death is caused by accident</span><span data-lang="vi">Chi trả một lần cho người thụ hưởng nếu tử vong do tai nạn</span><span data-lang="id">Pembayaran sekaligus ke penerima manfaat jika meninggal karena kecelakaan</span></div>
+            </div></li>
+            <li><div class="guide-dot"></div><div>
+              <div class="guide-item-name"><span data-lang="zh">失能保險金</span><span data-lang="en">Disability Benefit</span><span data-lang="vi">Quyền lợi tàn tật</span><span data-lang="id">Manfaat Kecacatan</span></div>
+              <div class="guide-item-desc"><span data-lang="zh">意外造成肢體、眼、耳等永久失能，依嚴重程度（1–11 級）給付，最高可達保額全額</span><span data-lang="en">Covers permanent disability from accident — payout scales with severity (levels 1–11)</span><span data-lang="vi">Bảo hiểm tàn tật vĩnh viễn do tai nạn — mức chi trả theo độ nghiêm trọng (bậc 1–11)</span><span data-lang="id">Menanggung kecacatan permanen akibat kecelakaan — sesuai tingkat keparahan (level 1–11)</span></div>
+            </div></li>
+            <li><div class="guide-dot"></div><div>
+              <div class="guide-item-name"><span data-lang="zh">意外住院日額</span><span data-lang="en">Hospitalization Daily Benefit</span><span data-lang="vi">Trợ cấp nhập viện hàng ngày</span><span data-lang="id">Tunjangan Rawat Inap Harian</span></div>
+              <div class="guide-item-desc"><span data-lang="zh">因意外住院，每住一天固定領一筆錢（如 $500–$2,000/天），補貼無法工作的損失</span><span data-lang="en">Fixed daily cash for each day hospitalized due to accident — helps replace lost income</span><span data-lang="vi">Tiền mặt hàng ngày cho mỗi ngày nằm viện vì tai nạn — bù đắp thu nhập bị mất</span><span data-lang="id">Uang tunai harian untuk setiap hari rawat inap karena kecelakaan — mengganti penghasilan</span></div>
+            </div></li>
+            <li><div class="guide-dot"></div><div>
+              <div class="guide-item-name"><span data-lang="zh">意外實支實付</span><span data-lang="en">Accident Medical Reimbursement</span><span data-lang="vi">Hoàn trả chi phí y tế tai nạn</span><span data-lang="id">Penggantian Biaya Medis Kecelakaan</span></div>
+              <div class="guide-item-desc"><span data-lang="zh">意外產生的醫療費用，花多少報多少（有上限），涵蓋掛號費、縫合、急診費等</span><span data-lang="en">Reimburses actual accident-related medical costs up to policy limit — ER, stitches, etc.</span><span data-lang="vi">Hoàn trả chi phí y tế thực tế do tai nạn — cấp cứu, khâu vết thương, v.v.</span><span data-lang="id">Mengganti biaya medis nyata akibat kecelakaan — IGD, jahitan, dll.</span></div>
+            </div></li>
           </ul>
           <div class="guide-note">
             <span data-lang="zh">⚠️ 不賠疾病造成的傷害（如心臟病、中風）</span>
@@ -693,10 +707,22 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
             <span data-lang="id"><strong>Syarat:</strong> Rawat inap atau Operasi (salah satu)</span>
           </div>
           <ul class="guide-items">
-            <li><div class="guide-dot"></div><div><span data-lang="zh">病房費差額</span><span data-lang="en">Room Upgrade Fee</span><span data-lang="vi">Phí nâng cấp phòng</span><span data-lang="id">Biaya Upgrade Kamar</span></div></li>
-            <li><div class="guide-dot"></div><div><span data-lang="zh">手術費用</span><span data-lang="en">Surgery Fees</span><span data-lang="vi">Phí phẫu thuật</span><span data-lang="id">Biaya Operasi</span></div></li>
-            <li><div class="guide-dot"></div><div><span data-lang="zh">自費藥品與耗材</span><span data-lang="en">Self-pay Medications</span><span data-lang="vi">Thuốc tự chi trả</span><span data-lang="id">Obat Berbayar Mandiri</span></div></li>
-            <li><div class="guide-dot"></div><div><span data-lang="zh">各項雜費</span><span data-lang="en">Miscellaneous Fees</span><span data-lang="vi">Phí linh tinh</span><span data-lang="id">Biaya Lain-lain</span></div></li>
+            <li><div class="guide-dot"></div><div>
+              <div class="guide-item-name"><span data-lang="zh">病房費差額</span><span data-lang="en">Room Upgrade Fee</span><span data-lang="vi">Phí nâng cấp phòng</span><span data-lang="id">Biaya Upgrade Kamar</span></div>
+              <div class="guide-item-desc"><span data-lang="zh">健保只給付「健保病房」（4–6 人）的費用，選單人房或雙人房的差額需自費，每天約 $1,000–$3,500</span><span data-lang="en">NHI covers only standard ward (4–6 beds). Upgrading to private/double room costs $1,000–$3,500/day out-of-pocket</span><span data-lang="vi">BHYT chỉ trả phòng tiêu chuẩn. Phòng đơn/đôi phải tự trả khoảng $1,000–$3,500/ngày</span><span data-lang="id">BPJS hanya menanggung bangsal umum. Kamar single/double perlu bayar selisih $1,000–$3,500/hari</span></div>
+            </div></li>
+            <li><div class="guide-dot"></div><div>
+              <div class="guide-item-name"><span data-lang="zh">手術費用</span><span data-lang="en">Surgery Fees</span><span data-lang="vi">Phí phẫu thuật</span><span data-lang="id">Biaya Operasi</span></div>
+              <div class="guide-item-desc"><span data-lang="zh">手術材料費、麻醉費、手術室費，健保補助有限，自費部分可能高達數萬元</span><span data-lang="en">Surgical materials, anesthesia, and OR fees — NHI coverage is limited, self-pay can reach tens of thousands</span><span data-lang="vi">Vật liệu phẫu thuật, gây mê — BHYT có hạn mức, tự trả có thể lên đến hàng chục triệu</span><span data-lang="id">Material operasi, anestesi — BPJS terbatas, biaya mandiri bisa puluhan juta</span></div>
+            </div></li>
+            <li><div class="guide-dot"></div><div>
+              <div class="guide-item-name"><span data-lang="zh">自費藥品與耗材</span><span data-lang="en">Self-pay Medications & Supplies</span><span data-lang="vi">Thuốc & vật tư tự trả</span><span data-lang="id">Obat & Alat Kesehatan Mandiri</span></div>
+              <div class="guide-item-desc"><span data-lang="zh">健保不給付的新藥、標靶藥物、特殊植入物（如人工關節、自費骨材、特殊導管）</span><span data-lang="en">New drugs, targeted therapy, special implants (prosthetics, bone material) not covered by NHI</span><span data-lang="vi">Thuốc mới, liệu pháp đích, vật tư đặc biệt (khớp nhân tạo, v.v.) không được BHYT chi trả</span><span data-lang="id">Obat baru, terapi target, implan khusus (sendi buatan, dll.) tidak ditanggung BPJS</span></div>
+            </div></li>
+            <li><div class="guide-dot"></div><div>
+              <div class="guide-item-name"><span data-lang="zh">各項雜費</span><span data-lang="en">Miscellaneous Fees</span><span data-lang="vi">Các khoản phí linh tinh</span><span data-lang="id">Biaya Lain-lain</span></div>
+              <div class="guide-item-desc"><span data-lang="zh">掛號費、X 光費、抽血費、點滴費、護理耗材（紗布、針頭）等住院期間健保不補助的零碎費用</span><span data-lang="en">Registration, X-ray, blood tests, IV fluids, gauze, needles — small costs that add up during hospitalization</span><span data-lang="vi">Phí đăng ký, X-quang, xét nghiệm, truyền dịch, gạc — các chi phí nhỏ tích lũy trong thời gian nằm viện</span><span data-lang="id">Pendaftaran, rontgen, tes darah, infus, kain kasa — biaya kecil yang menumpuk selama rawat inap</span></div>
+            </div></li>
           </ul>
           <div class="guide-note">
             <span data-lang="zh">⚠️ 花多少賠多少，只賠自費部分，有上限</span>
@@ -723,10 +749,22 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
             <span data-lang="id"><strong>Syarat:</strong> Didiagnosis penyakit kritis MoHW (tanpa rawat inap)</span>
           </div>
           <ul class="guide-items">
-            <li><div class="guide-dot"></div><div><span data-lang="zh">癌症・心肌梗塞・腦中風</span><span data-lang="en">Cancer, Heart Attack, Stroke</span><span data-lang="vi">Ung thư, Nhồi máu cơ tim, Đột quỵ</span><span data-lang="id">Kanker, Serangan Jantung, Stroke</span></div></li>
-            <li><div class="guide-dot"></div><div><span data-lang="zh">慢性腎衰竭・重大器官移植</span><span data-lang="en">Renal Failure, Organ Transplant</span><span data-lang="vi">Suy thận, Cấy ghép nội tạng</span><span data-lang="id">Gagal Ginjal, Transplantasi Organ</span></div></li>
-            <li><div class="guide-dot"></div><div><span data-lang="zh">共 22 大類疾病</span><span data-lang="en">22 categories total</span><span data-lang="vi">Tổng cộng 22 loại</span><span data-lang="id">Total 22 kategori</span></div></li>
-            <li><div class="guide-dot"></div><div><span data-lang="zh">一次性給付，用途不限</span><span data-lang="en">Lump sum, flexible use</span><span data-lang="vi">Thanh toán một lần, dùng tùy ý</span><span data-lang="id">Lump sum, penggunaan fleksibel</span></div></li>
+            <li><div class="guide-dot"></div><div>
+              <div class="guide-item-name"><span data-lang="zh">癌症・心肌梗塞・腦中風</span><span data-lang="en">Cancer · Heart Attack · Stroke</span><span data-lang="vi">Ung thư · Nhồi máu · Đột quỵ</span><span data-lang="id">Kanker · Serangan Jantung · Stroke</span></div>
+              <div class="guide-item-desc"><span data-lang="zh">三大最常見的重大傷病，確診後憑衛福部核發的「重大傷病卡」即可申請理賠</span><span data-lang="en">Three most common critical illnesses — claim with the government-issued Critical Illness Card upon diagnosis</span><span data-lang="vi">Ba bệnh nặng phổ biến nhất — yêu cầu bồi thường bằng Thẻ bệnh nặng do chính phủ cấp</span><span data-lang="id">Tiga penyakit kritis paling umum — klaim dengan Kartu Penyakit Kritis yang dikeluarkan pemerintah</span></div>
+            </div></li>
+            <li><div class="guide-dot"></div><div>
+              <div class="guide-item-name"><span data-lang="zh">慢性腎衰竭・重大器官移植</span><span data-lang="en">Renal Failure · Organ Transplant</span><span data-lang="vi">Suy thận · Cấy ghép nội tạng</span><span data-lang="id">Gagal Ginjal · Transplantasi Organ</span></div>
+              <div class="guide-item-desc"><span data-lang="zh">需長期洗腎（每週 3 次）或等待器官移植，治療費用與生活衝擊都極大</span><span data-lang="en">Long-term dialysis (3x/week) or organ transplant — enormous ongoing costs and life disruption</span><span data-lang="vi">Lọc máu dài hạn (3 lần/tuần) hoặc ghép tạng — chi phí và ảnh hưởng cuộc sống rất lớn</span><span data-lang="id">Dialisis jangka panjang (3x/minggu) atau transplantasi organ — biaya dan dampak hidup sangat besar</span></div>
+            </div></li>
+            <li><div class="guide-dot"></div><div>
+              <div class="guide-item-name"><span data-lang="zh">共 22 大類疾病</span><span data-lang="en">22 categories total</span><span data-lang="vi">Tổng cộng 22 loại bệnh</span><span data-lang="id">Total 22 kategori penyakit</span></div>
+              <div class="guide-item-desc"><span data-lang="zh">範圍遠比想像中廣，包含神經系統疾病、罕見疾病等，由衛福部官方認定，非保險公司自定標準</span><span data-lang="en">Broader than you think — includes neurological & rare diseases, defined by the government, not the insurer</span><span data-lang="vi">Rộng hơn bạn nghĩ — bao gồm bệnh thần kinh & hiếm gặp, do chính phủ quy định</span><span data-lang="id">Lebih luas dari yang Anda bayangkan — termasuk penyakit neurologis & langka, ditetapkan pemerintah</span></div>
+            </div></li>
+            <li><div class="guide-dot"></div><div>
+              <div class="guide-item-name"><span data-lang="zh">一次性給付，用途不限</span><span data-lang="en">Lump sum, flexible use</span><span data-lang="vi">Thanh toán một lần, dùng tự do</span><span data-lang="id">Lump sum, penggunaan bebas</span></div>
+              <div class="guide-item-desc"><span data-lang="zh">錢直接匯到你帳戶，可用於療養費、家庭生活費、補貼無法工作的收入損失，不受任何限制</span><span data-lang="en">Money goes directly to your account — use it for recovery, living expenses, or lost income, no restrictions</span><span data-lang="vi">Tiền chuyển thẳng vào tài khoản — dùng cho phục hồi, sinh hoạt, bù thu nhập bị mất</span><span data-lang="id">Uang langsung ke rekening Anda — untuk pemulihan, biaya hidup, atau penghasilan yang hilang</span></div>
+            </div></li>
           </ul>
           <div class="guide-note">
             <span data-lang="zh">⚠️ 重大傷病險 ≠ 癌症險，涵蓋 22 大類，範圍更廣</span>
