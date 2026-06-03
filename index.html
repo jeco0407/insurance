@@ -377,6 +377,43 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
 .footer-logo { font-family: 'Noto Serif TC', serif; font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.6); margin-bottom: 5px; }
 .footer-meta { font-size: 11.5px; color: rgba(255,255,255,0.28); line-height: 1.8; }
 
+/* ── HAMBURGER / MOBILE MENU ── */
+.nav-hamburger {
+  display: none;
+  background: none; border: none;
+  font-size: 24px; cursor: pointer;
+  color: var(--navy); padding: 4px 6px;
+  line-height: 1;
+}
+.mobile-menu {
+  display: none;
+  position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+  background: rgba(229,217,207,0.97);
+  backdrop-filter: blur(20px);
+  z-index: 190;
+  padding: 16px 20px 32px;
+  flex-direction: column; gap: 6px;
+  overflow-y: auto;
+}
+.mobile-menu.open { display: flex; }
+.mobile-nav-btn {
+  width: 100%; text-align: left;
+  background: none; border: none;
+  padding: 15px 20px; border-radius: 14px;
+  font-size: 16px; font-weight: 600; color: var(--navy);
+  font-family: 'Noto Sans TC', sans-serif;
+  cursor: pointer; transition: background 0.15s;
+  display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-nav-btn:last-child { border-bottom: none; }
+.mobile-nav-btn:hover, .mobile-nav-btn.active { background: rgba(18,81,95,0.10); }
+.mobile-nav-icon { font-size: 20px; width: 28px; text-align: center; flex-shrink: 0; }
+.mobile-nav-label { display: flex; flex-direction: column; gap: 2px; }
+.mobile-nav-label .zh { font-size: 16px; font-weight: 700; }
+.mobile-nav-label .en { font-size: 12px; color: var(--muted); font-weight: 400; }
+.mobile-menu-divider { height: 1px; background: var(--border); margin: 8px 0; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; gap: 32px; }
@@ -393,19 +430,36 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
 @media (max-width: 640px) {
   nav { padding: 0 16px; }
   .nav-links { display: none; }
+  .nav-hamburger { display: block; }
   .articles-grid { grid-template-columns: 1fr; }
   .os-cards { grid-template-columns: 1fr; }
   .os-card.full { grid-column: 1; }
   .page-body { padding: 32px 20px 56px; }
-  .hero { padding: 48px 20px 40px; }
-  .section-wrap { padding: 40px 20px; }
+  .hero { padding: 40px 20px 36px; }
+  .hero-btns { flex-direction: column; }
+  .hero-btns .btn-primary, .hero-btns .btn-outline { width: 100%; justify-content: center; }
+  .section-wrap { padding: 36px 20px; }
   .os-amt-row { flex-direction: column; gap: 12px; }
-  .inner-top { padding: 36px 20px 36px; }
+  .inner-top { padding: 32px 20px 32px; }
   .t-cov-grid, .t-reason-grid { grid-template-columns: 1fr; }
   .t-vs-wrap { grid-template-columns: 1fr; }
   .t-vs-divider { display: none; }
   .t-highlight { flex-direction: column; text-align: center; }
   .t-big-num { font-size: 52px; }
+  /* Tab row horizontal scroll on mobile */
+  .tab-row { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 6px; scrollbar-width: none; }
+  .tab-row::-webkit-scrollbar { display: none; }
+  .tab-btn { flex-shrink: 0; font-size: 13px; padding: 8px 16px; }
+  /* Pillars compact */
+  .pillar { padding: 20px 10px; }
+  .pillar-zh { font-size: 15px; }
+  .pillar-en { font-size: 11px; }
+  /* CTA strip */
+  .cta-btns { flex-direction: column; align-items: stretch; }
+  .cta-btn { justify-content: center; }
+  .cta-strip { padding: 32px 24px; border-radius: 14px; }
+  /* Guide cards */
+  .t-card-body { padding: 18px 18px 22px; }
 }
 
 /* ── TRAVEL PAGE ── */
@@ -488,6 +542,7 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
   </ul>
 
   <div class="nav-right">
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="選單">☰</button>
     <div class="lang-wrap" id="langWrap">
       <button class="lang-trigger" onclick="toggleMenu(event)">
         🌐 <span id="langLabel">語言</span> <span class="chevron">▼</span>
@@ -501,6 +556,52 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
     </div>
   </div>
 </nav>
+
+<!-- ── MOBILE NAV MENU ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-nav-btn" onclick="showPage('home');closeMobileMenu()">
+    <span class="mobile-nav-icon">🏠</span>
+    <span class="mobile-nav-label">
+      <span class="zh" data-lang="zh">首頁</span><span data-lang="en" class="zh">Home</span><span data-lang="vi" class="zh">Trang Chủ</span><span data-lang="id" class="zh">Beranda</span>
+      <span class="en">Home page</span>
+    </span>
+  </button>
+  <button class="mobile-nav-btn" onclick="showPage('guide');closeMobileMenu()">
+    <span class="mobile-nav-icon">📖</span>
+    <span class="mobile-nav-label">
+      <span class="zh" data-lang="zh">保險知識</span><span data-lang="en" class="zh">Insurance</span><span data-lang="vi" class="zh">Kiến Thức</span><span data-lang="id" class="zh">Panduan</span>
+      <span class="en">3 essential types for foreigners</span>
+    </span>
+  </button>
+  <button class="mobile-nav-btn" onclick="showPage('overseas');closeMobileMenu()">
+    <span class="mobile-nav-icon">🎓</span>
+    <span class="mobile-nav-label">
+      <span class="zh" data-lang="zh">僑生專區</span><span data-lang="en" class="zh">Overseas Students</span><span data-lang="vi" class="zh">Sinh Viên Nước Ngoài</span><span data-lang="id" class="zh">Mahasiswa Perantau</span>
+      <span class="en">Scholarships & benefits in Taiwan</span>
+    </span>
+  </button>
+  <button class="mobile-nav-btn" onclick="showPage('travel');closeMobileMenu()">
+    <span class="mobile-nav-icon">✈️</span>
+    <span class="mobile-nav-label">
+      <span class="zh" data-lang="zh">旅遊險</span><span data-lang="en" class="zh">Travel Insurance</span><span data-lang="vi" class="zh">BH Du Lịch</span><span data-lang="id" class="zh">Asuransi Perjalanan</span>
+      <span class="en">Before you fly</span>
+    </span>
+  </button>
+  <button class="mobile-nav-btn" onclick="showPage('faq');closeMobileMenu()">
+    <span class="mobile-nav-icon">🙋</span>
+    <span class="mobile-nav-label">
+      <span class="zh">FAQ</span>
+      <span class="en">Common questions answered</span>
+    </span>
+  </button>
+  <button class="mobile-nav-btn" onclick="showPage('about');closeMobileMenu()">
+    <span class="mobile-nav-icon">💬</span>
+    <span class="mobile-nav-label">
+      <span class="zh" data-lang="zh">關於我</span><span data-lang="en" class="zh">About</span><span data-lang="vi" class="zh">Về Tôi</span><span data-lang="id" class="zh">Tentang</span>
+      <span class="en">JECKO · LINE · Instagram</span>
+    </span>
+  </button>
+</div>
 
 <!-- ═══════════════════════════════
      HOME PAGE
@@ -1710,6 +1811,23 @@ function toggleMenu(e) { e.stopPropagation(); document.getElementById('langWrap'
 function closeMenu() { document.getElementById('langWrap').classList.remove('open'); }
 document.addEventListener('click', closeMenu);
 
+/* ── Mobile menu ── */
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const ham  = document.getElementById('hamburger');
+  const open = menu.classList.toggle('open');
+  ham.textContent = open ? '✕' : '☰';
+}
+function closeMobileMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').textContent = '☰';
+}
+document.addEventListener('click', e => {
+  const menu = document.getElementById('mobileMenu');
+  const ham  = document.getElementById('hamburger');
+  if (menu.classList.contains('open') && !menu.contains(e.target) && !ham.contains(e.target)) closeMobileMenu();
+});
+
 /* ── Page switching ── */
 const NAV_MAP = { home:'nav-home', guide:'nav-guide', overseas:'nav-overseas', travel:'nav-travel', faq:'nav-faq', about:'nav-about' };
 function showPage(id) {
@@ -1719,6 +1837,7 @@ function showPage(id) {
   if (NAV_MAP[id]) document.getElementById(NAV_MAP[id]).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   document.querySelectorAll('.faq-q.open').forEach(q => { q.classList.remove('open'); q.nextElementSibling.classList.remove('show'); });
+  closeMobileMenu();
 }
 
 /* ── Tabs (overseas) ── */
