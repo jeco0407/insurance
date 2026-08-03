@@ -2200,7 +2200,8 @@ document.addEventListener('click', e => {
 
 /* ── Page switching ── */
 const NAV_MAP = { home:'nav-home', guide:'nav-guide', overseas:'nav-overseas', travel:'nav-travel', faq:'nav-faq', about:'nav-about' };
-function showPage(id) {
+function showPage(id, skipHistory) {
+  if (!document.getElementById(id)) id = 'home';
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   Object.values(NAV_MAP).forEach(nid => document.getElementById(nid).classList.remove('active'));
@@ -2208,7 +2209,17 @@ function showPage(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   document.querySelectorAll('.faq-q.open').forEach(q => { q.classList.remove('open'); q.nextElementSibling.classList.remove('show'); });
   closeMobileMenu();
+  if (!skipHistory) {
+    const hash = '#' + id;
+    if (location.hash !== hash) history.pushState({ page: id }, '', hash);
+  }
 }
+
+/* ── Deep-linking via URL hash (#home / #travel / #faq …) ── */
+window.addEventListener('popstate', () => {
+  showPage(location.hash.replace('#', '') || 'home', true);
+});
+showPage(location.hash.replace('#', '') || 'home', true);
 
 /* ── Tabs (overseas) ── */
 function switchTab(id, btn) {
