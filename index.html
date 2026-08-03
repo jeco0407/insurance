@@ -566,6 +566,25 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
 .t-vs-badge { width: 40px; height: 40px; border-radius: 50%; background: #f5ede6; color: var(--navy); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 2px solid var(--border); }
 .t-note { background: #fdf3f3; border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 16px; font-size: 13px; color: var(--text); line-height: 1.7; }
 .t-note strong { font-weight: 700; color: var(--red); display: block; margin-bottom: 2px; }
+.t-note.good { background: var(--teal-light); border-left-color: var(--teal); }
+.t-note.good strong { color: var(--teal); }
+.t-note + .t-note { margin-top: 10px; }
+.t-group-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); margin: 24px 0 10px; }
+.t-group-label:first-child { margin-top: 0; }
+.t-doc-wrap { overflow-x: auto; margin-top: 4px; }
+.t-doc-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.t-doc-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); padding: 8px 10px; border-bottom: 1px solid var(--border); }
+.t-doc-table td { padding: 10px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; color: var(--text); }
+.t-doc-table tr:last-child td { border-bottom: none; }
+.t-doc-table td:first-child { font-weight: 700; color: var(--navy); white-space: nowrap; }
+.t-recap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 14px; }
+.t-recap-item { background: #f5ede6; border-radius: 10px; padding: 14px 14px; }
+.t-recap-item .ico { font-size: 18px; margin-bottom: 6px; }
+.t-recap-item .ti { font-size: 12.5px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.t-recap-item .de { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+.t-steps { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.t-steps li { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: var(--text); line-height: 1.65; }
+.t-step-n { width: 20px; height: 20px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
 </style>
 </head>
 <body>
@@ -1779,6 +1798,303 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
             <span data-lang="vi">Nếu vội và không liên lạc được đại lý, mua online là ổn. Nhưng nếu có thời gian, có đại lý giúp xử lý khi xảy ra sự cố.</span>
             <span data-lang="id">Jika terburu-buru dan tidak bisa menghubungi agen, beli online tidak masalah. Tapi jika ada waktu, punya agen berarti ada yang membantu saat terjadi insiden.</span>
           </div>
+        </div>
+      </div>
+
+      <!-- 5. 理賠實務 Q&A -->
+      <div class="t-card">
+        <div class="t-card-header">
+          <div class="t-card-icon">💬</div>
+          <div class="t-card-titles">
+            <h3><span data-lang="zh">理賠實務 Q&amp;A</span><span data-lang="en">Real-World Claims Q&amp;A</span><span data-lang="vi">Hỏi Đáp Bồi Thường Thực Tế</span><span data-lang="id">Tanya Jawab Klaim Nyata</span></h3>
+            <div class="t-sub"><span data-lang="zh">出險時最常遇到的問題，先看這篇</span><span data-lang="en">The most common claims questions — read this first</span><span data-lang="vi">Câu hỏi thường gặp nhất khi yêu cầu bồi thường</span><span data-lang="id">Pertanyaan klaim paling umum — baca ini dulu</span></div>
+          </div>
+        </div>
+        <div class="t-card-body">
+
+          <div class="t-group-label"><span data-lang="zh">✈️ 班機延誤與取消</span><span data-lang="en">✈️ Flight Delays &amp; Cancellations</span><span data-lang="vi">✈️ Chậm &amp; Hủy Chuyến Bay</span><span data-lang="id">✈️ Penundaan &amp; Pembatalan Penerbangan</span></div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span data-lang="zh">班機被取消，旅遊不便險會賠嗎？現場第一步要做什麼？</span>
+              <span data-lang="en">My flight was cancelled — is it covered? What's the first thing to do on-site?</span>
+              <span data-lang="vi">Chuyến bay bị hủy — có được bồi thường không? Việc đầu tiên cần làm là gì?</span>
+              <span data-lang="id">Penerbangan saya dibatalkan — apakah ditanggung? Apa yang harus dilakukan pertama?</span>
+              <span class="arr">▼</span>
+            </button>
+            <div class="faq-a">
+              <div class="t-note good">
+                <strong><span data-lang="zh">✅ 正確做法</span><span data-lang="en">✅ What to do</span><span data-lang="vi">✅ Cách xử lý</span><span data-lang="id">✅ Yang harus dilakukan</span></strong>
+                <span data-lang="zh">班機取消通常可以申請理賠，但前提是行程有繼續（搭乘航空公司的替代班機）。別忘記向航空公司申請「<strong>航班取消證明</strong>」，沒有這份文件，保險公司不會理賠。</span>
+                <span data-lang="en">A cancelled flight is generally claimable, but only if your trip continued (i.e. you took a replacement flight). Don't forget to request a <strong>"Flight Cancellation Certificate"</strong> from the airline — without it, the insurer won't pay out.</span>
+                <span data-lang="vi">Chuyến bay bị hủy thường có thể yêu cầu bồi thường, nhưng chỉ khi hành trình vẫn tiếp tục (đi chuyến thay thế). Đừng quên xin <strong>"Giấy Chứng Nhận Hủy Chuyến"</strong> từ hãng bay — thiếu giấy này sẽ không được bồi thường.</span>
+                <span data-lang="id">Penerbangan yang dibatalkan umumnya bisa diklaim, tapi hanya jika perjalanan tetap berlanjut (naik penerbangan pengganti). Jangan lupa minta <strong>"Sertifikat Pembatalan Penerbangan"</strong> dari maskapai — tanpa ini klaim tidak akan dibayar.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span data-lang="zh">班機延誤幾小時才能申請？賠多少？</span>
+              <span data-lang="en">How many hours of delay before I can claim? How much does it pay?</span>
+              <span data-lang="vi">Chậm chuyến bao nhiêu giờ mới được yêu cầu bồi thường? Được bồi thường bao nhiêu?</span>
+              <span data-lang="id">Berapa jam keterlambatan sebelum bisa klaim? Berapa besar pembayarannya?</span>
+              <span class="arr">▼</span>
+            </button>
+            <div class="faq-a">
+              <div class="t-note good">
+                <strong><span data-lang="zh">✅ 正解</span><span data-lang="en">✅ The correct answer</span><span data-lang="vi">✅ Câu trả lời đúng</span><span data-lang="id">✅ Jawaban yang benar</span></strong>
+                <span data-lang="zh">目前多數保單採示範條款，延誤達 <strong>4 小時以上</strong>啟動理賠，採累進式定額給付，每 4 小時賠 6,000 元；單張保單每次上限 <strong>1.2 萬元</strong>；投保 2 張，單次最高 <strong>2.4 萬元</strong>。實際金額仍以保單條款為準。</span>
+                <span data-lang="en">Most policies now follow the model-clause standard: a delay of <strong>4 hours or more</strong> triggers a claim. Payouts are tiered flat amounts — NT$6,000 per 4-hour block, capped at <strong>NT$12,000</strong> per incident on a single policy (up to <strong>NT$24,000</strong> with two policies). Actual amounts depend on your policy terms.</span>
+                <span data-lang="vi">Hầu hết các hợp đồng hiện áp dụng điều khoản mẫu: chậm từ <strong>4 giờ trở lên</strong> sẽ kích hoạt bồi thường theo bậc — 6.000 Đài tệ mỗi 4 giờ, tối đa <strong>12.000 Đài tệ</strong>/lần với 1 hợp đồng (tối đa 24.000 với 2 hợp đồng). Số tiền thực tế tùy theo điều khoản hợp đồng.</span>
+                <span data-lang="id">Sebagian besar polis kini memakai klausul standar: keterlambatan <strong>4 jam atau lebih</strong> memicu klaim. Pembayaran bertingkat — NT$6.000 per 4 jam, maksimal <strong>NT$12.000</strong> per kejadian untuk satu polis (hingga NT$24.000 dengan dua polis). Jumlah pasti tergantung ketentuan polis.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span data-lang="zh">出發前就被改班期，會賠嗎？</span>
+              <span data-lang="en">My schedule was changed before departure — is that covered?</span>
+              <span data-lang="vi">Lịch bay bị thay đổi trước khi khởi hành — có được bồi thường không?</span>
+              <span data-lang="id">Jadwal saya diubah sebelum keberangkatan — apakah ditanggung?</span>
+              <span class="arr">▼</span>
+            </button>
+            <div class="faq-a">
+              <div class="t-note">
+                <strong><span data-lang="zh">⚠️ 各家條款不同</span><span data-lang="en">⚠️ Every insurer differs</span><span data-lang="vi">⚠️ Mỗi công ty khác nhau</span><span data-lang="id">⚠️ Setiap asuransi berbeda</span></strong>
+                <span data-lang="zh">各保險公司對「旅程更改」的定義不同——有些包含出發前被更改，有些不含。</span>
+                <span data-lang="en">Each insurer defines "itinerary change" differently — some include pre-departure changes made by the airline, some don't.</span>
+                <span data-lang="vi">Mỗi công ty bảo hiểm định nghĩa "thay đổi hành trình" khác nhau — có nơi bao gồm thay đổi trước khởi hành, có nơi không.</span>
+                <span data-lang="id">Setiap asuransi mendefinisikan "perubahan itinerary" secara berbeda — sebagian mencakup perubahan sebelum keberangkatan, sebagian tidak.</span>
+              </div>
+              <div class="t-note good">
+                <strong><span data-lang="zh">✅ 建議做法</span><span data-lang="en">✅ Recommended approach</span><span data-lang="vi">✅ Cách xử lý</span><span data-lang="id">✅ Cara yang disarankan</span></strong>
+                <span data-lang="zh">收到航空公司通知後，保留所有書面紀錄（Email、簡訊截圖），並主動致電保險公司確認是否符合「旅程更改險」條款。</span>
+                <span data-lang="en">After receiving notice from the airline, keep every written record (emails, text screenshots) and call your insurer directly to confirm whether it falls under "itinerary change" coverage.</span>
+                <span data-lang="vi">Sau khi nhận thông báo từ hãng bay, hãy giữ mọi bằng chứng bằng văn bản (email, ảnh chụp tin nhắn) và gọi trực tiếp cho công ty bảo hiểm để xác nhận.</span>
+                <span data-lang="id">Setelah menerima pemberitahuan dari maskapai, simpan semua catatan tertulis (email, tangkapan layar SMS) dan hubungi langsung pihak asuransi untuk konfirmasi.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-group-label"><span data-lang="zh">🧳 行李問題</span><span data-lang="en">🧳 Baggage Issues</span><span data-lang="vi">🧳 Vấn Đề Hành Lý</span><span data-lang="id">🧳 Masalah Bagasi</span></div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span data-lang="zh">行李箱被航空公司摔壞了，可以理賠嗎？</span>
+              <span data-lang="en">The airline smashed my suitcase — is that covered?</span>
+              <span data-lang="vi">Vali bị hãng bay làm hỏng — có được bồi thường không?</span>
+              <span data-lang="id">Koper saya rusak oleh maskapai — apakah ditanggung?</span>
+              <span class="arr">▼</span>
+            </button>
+            <div class="faq-a">
+              <div class="t-note">
+                <strong><span data-lang="zh">❌ 很多人以為能賠</span><span data-lang="en">❌ A common misconception</span><span data-lang="vi">❌ Hiểu lầm phổ biến</span><span data-lang="id">❌ Kesalahpahaman umum</span></strong>
+                <span data-lang="zh">「名牌行李箱被摔壞，保險應該會賠吧？」——答案是<strong>不賠</strong>。</span>
+                <span data-lang="en">"My designer suitcase got smashed, insurance should cover it, right?" — the answer is <strong>no</strong>.</span>
+                <span data-lang="vi">"Vali hàng hiệu bị hỏng, bảo hiểm chắc sẽ đền chứ?" — câu trả lời là <strong>không</strong>.</span>
+                <span data-lang="id">"Koper branded saya rusak, pasti diganti asuransi kan?" — jawabannya <strong>tidak</strong>.</span>
+              </div>
+              <div class="t-note good">
+                <strong><span data-lang="zh">✅ 實際規定</span><span data-lang="en">✅ The actual rule</span><span data-lang="vi">✅ Quy định thực tế</span><span data-lang="id">✅ Aturan sebenarnya</span></strong>
+                <span data-lang="zh">行李損失保險保障的是行李箱「<strong>內容物</strong>」，行李箱本身（容器）不在保障範圍。</span>
+                <span data-lang="en">Baggage loss coverage protects the suitcase's <strong>contents</strong> — the suitcase itself (the container) is not covered.</span>
+                <span data-lang="vi">Bảo hiểm hành lý bảo vệ <strong>đồ đạc bên trong</strong> vali — bản thân chiếc vali không được bảo hiểm.</span>
+                <span data-lang="id">Asuransi bagasi melindungi <strong>isi</strong> koper — koper itu sendiri (wadahnya) tidak ditanggung.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span data-lang="zh">行李沒跟上飛機，現場怎麼處理？</span>
+              <span data-lang="en">My bags didn't make it onto the flight — what do I do on-site?</span>
+              <span data-lang="vi">Hành lý không lên cùng chuyến bay — cần xử lý thế nào tại chỗ?</span>
+              <span data-lang="id">Bagasi saya tidak ikut penerbangan — apa yang harus dilakukan di tempat?</span>
+              <span class="arr">▼</span>
+            </button>
+            <div class="faq-a">
+              <div class="t-note good">
+                <strong><span data-lang="zh">✅ 正解</span><span data-lang="en">✅ The correct answer</span><span data-lang="vi">✅ Câu trả lời đúng</span><span data-lang="id">✅ Jawaban yang benar</span></strong>
+                <span data-lang="zh">抵達目的地後 <strong>6 小時</strong>內仍未取得行李，即可申請行李延誤理賠。帶著行李條去行李服務櫃檯申報，取得<strong>申報單號碼</strong>。</span>
+                <span data-lang="en">If your bags still haven't arrived <strong>6 hours</strong> after you land, you can file a baggage delay claim. Bring your baggage tag to the baggage services counter and get a <strong>report reference number</strong>.</span>
+                <span data-lang="vi">Nếu sau <strong>6 giờ</strong> hạ cánh vẫn chưa nhận được hành lý, bạn có thể yêu cầu bồi thường chậm hành lý. Mang thẻ hành lý đến quầy dịch vụ để lấy <strong>số biên bản</strong>.</span>
+                <span data-lang="id">Jika bagasi belum tiba dalam <strong>6 jam</strong> setelah mendarat, Anda bisa mengajukan klaim keterlambatan bagasi. Bawa label bagasi ke konter layanan bagasi dan dapatkan <strong>nomor laporan</strong>.</span>
+              </div>
+              <div class="t-note">
+                <strong><span data-lang="zh">⚠️ 超常見地雷</span><span data-lang="en">⚠️ A very common trap</span><span data-lang="vi">⚠️ Cạm bẫy rất phổ biến</span><span data-lang="id">⚠️ Jebakan yang sangat umum</span></strong>
+                <span data-lang="zh">行李延誤理賠只限「<strong>海外旅程途中</strong>」，回程抵達台灣時行李沒跟到，<strong>不在理賠範圍</strong>。</span>
+                <span data-lang="en">Baggage delay coverage only applies <strong>during your overseas trip</strong>. If your bags arrive late after you've returned home, <strong>that's not covered</strong>.</span>
+                <span data-lang="vi">Bảo hiểm chậm hành lý chỉ áp dụng <strong>trong chuyến đi ở nước ngoài</strong>. Hành lý đến trễ sau khi về nước <strong>không được bồi thường</strong>.</span>
+                <span data-lang="id">Asuransi keterlambatan bagasi hanya berlaku <strong>selama perjalanan di luar negeri</strong>. Bagasi yang tiba terlambat setelah pulang <strong>tidak ditanggung</strong>.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span data-lang="zh">因班機取消被迫在國外多住幾天，飯店費用能申請理賠嗎？</span>
+              <span data-lang="en">My flight cancellation forced me to stay abroad extra nights — can I claim the hotel cost?</span>
+              <span data-lang="vi">Bị hủy chuyến phải ở lại nước ngoài thêm — có thể yêu cầu bồi thường tiền khách sạn không?</span>
+              <span data-lang="id">Pembatalan penerbangan memaksa saya menginap ekstra — apakah biaya hotel bisa diklaim?</span>
+              <span class="arr">▼</span>
+            </button>
+            <div class="faq-a">
+              <div class="t-note good">
+                <span data-lang="zh">因班機取消／延誤被迫額外住宿，費用通常可從「旅程更改保險」項目申請，須備妥：航班取消／延誤證明、飯店住宿收據（含發票）、餐飲交通費收據（如適用）。建議住宿前先致電保險公司確認可報銷範圍。</span>
+                <span data-lang="en">Extra accommodation caused by a flight cancellation/delay is usually claimable under "itinerary change" coverage. You'll need: a flight cancellation/delay certificate, a hotel receipt (with invoice), and meal/transport receipts (if applicable). Call your insurer to confirm what's reimbursable before booking a stay.</span>
+                <span data-lang="vi">Chi phí lưu trú phát sinh do hủy/chậm chuyến thường có thể yêu cầu bồi thường theo "bảo hiểm thay đổi hành trình". Cần chuẩn bị: giấy chứng nhận hủy/chậm chuyến, hóa đơn khách sạn, hóa đơn ăn uống/đi lại (nếu có). Nên gọi bảo hiểm xác nhận trước khi đặt phòng.</span>
+                <span data-lang="id">Biaya menginap tambahan akibat pembatalan/keterlambatan penerbangan biasanya bisa diklaim di bawah "asuransi perubahan itinerary". Dokumen yang dibutuhkan: sertifikat pembatalan/keterlambatan, kwitansi hotel (dengan invoice), kwitansi makan/transportasi (jika ada). Sebaiknya hubungi asuransi untuk konfirmasi sebelum memesan.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-group-label"><span data-lang="zh">📋 理賠文件與流程</span><span data-lang="en">📋 Claim Documents &amp; Process</span><span data-lang="vi">📋 Hồ Sơ &amp; Quy Trình Bồi Thường</span><span data-lang="id">📋 Dokumen &amp; Proses Klaim</span></div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span data-lang="zh">各種情境要準備哪些文件？快速對照</span>
+              <span data-lang="en">What documents do I need for each scenario? Quick reference</span>
+              <span data-lang="vi">Mỗi tình huống cần chuẩn bị giấy tờ gì? Tra cứu nhanh</span>
+              <span data-lang="id">Dokumen apa yang dibutuhkan untuk tiap situasi? Referensi cepat</span>
+              <span class="arr">▼</span>
+            </button>
+            <div class="faq-a">
+              <div class="t-doc-wrap">
+                <table class="t-doc-table">
+                  <tr>
+                    <th><span data-lang="zh">情境</span><span data-lang="en">Scenario</span><span data-lang="vi">Tình huống</span><span data-lang="id">Situasi</span></th>
+                    <th><span data-lang="zh">必備文件</span><span data-lang="en">Required Documents</span><span data-lang="vi">Giấy tờ cần thiết</span><span data-lang="id">Dokumen yang dibutuhkan</span></th>
+                  </tr>
+                  <tr>
+                    <td><span data-lang="zh">班機延誤</span><span data-lang="en">Flight delay</span><span data-lang="vi">Chậm chuyến</span><span data-lang="id">Penerbangan tertunda</span></td>
+                    <td><span data-lang="zh">機票／登機證 ＋ 航空公司開立的延誤證明</span><span data-lang="en">Ticket/boarding pass + airline-issued delay certificate</span><span data-lang="vi">Vé/thẻ lên máy bay + giấy chứng nhận chậm chuyến</span><span data-lang="id">Tiket/boarding pass + sertifikat keterlambatan dari maskapai</span></td>
+                  </tr>
+                  <tr>
+                    <td><span data-lang="zh">班機取消</span><span data-lang="en">Flight cancellation</span><span data-lang="vi">Hủy chuyến</span><span data-lang="id">Penerbangan dibatalkan</span></td>
+                    <td><span data-lang="zh">航班取消證明 ＋ 原機票 ＋ 住宿／餐飲收據</span><span data-lang="en">Flight cancellation certificate + original ticket + accommodation/meal receipts</span><span data-lang="vi">Giấy hủy chuyến + vé gốc + hóa đơn lưu trú/ăn uống</span><span data-lang="id">Sertifikat pembatalan + tiket asli + kwitansi menginap/makan</span></td>
+                  </tr>
+                  <tr>
+                    <td><span data-lang="zh">行李延誤</span><span data-lang="en">Baggage delay</span><span data-lang="vi">Chậm hành lý</span><span data-lang="id">Bagasi tertunda</span></td>
+                    <td><span data-lang="zh">PIR 申報單（向航空公司申請）＋ 購買必需品收據</span><span data-lang="en">PIR report (filed with the airline) + receipts for essential purchases</span><span data-lang="vi">Biên bản PIR (từ hãng bay) + hóa đơn mua đồ thiết yếu</span><span data-lang="id">Laporan PIR (dari maskapai) + kwitansi pembelian kebutuhan penting</span></td>
+                  </tr>
+                  <tr>
+                    <td><span data-lang="zh">行李遺失</span><span data-lang="en">Baggage loss</span><span data-lang="vi">Mất hành lý</span><span data-lang="id">Bagasi hilang</span></td>
+                    <td><span data-lang="zh">行李遺失證明 ＋ 物品清單及估值</span><span data-lang="en">Baggage loss certificate + itemized list with valuation</span><span data-lang="vi">Giấy chứng nhận mất hành lý + danh sách đồ vật và định giá</span><span data-lang="id">Sertifikat kehilangan bagasi + daftar barang beserta perkiraan nilai</span></td>
+                  </tr>
+                  <tr>
+                    <td><span data-lang="zh">行李被竊</span><span data-lang="en">Baggage theft</span><span data-lang="vi">Hành lý bị trộm</span><span data-lang="id">Bagasi dicuri</span></td>
+                    <td><span data-lang="zh">當地警察局報案證明（缺這份幾乎不賠）</span><span data-lang="en">Local police report (missing this and it's almost never paid)</span><span data-lang="vi">Biên bản trình báo công an địa phương (thiếu sẽ khó được bồi thường)</span><span data-lang="id">Laporan polisi setempat (tanpa ini hampir tidak akan dibayar)</span></td>
+                  </tr>
+                  <tr>
+                    <td><span data-lang="zh">海外就醫</span><span data-lang="en">Overseas medical treatment</span><span data-lang="vi">Khám chữa bệnh ở nước ngoài</span><span data-lang="id">Perawatan medis di luar negeri</span></td>
+                    <td><span data-lang="zh">診斷書 ＋ 醫療費用收據 ＋ 費用明細</span><span data-lang="en">Diagnosis report + medical bill + itemized costs</span><span data-lang="vi">Giấy chẩn đoán + hóa đơn y tế + chi tiết chi phí</span><span data-lang="id">Laporan diagnosis + tagihan medis + rincian biaya</span></td>
+                  </tr>
+                  <tr>
+                    <td><span data-lang="zh">旅程更改</span><span data-lang="en">Itinerary change</span><span data-lang="vi">Thay đổi hành trình</span><span data-lang="id">Perubahan itinerary</span></td>
+                    <td><span data-lang="zh">原行程訂單 ＋ 更改原因證明 ＋ 相關費用收據</span><span data-lang="en">Original itinerary booking + proof of reason for change + related receipts</span><span data-lang="vi">Đơn đặt hành trình gốc + bằng chứng lý do thay đổi + hóa đơn liên quan</span><span data-lang="id">Booking itinerary asli + bukti alasan perubahan + kwitansi terkait</span></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="t-note good" style="margin-top:14px;">
+                <span data-lang="zh">⚡ 黃金原則：事故當下，先拿官方文件再安頓自己</span>
+                <span data-lang="en">⚡ Golden rule: get official documentation first, then take care of yourself</span>
+                <span data-lang="vi">⚡ Nguyên tắc vàng: lấy giấy tờ chính thức trước, rồi mới lo cho bản thân</span>
+                <span data-lang="id">⚡ Aturan emas: dapatkan dokumen resmi dulu, baru urus diri sendiri</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span data-lang="zh">回國後多久要申請？保期快到卻還回不來怎麼辦？</span>
+              <span data-lang="en">How soon after returning home do I need to file? What if my policy expires before I can get back?</span>
+              <span data-lang="vi">Về nước bao lâu thì phải nộp hồ sơ? Nếu hợp đồng sắp hết hạn mà chưa về được thì sao?</span>
+              <span data-lang="id">Berapa lama setelah pulang harus mengajukan klaim? Bagaimana jika polis kedaluwarsa sebelum saya kembali?</span>
+              <span class="arr">▼</span>
+            </button>
+            <div class="faq-a">
+              <div class="t-note">
+                <strong><span data-lang="zh">⚠️ 最容易忘的一件事</span><span data-lang="en">⚠️ The thing everyone forgets</span><span data-lang="vi">⚠️ Điều dễ quên nhất</span><span data-lang="id">⚠️ Hal yang paling sering terlupa</span></strong>
+                <span data-lang="zh">如果旅途中遇到狀況無法如期回台，必須在<strong>保期屆滿前</strong>主動致電保險公司申請「展延保期」。逾期後就沒有保障了，這是滯留海外時最大的地雷。</span>
+                <span data-lang="en">If something prevents you from returning home on schedule, you must proactively call your insurer to request a <strong>"policy extension" before the policy expires</strong>. Coverage ends once it lapses — this is the biggest pitfall when you're stranded abroad.</span>
+                <span data-lang="vi">Nếu không thể về đúng lịch trình, bạn phải chủ động gọi cho bảo hiểm để xin <strong>"gia hạn hợp đồng" trước khi hết hạn</strong>. Bảo hiểm sẽ hết hiệu lực nếu hết hạn — đây là cạm bẫy lớn nhất khi bị kẹt ở nước ngoài.</span>
+                <span data-lang="id">Jika Anda tidak bisa pulang sesuai jadwal, Anda harus proaktif menelepon asuransi untuk meminta <strong>"perpanjangan polis" sebelum polis kedaluwarsa</strong>. Perlindungan berakhir begitu kedaluwarsa — ini jebakan terbesar saat terjebak di luar negeri.</span>
+              </div>
+              <div class="t-note good">
+                <strong><span data-lang="zh">✅ 完整流程</span><span data-lang="en">✅ Full process</span><span data-lang="vi">✅ Quy trình đầy đủ</span><span data-lang="id">✅ Proses lengkap</span></strong>
+                <ul class="t-steps">
+                  <li><span class="t-step-n">1</span><span data-lang="zh">事故發生 → 現場立刻蒐集所有官方文件</span><span data-lang="en">Incident occurs → immediately collect all official documentation on-site</span><span data-lang="vi">Xảy ra sự cố → thu thập ngay mọi giấy tờ chính thức tại chỗ</span><span data-lang="id">Insiden terjadi → segera kumpulkan semua dokumen resmi di tempat</span></li>
+                  <li><span class="t-step-n">2</span><span data-lang="zh">若無法如期回台 → 保期屆滿前致電申請展延</span><span data-lang="en">Can't return on schedule → call to request an extension before the policy expires</span><span data-lang="vi">Không thể về đúng hạn → gọi xin gia hạn trước khi hết hạn</span><span data-lang="id">Tidak bisa pulang tepat waktu → telepon minta perpanjangan sebelum polis kedaluwarsa</span></li>
+                  <li><span class="t-step-n">3</span><span data-lang="zh">回台後 → 填寫理賠申請書並附上所有文件</span><span data-lang="en">After returning home → fill out the claim form and attach all documents</span><span data-lang="vi">Sau khi về nước → điền đơn yêu cầu bồi thường và đính kèm mọi giấy tờ</span><span data-lang="id">Setelah pulang → isi formulir klaim dan lampirkan semua dokumen</span></li>
+                  <li><span class="t-step-n">4</span><span data-lang="zh">郵寄／線上送件（各家方式不同）</span><span data-lang="en">Submit by mail/online (varies by insurer)</span><span data-lang="vi">Gửi qua bưu điện/trực tuyến (tùy công ty)</span><span data-lang="id">Kirim via pos/online (tergantung asuransi)</span></li>
+                  <li><span class="t-step-n">5</span><span data-lang="zh">等待審核 7–15 個工作天 → 收到匯款通知</span><span data-lang="en">Wait 7–15 business days for review → receive payment notice</span><span data-lang="vi">Chờ xét duyệt 7–15 ngày làm việc → nhận thông báo chuyển tiền</span><span data-lang="id">Tunggu tinjauan 7–15 hari kerja → terima pemberitahuan pembayaran</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span data-lang="zh">旅平險跟旅遊不便險是一樣的東西嗎？</span>
+              <span data-lang="en">Are travel accident insurance and travel disruption insurance the same thing?</span>
+              <span data-lang="vi">Bảo hiểm tai nạn du lịch và bảo hiểm bất tiện du lịch có giống nhau không?</span>
+              <span data-lang="id">Apakah asuransi kecelakaan perjalanan dan asuransi ketidaknyamanan perjalanan itu sama?</span>
+              <span class="arr">▼</span>
+            </button>
+            <div class="faq-a">
+              <div class="t-note">
+                <strong><span data-lang="zh">❌ 常見誤解</span><span data-lang="en">❌ A common misunderstanding</span><span data-lang="vi">❌ Hiểu lầm phổ biến</span><span data-lang="id">❌ Kesalahpahaman umum</span></strong>
+                <span data-lang="zh">「買了旅平險，班機延誤、行李遺失應該都有保吧？」——不一定！</span>
+                <span data-lang="en">"I bought travel accident insurance, so flight delays and lost baggage should be covered too, right?" — not necessarily!</span>
+                <span data-lang="vi">"Tôi mua bảo hiểm tai nạn du lịch, chắc chậm chuyến hay mất hành lý cũng được bồi thường?" — không hẳn!</span>
+                <span data-lang="id">"Saya sudah beli asuransi kecelakaan perjalanan, jadi keterlambatan dan bagasi hilang pasti ditanggung, kan?" — belum tentu!</span>
+              </div>
+              <div class="t-note good">
+                <strong><span data-lang="zh">✅ 正確觀念</span><span data-lang="en">✅ The correct understanding</span><span data-lang="vi">✅ Hiểu đúng</span><span data-lang="id">✅ Pemahaman yang benar</span></strong>
+                <span data-lang="zh"><strong>旅平險</strong>保人身風險：意外身故、意外醫療、海外急診。<strong>不便險</strong>保行程不便：班機延誤／取消、行李問題、旅程更改。現在多數方案會綁在一起賣，但仍要確認自己買的包含哪些項目，不要假設「有買就全包」。</span>
+                <span data-lang="en"><strong>Travel accident insurance</strong> covers personal risk: accidental death, accidental medical costs, overseas emergency care. <strong>Travel disruption insurance</strong> covers trip inconveniences: flight delay/cancellation, baggage issues, itinerary changes. Most plans are now bundled together, but confirm exactly what your plan includes — don't assume "if I bought a plan, everything's covered."</span>
+                <span data-lang="vi"><strong>Bảo hiểm tai nạn du lịch</strong> bảo vệ rủi ro cá nhân: tử vong do tai nạn, chi phí y tế tai nạn, cấp cứu ở nước ngoài. <strong>Bảo hiểm bất tiện du lịch</strong> bảo vệ sự bất tiện: chậm/hủy chuyến, vấn đề hành lý, thay đổi hành trình. Hầu hết các gói hiện được bán chung, nhưng hãy xác nhận rõ gói của bạn bao gồm những gì.</span>
+                <span data-lang="id"><strong>Asuransi kecelakaan perjalanan</strong> menanggung risiko pribadi: kematian akibat kecelakaan, biaya medis kecelakaan, perawatan darurat di luar negeri. <strong>Asuransi ketidaknyamanan perjalanan</strong> menanggung gangguan perjalanan: keterlambatan/pembatalan penerbangan, masalah bagasi, perubahan itinerary. Sebagian besar paket kini dijual bersamaan, tapi tetap pastikan apa saja yang dicakup paket Anda.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-group-label"><span data-lang="zh">🔖 快速記憶</span><span data-lang="en">🔖 Quick Recap</span><span data-lang="vi">🔖 Ghi Nhớ Nhanh</span><span data-lang="id">🔖 Rangkuman Cepat</span></div>
+          <div class="t-recap-grid">
+            <div class="t-recap-item">
+              <div class="ico">🏃</div>
+              <div class="ti"><span data-lang="zh">先拿文件</span><span data-lang="en">Get documents first</span><span data-lang="vi">Lấy giấy tờ trước</span><span data-lang="id">Dapatkan dokumen dulu</span></div>
+              <div class="de"><span data-lang="zh">出事後先拿官方證明，再安頓自己，沒有文件什麼都賠不了。</span><span data-lang="en">Get official proof before taking care of yourself. No documents, no claim.</span><span data-lang="vi">Lấy bằng chứng chính thức trước, rồi mới lo cho bản thân. Không giấy tờ, không bồi thường.</span><span data-lang="id">Dapatkan bukti resmi sebelum mengurus diri sendiri. Tanpa dokumen, tidak ada klaim.</span></div>
+            </div>
+            <div class="t-recap-item">
+              <div class="ico">🧳</div>
+              <div class="ti"><span data-lang="zh">箱≠內容物</span><span data-lang="en">Case ≠ contents</span><span data-lang="vi">Vali ≠ đồ đạc</span><span data-lang="id">Koper ≠ isinya</span></div>
+              <div class="de"><span data-lang="zh">行李箱本身不賠，保的是裡面的衣物與物品。</span><span data-lang="en">The suitcase itself is not covered — only what's inside it.</span><span data-lang="vi">Bản thân vali không được bồi thường — chỉ đồ bên trong.</span><span data-lang="id">Koper itu sendiri tidak ditanggung — hanya isinya.</span></div>
+            </div>
+            <div class="t-recap-item">
+              <div class="ico">🛬</div>
+              <div class="ti"><span data-lang="zh">回台就不算</span><span data-lang="en">Home doesn't count</span><span data-lang="vi">Về nước là hết hạn</span><span data-lang="id">Sudah pulang tidak berlaku</span></div>
+              <div class="de"><span data-lang="zh">行李延誤只限海外旅程途中，回台後行李才到不賠。</span><span data-lang="en">Baggage delay only applies while abroad. Bags arriving late after you're home aren't covered.</span><span data-lang="vi">Chậm hành lý chỉ áp dụng khi ở nước ngoài. Hành lý đến trễ sau khi về nước không được bồi thường.</span><span data-lang="id">Keterlambatan bagasi hanya berlaku di luar negeri. Bagasi terlambat setelah pulang tidak ditanggung.</span></div>
+            </div>
+            <div class="t-recap-item">
+              <div class="ico">📞</div>
+              <div class="ti"><span data-lang="zh">滯留要展延</span><span data-lang="en">Stranded? Extend it</span><span data-lang="vi">Kẹt lại? Gia hạn ngay</span><span data-lang="id">Terjebak? Perpanjang</span></div>
+              <div class="de"><span data-lang="zh">無法如期回台，保期前打電話申請展延，否則保障失效。</span><span data-lang="en">Can't return on time? Call to request an extension before your policy expires, or coverage lapses.</span><span data-lang="vi">Không thể về đúng hạn? Gọi xin gia hạn trước khi hết hạn, nếu không bảo hiểm sẽ hết hiệu lực.</span><span data-lang="id">Tidak bisa pulang tepat waktu? Telepon untuk perpanjangan sebelum polis kedaluwarsa.</span></div>
+            </div>
+            <div class="t-recap-item">
+              <div class="ico">📅</div>
+              <div class="ti"><span data-lang="zh">投保日決定一切</span><span data-lang="en">Purchase date decides</span><span data-lang="vi">Ngày mua quyết định</span><span data-lang="id">Tanggal beli menentukan</span></div>
+              <div class="de"><span data-lang="zh">新舊制看投保日不看旅程日，提早投保才適用新制保障。</span><span data-lang="en">New vs. old rules depend on your purchase date, not trip date.</span><span data-lang="vi">Quy định mới/cũ phụ thuộc vào ngày mua, không phải ngày đi.</span><span data-lang="id">Aturan baru/lama tergantung tanggal pembelian, bukan tanggal perjalanan.</span></div>
+            </div>
+            <div class="t-recap-item">
+              <div class="ico">🌀</div>
+              <div class="ti"><span data-lang="zh">颱風前先保</span><span data-lang="en">Buy before the storm</span><span data-lang="vi">Mua trước bão</span><span data-lang="id">Beli sebelum badai</span></div>
+              <div class="de"><span data-lang="zh">颱風警報發布後才投保，很可能不賠，訂完機票就投保。</span><span data-lang="en">Buying after a typhoon warning is issued likely won't be covered. Insure as soon as you book your flight.</span><span data-lang="vi">Mua sau khi có cảnh báo bão thường sẽ không được bồi thường. Hãy mua ngay sau khi đặt vé.</span><span data-lang="id">Membeli setelah peringatan topan biasanya tidak ditanggung. Asuransikan segera setelah memesan tiket.</span></div>
+            </div>
+          </div>
+
         </div>
       </div>
 
