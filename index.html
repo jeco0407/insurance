@@ -5,20 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="FTbfNeVxsNPJpVGxPNzf7KwppAG2VpijdtQ2H49ss-g" />
 <title>保險好鄰居 | 台灣保險知識平台</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:     #e5d9cf;
-  --navy:   #12515f;
-  --blue:   #465169;
-  --red:    #b95756;
+  --bg:     #fdf8f3;
+  --navy:   #2d6a5f;
+  --navy-dark: #1f4a41;
+  --blue:   #4f7267;
+  --red:    #d1704f;
   --white:  #ffffff;
-  --card:   #faf6f2;
+  --card:   #ffffff;
   --text:   #2a2a2a;
-  --muted:  #7a8a96;
-  --border: rgba(18,81,95,0.10);
-  --teal:   #1a7a6a;
-  --teal-light: #e8f5f2;
+  --muted:  #8a9a90;
+  --border: rgba(45,106,95,0.12);
+  --teal:   #2f8f74;
+  --teal-light: #eaf6ef;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -49,9 +50,9 @@ nav {
   height: 60px;
 }
 .nav-logo {
-  font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 700;
+  font-family: 'Noto Sans TC', sans-serif; font-size: 17px; font-weight: 900;
   color: var(--navy); background: none; border: none; cursor: pointer;
-  font-family: 'Noto Serif TC', serif;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
 .nav-btn {
@@ -74,7 +75,7 @@ nav {
   cursor: pointer; white-space: nowrap; transition: background 0.15s;
   font-family: 'Noto Sans TC', sans-serif;
 }
-.lang-trigger:hover { background: #0e3f4b; }
+.lang-trigger:hover { background: var(--navy-dark); }
 .lang-trigger .chevron { font-size: 9px; opacity: 0.7; transition: transform 0.2s; }
 .lang-wrap.open .lang-trigger .chevron { transform: rotate(180deg); }
 .lang-menu {
@@ -109,10 +110,15 @@ nav {
   color: var(--navy); background: rgba(18,81,95,0.10);
   padding: 5px 14px; border-radius: 20px;
 }
-.tag-pill.red { color: var(--red); background: rgba(185,87,86,0.10); }
+.tag-pill.red { color: var(--red); background: rgba(209,112,79,0.12); display: inline-flex; align-items: center; gap: 6px; }
+.lang-pills { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 24px; }
+.lang-pills-icon { font-size: 13px; margin-right: 2px; }
+.lang-pill { background: rgba(45,106,95,0.10); color: var(--navy); font-size: 11.5px; font-weight: 700; padding: 5px 12px; border-radius: 14px; }
+@keyframes pulseDot { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.6; } }
+.pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex-shrink: 0; animation: pulseDot 1.4s ease-in-out infinite; }
 .hero h1 {
-  font-family: 'Noto Serif TC', serif;
-  font-size: clamp(32px, 4.5vw, 50px); font-weight: 700;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: clamp(32px, 4.5vw, 50px); font-weight: 900;
   line-height: 1.25; color: var(--navy); margin-bottom: 16px;
 }
 .hero h1 em { font-style: normal; color: var(--red); }
@@ -129,7 +135,7 @@ nav {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: 'Noto Sans TC', sans-serif;
 }
-.btn-primary:hover { background: #0e3f4b; transform: translateY(-1px); }
+.btn-primary:hover { background: var(--navy-dark); transform: translateY(-1px); }
 .btn-outline {
   background: transparent; color: var(--navy); font-size: 15px; font-weight: 600;
   padding: 13px 28px; border-radius: 28px; border: 2px solid var(--navy);
@@ -152,7 +158,7 @@ nav {
   width: 160px; height: 160px; background: rgba(185,87,86,0.12); border-radius: 50%;
 }
 .visual-brand {
-  font-family: 'Noto Serif TC', serif; font-size: 13px; font-weight: 700;
+  font-family: 'Noto Sans TC', sans-serif; font-size: 13px; font-weight: 900;
   color: rgba(255,255,255,0.5); letter-spacing: 1px;
   margin-bottom: 24px; position: relative; z-index: 1;
 }
@@ -169,7 +175,7 @@ nav {
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .visual-info { flex: 1; }
-.visual-zh { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 700; color: white; }
+.visual-zh { font-family: 'Noto Sans TC', sans-serif; font-size: 16px; font-weight: 900; color: white; }
 .visual-en { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
 .visual-check { font-size: 16px; }
 .visual-footer {
@@ -189,7 +195,7 @@ nav {
 /* Hero profile card */
 .visual-profile { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; position: relative; z-index: 1; }
 .vp-photo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid rgba(255,255,255,0.2); flex-shrink: 0; }
-.vp-name { font-family: 'Noto Serif TC', serif; font-size: 20px; font-weight: 700; color: white; letter-spacing: 1px; }
+.vp-name { font-family: 'Noto Sans TC', sans-serif; font-size: 20px; font-weight: 900; color: white; letter-spacing: 1px; }
 .vp-title { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px; }
 .vp-rows { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 1; }
 .vp-row { display: flex; align-items: flex-start; gap: 12px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.09); border-radius: 10px; padding: 12px 14px; }
@@ -217,17 +223,17 @@ nav {
   display: flex; align-items: center; justify-content: center;
   font-size: 21px;
 }
-.feature-title { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+.feature-title { font-family: 'Noto Sans TC', sans-serif; font-size: 16px; font-weight: 900; color: var(--navy); margin-bottom: 5px; }
 .feature-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
 
 /* Entry section */
 .section-wrap { max-width: 1080px; margin: 0 auto; padding: 56px 32px; }
 .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--red); margin-bottom: 8px; text-transform: uppercase; }
-.section-heading { font-family: 'Noto Serif TC', serif; font-size: clamp(20px, 3.5vw, 28px); font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.section-heading { font-family: 'Noto Sans TC', sans-serif; font-size: clamp(20px, 3.5vw, 28px); font-weight: 900; color: var(--navy); margin-bottom: 4px; }
 .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
 
 /* Latest articles + newsletter */
-.latest-wrap { max-width: 1080px; margin: 0 auto; padding: 56px 32px; display: grid; grid-template-columns: 1fr 320px; gap: 44px; align-items: start; }
+.latest-wrap { max-width: 1080px; margin: 0 auto; padding: 56px 32px; }
 .latest-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 24px; }
 .latest-viewall { font-size: 13px; font-weight: 700; color: var(--navy); white-space: nowrap; cursor: pointer; }
 .latest-viewall:hover { text-decoration: underline; }
@@ -244,42 +250,11 @@ nav {
   font-size: 30px; position: relative;
 }
 .post-body { padding: 16px 18px 18px; }
-.post-title { font-family: 'Noto Serif TC', serif; font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.5; margin-bottom: 6px; }
+.post-title { font-family: 'Noto Sans TC', sans-serif; font-size: 15px; font-weight: 900; color: var(--navy); line-height: 1.5; margin-bottom: 6px; }
 .post-excerpt { font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
 .post-footer { display: flex; align-items: center; justify-content: space-between; }
 .post-date { font-size: 11px; color: var(--muted); }
 .post-arrow { font-size: 13px; font-weight: 700; color: var(--navy); }
-
-/* Newsletter card */
-.newsletter-card {
-  background: var(--navy); border-radius: 18px; padding: 26px 24px;
-  position: relative; overflow: hidden;
-}
-.newsletter-card::after {
-  content: ''; position: absolute; bottom: -50px; right: -40px;
-  width: 150px; height: 150px; background: rgba(185,87,86,0.14); border-radius: 50%;
-}
-.newsletter-icon { font-size: 22px; margin-bottom: 12px; position: relative; z-index: 1; }
-.newsletter-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 700; color: white; margin-bottom: 6px; position: relative; z-index: 1; }
-.newsletter-desc { font-size: 12.5px; color: rgba(255,255,255,0.55); line-height: 1.6; margin-bottom: 20px; position: relative; z-index: 1; }
-.newsletter-form { display: flex; align-items: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); border-radius: 30px; padding: 4px 4px 4px 16px; position: relative; z-index: 1; }
-.newsletter-form input { flex: 1; background: none; border: none; outline: none; color: white; font-size: 13px; font-family: 'Noto Sans TC', sans-serif; }
-.newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
-.newsletter-submit {
-  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
-  background: var(--red); color: white; border: none; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; font-size: 14px;
-  transition: background 0.2s;
-}
-.newsletter-submit:hover { background: #a34443; }
-.newsletter-socials { display: flex; gap: 10px; margin-top: 22px; position: relative; z-index: 1; }
-.newsletter-social {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 15px; text-decoration: none; transition: background 0.2s;
-}
-.newsletter-social:hover { background: rgba(255,255,255,0.16); }
 
 /* ─────────────────────────
    INNER PAGE SHARED
@@ -297,7 +272,8 @@ nav {
 }
 .back-btn:hover { color: rgba(255,255,255,0.9); }
 .inner-top h1 {
-  font-family: 'Noto Serif TC', serif;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 900;
   font-size: clamp(24px, 4vw, 36px); color: white;
   line-height: 1.4; margin-bottom: 10px; position: relative; z-index: 1;
 }
@@ -308,7 +284,8 @@ nav {
    GUIDE PAGE (3 險種)
 ───────────────────────── */
 .guide-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.guide-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(18,81,95,0.06); }
+.guide-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(18,81,95,0.06); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.guide-card:hover { transform: translateY(-6px); box-shadow: 0 14px 32px rgba(18,81,95,0.14); }
 .guide-top { padding: 20px 22px; display: flex; align-items: center; gap: 12px; }
 .guide-num {
   width: 32px; height: 32px; border-radius: 50%;
@@ -316,7 +293,7 @@ nav {
   font-size: 16px; font-weight: 700;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
-.guide-top h3 { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 700; color: white; }
+.guide-top h3 { font-family: 'Noto Sans TC', sans-serif; font-size: 18px; font-weight: 900; color: white; }
 .guide-top .sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
 .guide-body { padding: 18px 22px 22px; }
 .guide-trigger { background: #f0f5f6; border-radius: 10px; padding: 11px 14px; margin-bottom: 16px; font-size: 12.5px; color: var(--text); line-height: 1.5; }
@@ -339,10 +316,11 @@ nav {
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 .info-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-.info-card { background: var(--white); border-radius: 14px; padding: 20px 22px; border: 1px solid var(--border); }
+.info-card { background: var(--white); border-radius: 14px; padding: 20px 22px; border: 1px solid var(--border); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.info-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(18,81,95,0.10); }
 .info-card.highlight { background: var(--teal-light); border-color: rgba(26,122,106,0.2); }
 .info-card.warn { border-left: 4px solid var(--red); }
-.info-card h3 { font-family: 'Noto Serif TC', serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.info-card h3 { font-family: 'Noto Sans TC', sans-serif; font-size: 15px; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
 .info-card p, .info-card li { font-size: 13px; color: #555; line-height: 1.7; }
 .info-card ul { list-style: none; padding: 0; }
 .info-card ul li { padding: 3px 0; }
@@ -354,12 +332,13 @@ nav {
 ───────────────────────── */
 .os-badge { display: inline-block; background: var(--teal-light); color: var(--teal); font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 4px 14px; border-radius: 20px; margin-bottom: 20px; }
 .os-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.os-card { background: var(--white); border-radius: 14px; padding: 20px 20px 22px; border: 1px solid var(--border); }
+.os-card { background: var(--white); border-radius: 14px; padding: 20px 20px 22px; border: 1px solid var(--border); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.os-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(18,81,95,0.10); }
 .os-card.full { grid-column: 1 / -1; }
 .os-card.highlight { background: var(--teal-light); border-color: rgba(26,122,106,0.2); }
 .os-card-tag { display: inline-block; background: rgba(18,81,95,0.08); color: var(--navy); font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; letter-spacing: 1px; }
 .os-card.highlight .os-card-tag { background: rgba(26,122,106,0.15); color: var(--teal); }
-.os-card h3 { font-family: 'Noto Serif TC', serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.os-card h3 { font-family: 'Noto Sans TC', sans-serif; font-size: 15px; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
 .os-card p, .os-card li { font-size: 13px; color: #555; line-height: 1.7; }
 .os-card ul { list-style: none; padding: 0; }
 .os-card ul li { padding: 3px 0; }
@@ -374,7 +353,8 @@ nav {
    FAQ PAGE
 ───────────────────────── */
 .faq-cols { display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start; }
-.faq-sidebar h2 { font-family: 'Noto Serif TC', serif; font-size: 26px; font-weight: 700; color: var(--navy); line-height: 1.4; margin-bottom: 12px; }
+.faq-cols-single { grid-template-columns: 1fr; max-width: 720px; margin: 0 auto; }
+.faq-sidebar h2 { font-family: 'Noto Sans TC', sans-serif; font-size: 26px; font-weight: 900; color: var(--navy); line-height: 1.4; margin-bottom: 12px; }
 .faq-sidebar p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
 .lang-note { background: var(--navy); border-radius: 10px; padding: 14px 16px; font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.7; }
 .faq-item { background: var(--white); border-radius: 12px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(18,81,95,0.06); }
@@ -397,19 +377,19 @@ nav {
 .about-grid { display: grid; grid-template-columns: 200px 1fr; gap: 52px; align-items: start; }
 .about-photo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; border: 4px solid var(--border); background: rgba(18,81,95,0.08); }
 .about-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; }
-.about-content h2 { font-family: 'Noto Serif TC', serif; font-size: clamp(22px, 4vw, 32px); font-weight: 700; color: var(--navy); margin-bottom: 14px; line-height: 1.3; }
+.about-content h2 { font-family: 'Noto Sans TC', sans-serif; font-size: clamp(22px, 4vw, 32px); font-weight: 900; color: var(--navy); margin-bottom: 14px; line-height: 1.3; }
 .about-content p { font-size: 15px; color: #555; line-height: 1.9; margin-bottom: 22px; }
 .about-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
 .about-badge { background: rgba(18,81,95,0.08); color: var(--navy); font-size: 13px; font-weight: 600; padding: 7px 16px; border-radius: 20px; border: 1px solid var(--border); }
 .about-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 .about-btn { background: var(--navy); color: white; font-size: 14px; font-weight: 700; padding: 11px 24px; border-radius: 24px; text-decoration: none; transition: all 0.2s; }
-.about-btn:hover { background: #0e3f4b; }
+.about-btn:hover { background: var(--navy-dark); }
 .about-btn.outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
 .about-btn.outline:hover { background: var(--navy); color: white; }
 
 /* CTA strip */
 .cta-strip { background: var(--red); border-radius: 20px; padding: 44px 36px; text-align: center; margin-top: 48px; }
-.cta-strip h2 { font-family: 'Noto Serif TC', serif; font-size: clamp(18px,3vw,26px); font-weight: 700; color: white; margin-bottom: 8px; }
+.cta-strip h2 { font-family: 'Noto Sans TC', sans-serif; font-size: clamp(18px,3vw,26px); font-weight: 900; color: white; margin-bottom: 8px; }
 .cta-strip p { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.8; margin-bottom: 24px; }
 .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 .cta-btn { background: white; color: var(--red); font-size: 15px; font-weight: 700; padding: 12px 26px; border-radius: 28px; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
@@ -418,8 +398,8 @@ nav {
 .cta-btn.outline:hover { background: rgba(255,255,255,0.25); }
 
 /* ── FOOTER ── */
-footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
-.footer-logo { font-family: 'Noto Serif TC', serif; font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.6); margin-bottom: 5px; }
+footer { background: var(--navy-dark); padding: 24px 32px; text-align: center; }
+.footer-logo { font-family: 'Noto Sans TC', sans-serif; font-size: 15px; font-weight: 900; color: rgba(255,255,255,0.6); margin-bottom: 5px; }
 .footer-meta { font-size: 11.5px; color: rgba(255,255,255,0.28); line-height: 1.8; }
 
 /* ── HAMBURGER / MOBILE MENU ── */
@@ -467,7 +447,6 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
   .feature-item:nth-child(2) { border-right: none; }
   .feature-item:nth-child(3) { border-top: 1px solid var(--border); }
   .feature-item:nth-child(4) { border-top: 1px solid var(--border); }
-  .latest-wrap { grid-template-columns: 1fr; }
   .latest-grid { grid-template-columns: repeat(2, 1fr); }
   .guide-cards { grid-template-columns: 1fr; }
   .os-cards { grid-template-columns: repeat(2, 1fr); }
@@ -516,10 +495,11 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
 
 /* ── TRAVEL PAGE ── */
 .t-sections { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
-.t-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(18,81,95,0.08); }
+.t-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(18,81,95,0.08); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.t-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(18,81,95,0.14); }
 .t-card-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 14px; }
 .t-card-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: white; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.t-card-titles h3 { font-family: 'Noto Serif TC', serif; font-size: 19px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.t-card-titles h3 { font-family: 'Noto Sans TC', sans-serif; font-size: 19px; font-weight: 900; color: var(--navy); margin-bottom: 2px; }
 .t-card-titles .t-sub { font-size: 12px; color: var(--muted); }
 .t-card-body { padding: 22px 24px 28px; }
 .t-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--blue); margin-bottom: 12px; }
@@ -532,7 +512,7 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
 .t-cov-list li.t-gold { color: #c8922a; font-weight: 600; }
 .t-cov-list li.t-gold::before { color: #c8922a; }
 .t-highlight { background: #f5ede6; border-radius: 12px; padding: 20px 22px; margin-bottom: 18px; display: flex; align-items: center; gap: 16px; }
-.t-big-num { font-family: 'Noto Serif TC', serif; font-size: 72px; font-weight: 700; color: #c8922a; line-height: 1; flex-shrink: 0; }
+.t-big-num { font-family: 'Noto Sans TC', sans-serif; font-size: 72px; font-weight: 900; color: #c8922a; line-height: 1; flex-shrink: 0; }
 .t-big-text .t-main { font-size: 19px; font-weight: 700; color: var(--navy); line-height: 1.4; }
 .t-big-text .t-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
 .t-reason-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
@@ -696,7 +676,7 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
       </h1>
 
       <div class="hero-sub">
-        <span data-lang="zh">不懂台灣保險沒關係，我用你聽得懂的語言解釋每一件事——讓保險不再是陌生的東西。</span>
+        <span data-lang="zh">不懂台灣保險沒關係，我用你聽得懂的語言解釋每一件事<br>讓保險不再是陌生的東西。</span>
         <span data-lang="en">Don't worry if you don't understand Taiwanese insurance. I'll explain everything in a language you understand.</span>
         <span data-lang="vi">Không hiểu bảo hiểm Đài Loan không sao, tôi sẽ giải thích mọi thứ bằng ngôn ngữ bạn hiểu.</span>
         <span data-lang="id">Tidak masalah jika tidak mengerti asuransi Taiwan. Saya akan menjelaskan segalanya dalam bahasa Anda.</span>
@@ -715,6 +695,14 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
           <span data-lang="vi">🙋 Câu Hỏi Thường Gặp</span>
           <span data-lang="id">🙋 Pertanyaan Umum</span>
         </button>
+      </div>
+
+      <div class="lang-pills">
+        <span class="lang-pills-icon">🌐</span>
+        <span class="lang-pill">中文</span>
+        <span class="lang-pill">English</span>
+        <span class="lang-pill">Tiếng Việt</span>
+        <span class="lang-pill">Bahasa Indonesia</span>
       </div>
     </div>
 
@@ -833,28 +821,11 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
         </div>
       </div>
     </div>
-
-    <div class="newsletter-card">
-      <div class="newsletter-icon">✉️</div>
-      <div class="newsletter-title"><span data-lang="zh">訂閱最新資訊</span><span data-lang="en">Subscribe</span><span data-lang="vi">Đăng Ký</span><span data-lang="id">Berlangganan</span></div>
-      <div class="newsletter-desc"><span data-lang="zh">每週收到實用的保險與理財知識</span><span data-lang="en">Get practical insurance & finance tips weekly</span><span data-lang="vi">Nhận kiến thức BH & tài chính hàng tuần</span><span data-lang="id">Dapatkan tips asuransi & keuangan mingguan</span></div>
-      <form class="newsletter-form" onsubmit="event.preventDefault();">
-        <input type="email" data-lang="zh" placeholder="輸入你的 Email" required>
-        <input type="email" data-lang="en" placeholder="Enter your email" required style="display:none;">
-        <input type="email" data-lang="vi" placeholder="Nhập email của bạn" required style="display:none;">
-        <input type="email" data-lang="id" placeholder="Masukkan email Anda" required style="display:none;">
-        <button type="submit" class="newsletter-submit" aria-label="訂閱">→</button>
-      </form>
-      <div class="newsletter-socials">
-        <a class="newsletter-social" href="https://www.instagram.com/urbxneighbor/" target="_blank" aria-label="Instagram">📷</a>
-        <a class="newsletter-social" href="#" onclick="showPage('about');return false;" aria-label="LINE">💬</a>
-      </div>
-    </div>
   </div>
 
   <footer>
   <footer>
-    <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
+    <div class="footer-logo">保險好鄰居 ｜ JECKO</div>
     <div class="footer-meta">
       <span data-lang="zh">以上資訊僅供參考，實際理賠條件以各保險公司保單條款為準。</span>
       <span data-lang="en">This information is for reference only. Actual terms are subject to individual policy conditions.</span>
@@ -1025,7 +996,7 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
   </div>
 
   <footer>
-    <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
+    <div class="footer-logo">保險好鄰居 ｜ JECKO</div>
     <div class="footer-meta"><span data-lang="zh">以上資訊僅供參考，實際理賠條件以各保險公司保單條款為準。</span><span data-lang="en">For reference only. Actual terms subject to individual policy conditions.</span><span data-lang="vi">Chỉ mang tính tham khảo.</span><span data-lang="id">Hanya untuk referensi.</span></div>
   </footer>
 </div>
@@ -1430,7 +1401,7 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
   </div>
 
   <footer>
-    <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
+    <div class="footer-logo">保險好鄰居 ｜ JECKO</div>
     <div class="footer-meta">
       <span data-lang="zh">資料來源：教育部、僑務委員會相關法規。實際補助金額以就讀學校及僑委會當年度公告為準，本頁資訊僅供參考。</span>
       <span data-lang="en">Source: Ministry of Education and Overseas Community Affairs Council regulations. Actual amounts subject to school and OCAC annual announcements. For reference only.</span>
@@ -1461,22 +1432,7 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
   </div>
 
   <div class="page-body">
-    <div class="faq-cols">
-      <div class="faq-sidebar">
-        <p>
-          <span data-lang="zh">整理外籍人士在台灣投保時最常遇到的問題，直接給你清楚的答案。</span>
-          <span data-lang="en">Common questions foreigners have about insurance in Taiwan — answered clearly.</span>
-          <span data-lang="vi">Các câu hỏi thường gặp — được trả lời rõ ràng.</span>
-          <span data-lang="id">Pertanyaan umum — dijawab dengan jelas.</span>
-        </p>
-        <div class="lang-note">
-          <span data-lang="zh">🌐 本站支援 <strong>4 種語言</strong><br>中文・English・Tiếng Việt・Bahasa Indonesia</span>
-          <span data-lang="en">🌐 This site supports <strong>4 languages</strong><br>中文・English・Tiếng Việt・Bahasa Indonesia</span>
-          <span data-lang="vi">🌐 Trang này hỗ trợ <strong>4 ngôn ngữ</strong><br>中文・English・Tiếng Việt・Bahasa Indonesia</span>
-          <span data-lang="id">🌐 Situs ini mendukung <strong>4 bahasa</strong><br>中文・English・Tiếng Việt・Bahasa Indonesia</span>
-        </div>
-      </div>
-
+    <div class="faq-cols faq-cols-single">
       <div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
@@ -1607,7 +1563,7 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
   </div>
 
   <footer>
-    <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
+    <div class="footer-logo">保險好鄰居 ｜ JECKO</div>
     <div class="footer-meta"><span data-lang="zh">以上資訊僅供參考，實際理賠條件以各保險公司保單條款為準。</span><span data-lang="en">For reference only. Actual terms subject to individual policy conditions.</span><span data-lang="vi">Chỉ mang tính tham khảo.</span><span data-lang="id">Hanya untuk referensi.</span></div>
   </footer>
 </div>
@@ -2061,40 +2017,6 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
             </div>
           </div>
 
-          <div class="t-group-label"><span data-lang="zh">🔖 快速記憶</span><span data-lang="en">🔖 Quick Recap</span><span data-lang="vi">🔖 Ghi Nhớ Nhanh</span><span data-lang="id">🔖 Rangkuman Cepat</span></div>
-          <div class="t-recap-grid">
-            <div class="t-recap-item">
-              <div class="ico">🏃</div>
-              <div class="ti"><span data-lang="zh">先拿文件</span><span data-lang="en">Get documents first</span><span data-lang="vi">Lấy giấy tờ trước</span><span data-lang="id">Dapatkan dokumen dulu</span></div>
-              <div class="de"><span data-lang="zh">出事後先拿官方證明，再安頓自己，沒有文件什麼都賠不了。</span><span data-lang="en">Get official proof before taking care of yourself. No documents, no claim.</span><span data-lang="vi">Lấy bằng chứng chính thức trước, rồi mới lo cho bản thân. Không giấy tờ, không bồi thường.</span><span data-lang="id">Dapatkan bukti resmi sebelum mengurus diri sendiri. Tanpa dokumen, tidak ada klaim.</span></div>
-            </div>
-            <div class="t-recap-item">
-              <div class="ico">🧳</div>
-              <div class="ti"><span data-lang="zh">箱≠內容物</span><span data-lang="en">Case ≠ contents</span><span data-lang="vi">Vali ≠ đồ đạc</span><span data-lang="id">Koper ≠ isinya</span></div>
-              <div class="de"><span data-lang="zh">行李箱本身不賠，保的是裡面的衣物與物品。</span><span data-lang="en">The suitcase itself is not covered — only what's inside it.</span><span data-lang="vi">Bản thân vali không được bồi thường — chỉ đồ bên trong.</span><span data-lang="id">Koper itu sendiri tidak ditanggung — hanya isinya.</span></div>
-            </div>
-            <div class="t-recap-item">
-              <div class="ico">🛬</div>
-              <div class="ti"><span data-lang="zh">回台就不算</span><span data-lang="en">Home doesn't count</span><span data-lang="vi">Về nước là hết hạn</span><span data-lang="id">Sudah pulang tidak berlaku</span></div>
-              <div class="de"><span data-lang="zh">行李延誤只限海外旅程途中，回台後行李才到不賠。</span><span data-lang="en">Baggage delay only applies while abroad. Bags arriving late after you're home aren't covered.</span><span data-lang="vi">Chậm hành lý chỉ áp dụng khi ở nước ngoài. Hành lý đến trễ sau khi về nước không được bồi thường.</span><span data-lang="id">Keterlambatan bagasi hanya berlaku di luar negeri. Bagasi terlambat setelah pulang tidak ditanggung.</span></div>
-            </div>
-            <div class="t-recap-item">
-              <div class="ico">📞</div>
-              <div class="ti"><span data-lang="zh">滯留要展延</span><span data-lang="en">Stranded? Extend it</span><span data-lang="vi">Kẹt lại? Gia hạn ngay</span><span data-lang="id">Terjebak? Perpanjang</span></div>
-              <div class="de"><span data-lang="zh">無法如期回台，保期前打電話申請展延，否則保障失效。</span><span data-lang="en">Can't return on time? Call to request an extension before your policy expires, or coverage lapses.</span><span data-lang="vi">Không thể về đúng hạn? Gọi xin gia hạn trước khi hết hạn, nếu không bảo hiểm sẽ hết hiệu lực.</span><span data-lang="id">Tidak bisa pulang tepat waktu? Telepon untuk perpanjangan sebelum polis kedaluwarsa.</span></div>
-            </div>
-            <div class="t-recap-item">
-              <div class="ico">📅</div>
-              <div class="ti"><span data-lang="zh">投保日決定一切</span><span data-lang="en">Purchase date decides</span><span data-lang="vi">Ngày mua quyết định</span><span data-lang="id">Tanggal beli menentukan</span></div>
-              <div class="de"><span data-lang="zh">新舊制看投保日不看旅程日，提早投保才適用新制保障。</span><span data-lang="en">New vs. old rules depend on your purchase date, not trip date.</span><span data-lang="vi">Quy định mới/cũ phụ thuộc vào ngày mua, không phải ngày đi.</span><span data-lang="id">Aturan baru/lama tergantung tanggal pembelian, bukan tanggal perjalanan.</span></div>
-            </div>
-            <div class="t-recap-item">
-              <div class="ico">🌀</div>
-              <div class="ti"><span data-lang="zh">颱風前先保</span><span data-lang="en">Buy before the storm</span><span data-lang="vi">Mua trước bão</span><span data-lang="id">Beli sebelum badai</span></div>
-              <div class="de"><span data-lang="zh">颱風警報發布後才投保，很可能不賠，訂完機票就投保。</span><span data-lang="en">Buying after a typhoon warning is issued likely won't be covered. Insure as soon as you book your flight.</span><span data-lang="vi">Mua sau khi có cảnh báo bão thường sẽ không được bồi thường. Hãy mua ngay sau khi đặt vé.</span><span data-lang="id">Membeli setelah peringatan topan biasanya tidak ditanggung. Asuransikan segera setelah memesan tiket.</span></div>
-            </div>
-          </div>
-
         </div>
       </div>
 
@@ -2152,7 +2074,7 @@ footer { background: #0e3f4b; padding: 24px 32px; text-align: center; }
   </div>
 
   <footer>
-    <div class="footer-logo">保險好鄰居 ｜ JECKO ｜ @urbxneighbor</div>
+    <div class="footer-logo">保險好鄰居 ｜ JECKO</div>
     <div class="footer-meta"><span data-lang="zh">以上資訊僅供參考，實際理賠條件以各保險公司保單條款為準。</span><span data-lang="en">For reference only. Actual terms subject to individual policy conditions.</span><span data-lang="vi">Chỉ mang tính tham khảo.</span><span data-lang="id">Hanya untuk referensi.</span></div>
   </footer>
 </div>
